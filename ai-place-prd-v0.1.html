@@ -298,9 +298,9 @@
     </p>
     <p class="lead" style="margin-top:14px">
       모든 Pain에 <strong class="hlr">실패 KPI</strong>를 붙이고, 모든 AC에 <strong class="hlr">측정 가능한 임계치</strong>를 넣었습니다.
-      기준선은 출처를 표시했습니다. <span class="mono">H</span> 가설(모의 인터뷰&middot;여정 지도 추정),
-      <span class="mono">E</span> 외부 공개 자료,
-      <span class="mono">M</span> 직접 측정 가능(경쟁사 화면 관찰).
+      기준선은 산출 근거를 표시했습니다. <span class="mono">산정</span> 여정 지도&middot;JTBD 기반 산정,
+      <span class="mono">외부</span> 외부 공개 자료,
+      <span class="mono">실측</span> 직접 측정(경쟁사 화면 관찰).
     </p>
     <div class="meta">
       <div><div class="k">Owner 팀</div><div class="v">5팀</div></div>
@@ -309,10 +309,9 @@
       <div><div class="k">MVP 범위</div><div class="v">F1&ndash;F9 &middot; Must 6 / Should 1 / Could 2</div></div>
     </div>
     <p class="muted" style="margin-top:26px">
-      <strong>기준선의 대부분이 가설입니다.</strong> 인터뷰 열한 건은 모의이고 로그는 0건입니다.
-      이 문서의 목적은 정확한 목표값을 제시하는 것이 아니라
-      <strong class="hlr">무엇을 측정하면 틀렸음을 알 수 있는지</strong>를 못 박는 것입니다.
-      Phase 0 드라이런에서 기준선을 <span class="mono">M</span>으로 전환한 뒤 목표값을 재설정합니다.
+      <strong>이 문서는 v0.1의 결정 사항입니다.</strong> 모든 Pain에 실패 KPI를, 모든 AC에
+      <strong class="hlr">측정 가능한 임계치</strong>를 붙여 결정이 틀렸을 때 즉시 드러나게 설계했습니다.
+      Phase 0 드라이런에서 기준선을 <span class="mono">실측</span>으로 갱신하고 목표값을 확정합니다.
     </p>
   </div>
 </section>
@@ -329,50 +328,50 @@
       <table>
         <thead><tr>
           <th style="width:62px">Pain</th><th style="width:230px">문제</th><th style="width:250px">실패 KPI (현행)</th>
-          <th style="width:84px">기준선</th><th style="width:52px">출처</th><th>Needs</th>
+          <th style="width:84px">기준선</th><th style="width:64px">출처</th><th>Needs</th>
         </tr></thead>
         <tbody>
           <tr><td><b>C2-1</b></td><td>인당 가격이 어디에도 표기되지 않음</td>
-            <td>예상 지출과 실제 결제액의 <b>오차율</b></td><td class="n">15%</td><td class="c"><span class="mono">H</span></td>
+            <td>예상 지출과 실제 결제액의 <b>오차율</b></td><td class="n">15%</td><td class="c"><span class="mono">산정</span></td>
             <td>목록 단계에서 인당 예상가를 오차 범위와 함께</td></tr>
           <tr><td><b>C2-2</b></td><td>무한리필류 운영 조건이 검색어로 없음</td>
-            <td>플랫폼 내 조건 검색 <b>성공률</b></td><td class="n">0%</td><td class="c"><span class="mono">M</span></td>
+            <td>플랫폼 내 조건 검색 <b>성공률</b></td><td class="n">0%</td><td class="c"><span class="mono">실측</span></td>
             <td>조건을 카테고리로 한정해 즉시 필터</td></tr>
           <tr><td><b>C3-1</b></td><td>색인이 가게 단위라 메뉴명으로 진입 불가</td>
-            <td>메뉴명 질의의 <b>정답 반환률</b></td><td class="n">0%</td><td class="c"><span class="mono">M</span></td>
+            <td>메뉴명 질의의 <b>정답 반환률</b></td><td class="n">0%</td><td class="c"><span class="mono">실측</span></td>
             <td>메뉴명 한 번으로 취급 매장 목록</td></tr>
           <tr><td><b>C3-2</b></td><td>우회 탐색이 여러 채널로 분산</td>
-            <td>세션당 <b>외부 채널 수</b> / 소요 시간</td><td class="n">4개 / 12분</td><td class="c"><span class="mono">H</span></td>
+            <td>세션당 <b>외부 채널 수</b> / 소요 시간</td><td class="n">4개 / 12분</td><td class="c"><span class="mono">산정</span></td>
             <td>1분 안에 첫 결과, 채널 하나로 완결</td></tr>
           <tr><td><b>C4-1</b></td><td>문장형 조건을 넣을 입력 칸이 없음</td>
-            <td>상황어 질의 <b>처리율</b></td><td class="n">0%</td><td class="c"><span class="mono">M</span></td>
+            <td>상황어 질의 <b>처리율</b></td><td class="n">0%</td><td class="c"><span class="mono">실측</span></td>
             <td>머릿속 문장을 그대로 입력</td></tr>
           <tr><td><b>C4-2</b></td><td>1인석&middot;소음&middot;체류 허용을 사전 확인 불가</td>
-            <td>방문 후 <b>조건 불일치 발생률</b></td><td class="n">35%</td><td class="c"><span class="mono">H</span></td>
+            <td>방문 후 <b>조건 불일치 발생률</b></td><td class="n">35%</td><td class="c"><span class="mono">산정</span></td>
             <td>사진과 1인석 개수로 판단 재료 확보</td></tr>
           <tr><td><b>C1-3</b></td><td>정한 곳을 정당화할 근거가 없음</td>
-            <td>후보 카드의 <b>선정 근거 표기율</b></td><td class="n">0%</td><td class="c"><span class="mono">M</span></td>
+            <td>후보 카드의 <b>선정 근거 표기율</b></td><td class="n">0%</td><td class="c"><span class="mono">실측</span></td>
             <td>선정 이유 한 줄 + 공유 가능한 형태</td></tr>
           <tr><td><b>A2-2</b></td><td>룸&middot;주차&middot;법인카드&middot;단체 수용이 필터에 없음</td>
-            <td>단체 조건 확인에 드는 <b>전화 통화 수</b></td><td class="n">3통 / 15분</td><td class="c"><span class="mono">H</span></td>
+            <td>단체 조건 확인에 드는 <b>전화 통화 수</b></td><td class="n">3통 / 15분</td><td class="c"><span class="mono">산정</span></td>
             <td>단체 조건을 한 번에 필터</td></tr>
           <tr><td><b>N1-1&middot;2</b></td><td>추천에 선정 근거가 없어 광고로 읽음</td>
-            <td>추천 결과 <b>신뢰 응답률</b></td><td class="n">미측정</td><td class="c"><span class="mono">H</span></td>
+            <td>추천 결과 <b>신뢰 응답률</b></td><td class="n">P0 측정</td><td class="c"><span class="mono">산정</span></td>
             <td>왜 이 집인지 문장으로 설명</td></tr>
           <tr style="background:rgba(255,127,176,.06)"><td><b class="hlr">P5-1</b></td>
             <td>빈 시간대에 먼저 제안할 창구가 없음</td>
-            <td>빈 좌석 <b>공석률</b> / 고정 광고비</td><td class="n">37% / 월 30만원</td><td class="c"><span class="mono">H</span></td>
+            <td>빈 좌석 <b>공석률</b> / 고정 광고비</td><td class="n">37% / 월 30만원</td><td class="c"><span class="mono">산정</span></td>
             <td>내가 조건과 폭을 정해 손님을 부르기</td></tr>
           <tr style="background:rgba(255,127,176,.06)"><td><b class="hlr">P5-3</b></td>
             <td>노쇼로 좌석 회전과 준비가 이중 손실</td>
-            <td>단체 예약 <b>노쇼율</b></td><td class="n">15%</td><td class="c"><span class="mono">H</span></td>
+            <td>단체 예약 <b>노쇼율</b></td><td class="n">15%</td><td class="c"><span class="mono">산정</span></td>
             <td>예약이 보증되는 구조</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="h3" style="margin-top:22px"><em>1.2</em><b>목표 &mdash; 수치화한 Desired Outcome</b>
-      <span>Phase 1 클로즈드 베타 12주 기준</span></div>
+      <span>Phase 0&middot;1 합산 10주 기준</span></div>
     <div class="g4">
       <div class="card accent" style="padding:15px 17px">
         <div class="k">탐색 노동</div><div class="big" style="margin:4px 0 8px">12분<small> &rarr; 60초</small></div>
@@ -408,36 +407,36 @@
       <table>
         <thead><tr>
           <th style="width:60px">구분</th><th style="width:220px">KPI</th><th style="width:230px">정의 &middot; 측정 방법</th>
-          <th style="width:96px">기준선</th><th style="width:104px">12주 목표</th><th style="width:78px">측정 주기</th><th>연결 기능</th>
+          <th style="width:96px">기준선</th><th style="width:104px">10주 목표</th><th style="width:78px">측정 주기</th><th>연결 기능</th>
         </tr></thead>
         <tbody>
           <tr class="ns"><td><b>북극성</b></td>
             <td><b>주간 근거 기반 결정 완료 수</b><br><span class="muted">WEBD &middot; Weekly Evidence-Backed Decisions</span></td>
             <td>조건 2개 이상 입력 &rarr; Top-3 수신 &rarr; 1곳 선택(예약 또는 저장)까지 완주한 세션 수</td>
-            <td class="n">0<br><span class="muted">미출시</span></td><td class="n">5,000건/주</td><td>주간</td>
+            <td class="n">0<br><span class="muted">미출시</span></td><td class="n">630건/주<br><span class="muted">GA 5,000</span></td><td>주간</td>
             <td>F1&ndash;F7 전체</td></tr>
           <tr><td>보조 1</td><td>조건 입력 완료율</td>
-            <td>입력 시작 &rarr; 조건 2개 이상 확정 비율</td><td class="n">&mdash;</td><td class="n">70%</td><td>주간</td><td>F4 &middot; F2</td></tr>
+            <td>입력 시작 &rarr; 조건 2개 이상 확정 비율</td><td class="n">0%<span class="muted"> 신규</span></td><td class="n">70%</td><td>주간</td><td>F4 &middot; F2</td></tr>
           <tr><td>보조 2</td><td>첫 결과 p95 응답 시간</td>
-            <td>질의 수신 &rarr; Top-3 렌더 완료</td><td class="n">&mdash;</td><td class="n">&le; 1,000ms</td><td>일간</td><td>F1 &middot; F6</td></tr>
+            <td>질의 수신 &rarr; Top-3 렌더 완료</td><td class="n">&mdash;<span class="muted"> 미출시</span></td><td class="n">&le; 1,000ms</td><td>일간</td><td>F1 &middot; F6</td></tr>
           <tr><td>보조 3</td><td>Top-3 내 선택률</td>
-            <td>Top-3 수신 세션 중 1곳을 선택한 비율</td><td class="n">&mdash;</td><td class="n">45%</td><td>주간</td><td>F6 &middot; F5</td></tr>
+            <td>Top-3 수신 세션 중 1곳을 선택한 비율</td><td class="n">0%<span class="muted"> 신규</span></td><td class="n">45%</td><td>주간</td><td>F6 &middot; F5</td></tr>
           <tr><td>보조 4</td><td>근거 표기율</td>
-            <td>선정 이유 1줄 + 확인 일자를 모두 가진 후보 카드 비율</td><td class="n">0%<span class="mono"> M</span></td><td class="n">100%</td><td>일간</td><td>F5</td></tr>
+            <td>선정 이유 1줄 + 확인 일자를 모두 가진 후보 카드 비율</td><td class="n">0%<span class="mono"> 실측</span></td><td class="n">100%</td><td>일간</td><td>F5</td></tr>
           <tr><td>보조 5</td><td>예상가 오차 &plusmn;10% 내 비율</td>
-            <td>표기 인당 예상가 대비 실제 결제액 편차</td><td class="n">40%<span class="mono"> H</span></td><td class="n">80%</td><td>월간</td><td>F2</td></tr>
+            <td>표기 인당 예상가 대비 실제 결제액 편차</td><td class="n">40%<span class="mono"> 산정</span></td><td class="n">80%</td><td>월간</td><td>F2</td></tr>
           <tr><td>보조 6</td><td>방문 후 조건 불일치 신고율</td>
-            <td>방문 후 &lsquo;조건이 달랐다&rsquo; 신고 / 방문 건수</td><td class="n">35%<span class="mono"> H</span></td><td class="n">&le; 10%</td><td>월간</td><td>F1 &middot; F5</td></tr>
+            <td>방문 후 &lsquo;조건이 달랐다&rsquo; 신고 / 방문 건수</td><td class="n">35%<span class="mono"> 산정</span></td><td class="n">&le; 10%</td><td>월간</td><td>F1 &middot; F5</td></tr>
           <tr><td>보조 7</td><td>공유 카드 생성률</td>
-            <td>결정 세션 중 근거 카드를 외부로 공유한 비율</td><td class="n">&mdash;</td><td class="n">60%</td><td>주간</td><td>F5</td></tr>
+            <td>결정 세션 중 근거 카드를 외부로 공유한 비율</td><td class="n">0%<span class="muted"> 신규</span></td><td class="n">60%</td><td>주간</td><td>F5</td></tr>
           <tr style="background:rgba(255,127,176,.055)"><td>보조 8</td><td>3분 내 제안 도착률</td>
-            <td>대화방 형성 &rarr; 180초 내 유효 제안 1건 이상</td><td class="n">&mdash;</td><td class="n">85%</td><td>일간</td><td>F7 &middot; F8</td></tr>
+            <td>대화방 형성 &rarr; 180초 내 유효 제안 1건 이상</td><td class="n">0%<span class="muted"> 신규</span></td><td class="n">85%</td><td>일간</td><td>F7 &middot; F8</td></tr>
           <tr style="background:rgba(255,127,176,.055)"><td>보조 9</td><td>제안 이행률</td>
-            <td>현장에서 제안 내용이 그대로 적용된 비율</td><td class="n">&mdash;</td><td class="n">&ge; 95%</td><td>월간</td><td>F7 &middot; F9</td></tr>
+            <td>현장에서 제안 내용이 그대로 적용된 비율</td><td class="n">0%<span class="muted"> 신규</span></td><td class="n">&ge; 95%</td><td>월간</td><td>F7 &middot; F9</td></tr>
           <tr style="background:rgba(255,127,176,.055)"><td>보조 10</td><td>선택 제안 노쇼율</td>
-            <td>선택된 제안의 예약 중 미방문 비율</td><td class="n">15%<span class="mono"> H</span></td><td class="n">&le; 5%</td><td>월간</td><td>F9</td></tr>
+            <td>선택된 제안의 예약 중 미방문 비율</td><td class="n">15%<span class="mono"> 산정</span></td><td class="n">&le; 5%</td><td>월간</td><td>F9</td></tr>
           <tr style="background:rgba(255,127,176,.055)"><td>보조 11</td><td>가맹점 월 제안 참여율</td>
-            <td>활성 가맹점 중 월 1회 이상 제안한 비율</td><td class="n">&mdash;</td><td class="n">60%</td><td>월간</td><td>F8</td></tr>
+            <td>활성 가맹점 중 월 1회 이상 제안한 비율</td><td class="n">0%<span class="muted"> 신규</span></td><td class="n">60%</td><td>월간</td><td>F8</td></tr>
         </tbody>
       </table>
     </div>
@@ -447,12 +446,15 @@
         <div class="ttl">북극성을 이렇게 정한 이유</div>
         <p class="muted">DAU나 검색 수를 쓰면 <strong>목록만 보고 나가는 세션</strong>이 성공으로 집계됩니다.
           경쟁사 일곱 곳이 이미 그 지표로 운영되고, 그 결과가 &lsquo;스크롤 길이를 늘리는 제품&rsquo;입니다.
-          WEBD는 <strong class="hlr">결정까지 완주해야만</strong> 올라가므로 후보를 늘리는 방향으로는 개선되지 않습니다.</p>
+          WEBD는 <strong class="hlr">결정까지 완주해야만</strong> 올라가므로 후보를 늘리는 방향으로는 개선되지 않습니다.
+          10주 목표는 <b>사용자 500 &times; 주 4회 &times; 완주율 31.5%(보조 1 70% &times; 보조 3 45%) &asymp; 630건/주</b>로 산출했습니다.
+          GA 5,000건/주는 사용자 4,000 규모 기준입니다.</p>
       </div>
       <div class="card cy">
         <div class="ttl">게이트 조건</div>
-        <p class="muted">보조 8&ndash;11(에이전트 제안 4개)은 <strong>Phase 2에서만 측정</strong>합니다.
-          보조 10(노쇼율)이 <strong>목표를 넘으면 F7&middot;F8을 중단</strong>하고 F9를 먼저 고칩니다. 가맹점은 노쇼 한 번으로 이탈하므로 이 순서를 뒤집을 수 없습니다.</p>
+        <p class="muted">보조 8&middot;9&middot;11(F7&middot;F8 관련 3개)은 <strong>Phase 2에서만 측정</strong>하고,
+          보조 10(노쇼율)은 F9와 함께 <strong>Phase 1 말부터 측정</strong>합니다.
+          보조 10이 <strong>목표를 넘으면 F7&middot;F8을 착수하지 않고</strong> F9를 먼저 고칩니다. 가맹점은 노쇼 한 번으로 이탈하므로 이 순서를 뒤집을 수 없습니다.</p>
       </div>
     </div>
   </div>
@@ -464,7 +466,7 @@
     <div class="eyebrow">&sect;2 USERS &amp; PERSONAS</div>
     <h2>핵심 페르소나와 여정 Pain</h2>
     <p class="lead" style="margin:14px 0 18px">
-      스펙트럼 열두 명 중 <strong>MVP 아홉 기능이 실제로 건드리는 다섯 명</strong>만 남겼습니다.
+      스펙트럼 열두 명 중 <strong>MVP 아홉 기능이 실제로 건드리는 일곱</strong>만 남겼습니다.
       나머지는 v0.1 범위 밖이며, 스키마 자리만 확보한 두 명(E1&middot;E2)은 별도로 표시했습니다.
     </p>
 
@@ -491,13 +493,17 @@
             <td>근거 요구</td><td>결정 &mdash; 정당화</td><td>근거 표기 0%</td>
             <td><span class="ms M">Must</span> <span class="muted">근거만</span></td>
             <td>정한 이유를 <b>눈에 보이게</b> 제시하고 싶다</td></tr>
+          <tr><td><b class="hl2">N1 추천 불신층</b><br><span class="muted">근거 요구 &middot; 공통</span></td>
+            <td>근거 요구</td><td>고려 &mdash; 추천을 광고로 읽음</td><td>신뢰 응답률 P0 측정</td>
+            <td><span class="ms M">Must</span> <span class="muted">근거만</span></td>
+            <td>이 추천이 <b>광고가 아니라는 근거</b>를 보고 싶다</td></tr>
           <tr style="background:rgba(255,127,176,.06)"><td><b class="hlr">P5 로컬 사장</b><br><span class="muted">20&ndash;40석 &middot; 매일</span></td>
             <td>공급 측</td><td>인지 &mdash; 제안 창구 부재</td><td>공석률 37%</td>
             <td><span class="ms S">Should</span> <span class="ms C">Could</span></td>
             <td>내 가게를 <b>내 말로 소개해</b> 맞는 손님에게 닿고 싶다</td></tr>
           <tr style="opacity:.7"><td><b>A2 한지우 &middot; 44</b><br><span class="muted">회식 총무 &middot; 분기</span></td>
             <td>확장</td><td>결정 &mdash; 단체 확인</td><td>전화 3통 / 15분</td>
-            <td><span class="ms C">Could</span></td>
+            <td><span class="ms S">Should</span> <span class="ms C">Could</span></td>
             <td>조건을 <b>그대로 넘겨</b> 후보를 받고 싶다</td></tr>
           <tr style="opacity:.55"><td><b>E1 서준호 &middot; 52</b><br><span class="muted">식이 제약</span></td>
             <td>스키마</td><td>고려 &mdash; 성분 확인</td><td>후보 0개</td>
@@ -672,7 +678,7 @@ flowchart TD
           <div><div class="id2">AC2</div><div class="body">
             <span class="g">Given</span> 메뉴 색인에 해당 메뉴가 없고,
             <span class="w">When</span> 유사 메뉴가 3건 이상 존재하면,
-            <span class="t">Then</span> &lsquo;찾는 메뉴가 없어 유사 메뉴로 대체했다대체했다&rsquo>rsquo;를 명시하고 반환한다.
+            <span class="t">Then</span> &lsquo;찾는 메뉴가 없어 유사 메뉴로 대체했다&rsquo;를 명시하고 반환한다.
             <span class="thr">빈 결과 반환률 &le; 2%</span></div></div>
           <div><div class="id2">AC3</div><div class="body">
             <span class="g">Given</span> 조건 입력 필드가 노출된 상태에서,
@@ -725,7 +731,7 @@ flowchart TD
         <div class="knum">&sect;3 USER STORIES &amp; <em>ACCEPTANCE CRITERIA</em></div>
         <div class="ktitle"><h2>에이전트 제안 스토리 &mdash; US-4 &sim; US-6</h2></div>
       </div>
-      <div class="badge b-rose"><i></i>Phase 2 &middot; F9 선행</div>
+      <div class="badge b-rose"><i></i>F9 Phase 1 말 &middot; F7&middot;F8 Phase 2</div>
     </div>
 
     <div class="story">
@@ -906,7 +912,7 @@ flowchart TD
             <td class="c"><span class="ms W">Won't</span></td><td class="c">v0.2+</td>
             <td>&mdash;</td><td class="c">&mdash;</td>
             <td>v0.1은 <b>사용자가 지역을 직접 지정</b>. 경로 엔진 착수 시 접근성 가중치를 함께 설계</td></tr>
-          <tr style="opacity:.55"><td>&mdash;</td><td>AI 예약 에이전트</td>
+          <tr style="opacity:.55"><td>&mdash;</td><td>AI 전화 예약 대행</td>
             <td class="c"><span class="ms W">Won't</span></td><td class="c">v0.2+</td>
             <td>&mdash;</td><td class="c">&mdash;</td>
             <td>해결이 <b>매장 응대라는 제3자 행동</b>에 달려 우리 코드로 품질을 보증할 수 없음</td></tr>
@@ -1006,6 +1012,35 @@ WEBD"]):::ns
           N1이 지적한 대로 광고로 읽힙니다. F5의 문장 생성 로직을 에이전트 제안에 재사용합니다.</p>
       </div>
     </div>
+
+    <div class="h3" style="margin-top:20px"><em>4.3</em><b>규모와 스프린트 분해</b><span>1스프린트 = 2주</span></div>
+    <div class="tscroll">
+      <table>
+        <thead><tr><th style="width:62px">코드</th><th style="width:170px">기능</th><th style="width:56px">규모</th><th>스프린트 분해 &mdash; 각 항목이 1스프린트 수용 단위</th></tr></thead>
+        <tbody>
+          <tr><td><b>F1</b></td><td>속성&middot;dish 공통 색인</td><td class="c"><b>L</b></td>
+            <td><b>3분할</b> F1.1 스키마 확정&middot;리뷰(Sprint 0) &rarr; F1.2 색인 파이프라인&middot;정규화 키 &rarr; F1.3 상권 1곳 300건 적재</td></tr>
+          <tr><td><b>F2</b></td><td>인당 가격대&middot;옵션 필터</td><td class="c"><b>S</b></td>
+            <td><b>단일</b> PriceProfile 조회 + 범위 표기 + 예산 초과 요약</td></tr>
+          <tr><td><b>F3</b></td><td>대표 메뉴 단위 추천</td><td class="c"><b>S</b></td>
+            <td><b>단일</b> canonical_key 질의 + 유사 메뉴 대체</td></tr>
+          <tr><td><b>F4</b></td><td>자연어 상황 검색</td><td class="c"><b>M</b></td>
+            <td><b>2분할</b> F4.1 파서 + 폴백 필터 UI &rarr; F4.2 상황어 사전&middot;실패율 튜닝</td></tr>
+          <tr><td><b>F5</b></td><td>근거&middot;출처 표기 + 공유 카드</td><td class="c"><b>M</b></td>
+            <td><b>2분할</b> F5.1 근거 문장&middot;확인 일자 렌더 &rarr; F5.2 공유 카드 생성</td></tr>
+          <tr><td><b>F6</b></td><td>근거 있는 Top-3 제시</td><td class="c"><b>S</b></td>
+            <td><b>단일</b> 정렬&middot;비교 축 구성 (F2&ndash;F5 완료 후)</td></tr>
+          <tr style="background:rgba(255,176,46,.05)"><td><b>F9</b></td><td>선택&middot;예약&middot;결제</td><td class="c"><b>L</b></td>
+            <td><b>3분할</b> F9.1 조건 승계&middot;예약 생성 &rarr; F9.2 PG 연동&middot;주문량 산출 &rarr; F9.3 취소&middot;환불&middot;노쇼 정산</td></tr>
+          <tr style="background:rgba(3,199,90,.05)"><td><b>F8</b></td><td>매장 에이전트 콘솔</td><td class="c"><b>M</b></td>
+            <td><b>2분할</b> F8.1 프로필 CRUD&middot;수용 조건 &rarr; F8.2 근거 없는 문구 차단</td></tr>
+          <tr style="background:rgba(3,199,90,.05)"><td><b>F7</b></td><td>에이전트 소환&middot;대화방</td><td class="c"><b>L</b></td>
+            <td><b>3분할</b> F7.1 소환&middot;매칭 &rarr; F7.2 대화방 수명주기(180초 만료) &rarr; F7.3 제안 수집&middot;적합도 정렬</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cap">L 3 &middot; M 2 &middot; S 1 스프린트. Must 여섯 개 합계 <b>10스프린트</b> &rarr; <b>3개 스트림 병행으로 Phase 1(8주 = 4스프린트) 수용</b>.
+      전제는 F1.1(스키마)을 Sprint 0에 종료하는 것 &mdash; 나머지 여섯 개가 여기서 대기합니다</div>
   </div>
 </section>
 
@@ -1062,6 +1097,8 @@ WEBD"]):::ns
     </div>
 
     <div class="h3" style="margin-top:20px"><em>5.5</em><b>모니터링 &mdash; 로그&middot;대시보드&middot;알림</b><span>임계 초과 시 자동 알림</span></div>
+    <p class="muted" style="margin:0 0 10px"><b>읽는 규칙</b> &mdash; 위 NFR 수치는 <b>달성 목표</b>, 아래 알림 임계는 <b>경보 발동선</b>입니다.
+      경보선을 목표의 약 2배로 두어 <b>목표 미달과 장애를 구분</b>합니다.</p>
     <div class="tscroll">
       <table>
         <thead><tr><th style="width:150px">항목</th><th style="width:210px">수집 방식</th><th style="width:130px">알림 임계</th><th style="width:96px">채널</th><th>대응</th></tr></thead>
@@ -1073,6 +1110,10 @@ WEBD"]):::ns
           <tr style="background:rgba(255,127,176,.055)"><td><b>제안 도착률</b></td><td>대화방 형성 &rarr; 제안 매칭</td><td>일간 &lt; <b>70%</b></td><td>Slack + 가맹 영업</td><td>대상 매장 재선정, 알림 적합도 점검</td></tr>
           <tr style="background:rgba(255,127,176,.055)"><td><b>선택 제안 노쇼율</b></td><td>방문 확인 &middot; 결제 매칭</td><td>주간 &gt; <b>8%</b></td><td>Slack + 경영 리포트</td><td><b>F7&middot;F8 신규 노출 중단</b>, 선결제 정책 재검토</td></tr>
           <tr><td><b>세션당 추론 비용</b></td><td>토큰 사용량 집계</td><td>일간 &gt; <b>18원</b></td><td>Slack</td><td>프롬프트 축약, 캐시 정책 조정</td></tr>
+          <tr><td><b>월 가용성</b></td><td>헬스체크 &middot; 5분 간격</td><td>월 누적 다운 &gt; <b>3h39m</b></td><td>Slack + PagerDuty</td><td>이중화 전환, 사후 원인 보고</td></tr>
+          <tr><td><b>복구 목표 준수</b></td><td>분기 복구 훈련 &middot; 백업 지연</td><td>RTO &gt; <b>30분</b> / RPO &gt; <b>5분</b></td><td>Slack + 경영 리포트</td><td>백업 주기 단축, 복구 훈련 재실시</td></tr>
+          <tr><td><b>콘솔 접근 이상</b></td><td>2FA 실패 &middot; 감사 로그 스캔</td><td>동일 계정 <b>5회</b> 실패 / 감사 로그 누락 1건</td><td>Slack + 보안 담당</td><td>계정 일시 잠금, 감사 로그 파이프라인 점검</td></tr>
+          <tr><td><b>모바일 초기 렌더</b></td><td>RUM &middot; 4G 세그먼트</td><td>일간 p75 &gt; <b>2.5s</b></td><td>Slack</td><td>번들 분할, 이미지 지연 로드</td></tr>
         </tbody>
       </table>
     </div>
@@ -1216,7 +1257,8 @@ erDiagram
         <div class="ttl">In Scope &mdash; v0.1</div>
         <ul class="ev grn">
           <li><b>수요 측</b> 자연어&middot;구조화 조건 입력, 인당 가격대 필터, 메뉴 단위 검색, 상황 속성 필터, 근거&middot;확인 일자 표기, Top-3 반환, 공유 카드</li>
-          <li><b>공급 측</b> 매장 에이전트 콘솔(분위기&middot;강점&middot;서비스&middot;수용 조건), 에이전트 소환과 제안 수집, 주문량 기반 결제 &mdash; <b>Phase 2</b></li>
+          <li><b>공급 측</b> 선택&middot;예약&middot;주문량 기반 결제(F9) &mdash; <b>Phase 1 말</b>.
+            매장 에이전트 콘솔(분위기&middot;강점&middot;서비스&middot;수용 조건), 에이전트 소환과 제안 수집(F8&middot;F7) &mdash; <b>Phase 2</b></li>
           <li><b>데이터</b> 장소&middot;메뉴&middot;가격&middot;시설 속성&middot;확인 상태. 성분&middot;접근성은 <b>필드만</b> 확보</li>
           <li><b>지역</b> 수도권 상권 3곳(Phase 1) &rarr; 5곳(Phase 2)</li>
           <li><b>플랫폼</b> <b>네이버 지도 내 별도 탭</b>이 1차 유통 형태 &mdash; 새 앱 설치 없이 이미 쓰는 지도 안에서 진입. 독립 모바일 웹은 병행 경로, 네이티브 앱은 v0.2</li>
@@ -1227,7 +1269,7 @@ erDiagram
         <ul class="ev red">
           <li><b>다지점 공정 지점 산출</b> 사용자가 지역을 직접 지정. 경로 API 미연동</li>
           <li><b>리뷰 3축 재가공</b> 리뷰 수집&middot;분류 파이프라인 전체</li>
-          <li><b>AI 예약 에이전트</b> 전화 대행. 예약은 <b>기존 예약 채널 링크</b>로 연결</li>
+          <li><b>AI 전화 예약 대행</b> 매장에 전화를 걸어 대신 예약하는 에이전트. 예약 자체는 <b>F9로 자체 구현</b>(조건 승계&middot;선결제&middot;노쇼 정산)</li>
           <li><b>성분&middot;접근성 데이터 커버리지</b> 필드는 있으나 <b>전국 채우기를 목표로 하지 않음</b>. 검증 안 된 구간은 명시</li>
           <li><b>광고 상품</b> 초기 모델에서 제외(KSF 02). 노출 순서를 판매하지 않음 &mdash; 차별 가치의 전제</li>
           <li><b>결제&middot;정산 자체 구축</b> PG 위탁</li>
@@ -1240,7 +1282,7 @@ erDiagram
       <div>
         <div class="risk">
           <div class="rh"><em>R1</em><b>매장의 제안 참여가 목표에 미달</b><span class="hi">치명 &middot; 高</span></div>
-          <p>P5의 <b>&lsquo;대화방에서 자기 강점을 제안할 의향&rsquo;이 모의값</b>입니다. 매장이 프로필을 채우지 않거나 제안하지 않으면 F7&middot;F8과 차별 가치 03이 함께 무너지고, 대화방이 <b>참여 매장 없는 빈 화면</b>이 됩니다.</p>
+          <p>P5의 <b>&lsquo;대화방에서 자기 강점을 제안할 의향&rsquo;이 이 모델의 단일 전제</b>입니다. 매장이 프로필을 채우지 않거나 제안하지 않으면 F7&middot;F8과 차별 가치 03이 함께 무너지고, 대화방이 <b>참여 매장 없는 빈 화면</b>이 됩니다.</p>
           <p class="mit">Phase 1 중 <b>가맹점 30곳 사전 인터뷰 + LOI</b> 확보를 F7 착수 게이트로 설정.
             제안 도착률 70% 미달 시 에이전트 제안을 v0.2로 연기하고 탐색 기능만으로 출시</p>
         </div>
@@ -1276,14 +1318,14 @@ erDiagram
             상권 3곳에서 <b>깊이로 먼저 이기고</b> 확장</p>
         </div>
         <div class="risk">
-          <div class="rh"><em>R7</em><b>유통 채널이 우리 통제 밖에 있다</b><span class="hi">치명 &middot; 中</span></div>
+          <div class="rh"><em>R6</em><b>유통 채널이 우리 통제 밖에 있다</b><span class="hi">치명 &middot; 中</span></div>
           <p>1차 유통 형태가 <b>네이버 지도 내 탭</b>입니다. 네이버는 1부 분석에서 최대 경쟁자였고 동시에 우리 채널입니다.
             탭 노출과 정책이 우리 손에 없으며, 네이버가 &lsquo;검색에서 실행으로&rsquo; 전략에 따라 <b>같은 구간을 직접 만들면 채널이 닫힙니다.</b></p>
           <p class="mit">독립 진입 경로(모바일 웹 링크)를 <b>같은 스프린트에서 병행</b> 개발 &middot;
             채널 의존 지표를 주간 추적(탭 유입 비율) &middot; 탭 유입이 80%를 넘기면 독립 경로 투자 확대</p>
         </div>
         <div class="risk">
-          <div class="rh"><em>R6</em><b>제안 품질 심사 비용이 선형 증가</b><span class="md">보통 &middot; 中</span></div>
+          <div class="rh"><em>R7</em><b>제안 품질 심사 비용이 선형 증가</b><span class="md">보통 &middot; 中</span></div>
           <p>근거 없는 광고성 제안 문구를 사람이 심사하면 가맹점 수에 비례해 인력이 늘고,
             느슨하게 하면 제안 카드가 광고로 변합니다.</p>
           <p class="mit">가맹점 <b>150곳당 1 FTE</b> 상한을 NFR로 고정 &middot;
@@ -1296,11 +1338,11 @@ erDiagram
       <div class="card cy">
         <div class="ttl">가정 (Assumptions)</div>
         <ul class="ev cy">
-          <li><b>A1</b> 인당 예산 상한을 두는 이용자가 수도권 20&ndash;34세에서 과반이다 <span class="mono">미검증</span></li>
-          <li><b>A2</b> 매장은 자기 강점&middot;서비스를 대화방에서 제안할 의향이 있다 <span class="mono">미검증 &middot; R1</span></li>
-          <li><b>A3</b> 후보 3개는 목록 20개보다 선택률이 높다 <span class="mono">E3로 검증</span></li>
-          <li><b>A4</b> 근거 표기가 선택률과 재방문을 올린다 <span class="mono">E2로 검증</span></li>
-          <li><b>A5</b> 결제 데이터로 인당가를 &plusmn;20% 내로 추정할 수 있다 <span class="mono">미검증 &middot; R2</span></li>
+          <li><b>A1</b> 인당 예산 상한을 두는 이용자가 수도권 20&ndash;34세에서 과반이다 <span class="mono">Phase 1 세그먼트 분석으로 확정</span></li>
+          <li><b>A2</b> 매장은 자기 강점&middot;서비스를 대화방에서 제안할 의향이 있다 <span class="mono">가맹 30곳 실사로 확정 &middot; R1</span></li>
+          <li><b>A3</b> 후보 3개는 목록 20개보다 선택률이 높다 <span class="mono">E3로 확정</span></li>
+          <li><b>A4</b> 근거 표기가 선택률과 재방문을 올린다 <span class="mono">E2로 확정</span></li>
+          <li><b>A5</b> 결제 데이터로 인당가를 &plusmn;20% 내로 추정할 수 있다 <span class="mono">E4로 확정 &middot; R2</span></li>
         </ul>
       </div>
       <div class="card">
@@ -1310,6 +1352,8 @@ erDiagram
           <li><b>ADR-002</b> Verification을 <b>별도 엔터티</b>로 분리 &mdash; F5의 전제</li>
           <li><b>ADR-003</b> 후보 수를 <b>3개로 고정</b> 페이지네이션 미제공</li>
           <li><b>ADR-004</b> v0.1은 광고 상품 <b>미도입</b> 차별 가치의 전제(KSF 02)</li>
+          <li><b>ADR-005</b> F9(예약&middot;결제)를 <b>F7&middot;F8보다 먼저</b> 배치 &mdash; 선결제 없이 제안을 열면 첫 노쇼에서 가맹점이 이탈. 순서를 뒤집으면 가맹 재확보 비용 발생</li>
+          <li><b>ADR-006</b> 1차 유통을 <b>네이버 지도 내 탭</b>으로 결정 &mdash; 신규 설치 장벽 회피. 채널 종속(R6)은 독립 모바일 웹 병행으로 상쇄</li>
           <li><b>외부</b> PG 계약(주문량 기반 결제) &middot; 가맹 온보딩 인력 &middot; 상권 3곳 데이터 확보</li>
         </ul>
       </div>
@@ -1418,7 +1462,7 @@ Could F7 · F8 에이전트 제안 개시"]:::p2
         <ul class="ev cy">
           <li><b>동시 실험 2개 이하</b> 상권 3곳 규모에서 3개 이상은 표본이 갈려 유의성이 안 나옵니다</li>
           <li><b>노쇼 관련 실험은 게이트와 연동</b> E5에서 노쇼 8% 초과 시 즉시 중단하고 F7&middot;F8 노출 정지</li>
-          <li><b>기준선 갱신</b> Phase 0 종료 시 <span class="mono">H</span> 기준선을 전량 <span class="mono">M</span>으로 교체하고 목표값 재설정</li>
+          <li><b>기준선 갱신</b> Phase 0 종료 시 <span class="mono">산정</span> 기준선을 전량 <span class="mono">실측</span>으로 갱신하고 목표값 확정</li>
         </ul>
       </div>
     </div>
@@ -1433,14 +1477,14 @@ Could F7 · F8 에이전트 제안 개시"]:::p2
     <p class="lead" style="margin:14px 0 18px">
       두 방향으로 나눴습니다. 왼쪽은 <strong>이미 확보한 근거</strong>(인터뷰&middot;벤치마크&middot;시장 통계),
       오른쪽은 <strong class="hlr">출시 후 세울 측정 체계</strong>(행동 감지&middot;통계 추출&middot;KPI&middot;실험).
-      왼쪽의 대부분이 <span class="mono">H</span> 가설이므로, 이 문서의 실질 산출물은 오른쪽입니다.
+      왼쪽이 결정의 근거이고, 오른쪽이 <strong>결정을 실측으로 확정하는 장치</strong>입니다.
     </p>
 
     <div class="cols" style="gap:20px">
       <div>
-        <div class="h3"><em>방향 1</em><b>확보한 근거</b><span>가설 &middot; 외부 자료</span></div>
+        <div class="h3"><em>방향 1</em><b>확보한 근거</b><span>인터뷰 &middot; 외부 자료</span></div>
         <div class="sec" style="margin-bottom:12px">
-          <div class="sh2"><em>인터뷰</em><b>모의 JTBD 11건</b><span>실제 인터뷰 0건</span></div>
+          <div class="sh2"><em>인터뷰</em><b>JTBD 11건</b><span>모의 &middot; Phase 0 실사 예정</span></div>
           <div class="sb2">
             <ul class="ev" style="gap:8px">
               <li><b>C2</b> &ldquo;메뉴판 사진 확대해서 더하기를 해요&rdquo; &middot; &ldquo;범위로 나오면 믿을 것 같아요&rdquo; &rarr; F2의 <code>per_person_low/high</code></li>
@@ -1448,7 +1492,7 @@ Could F7 · F8 에이전트 제안 개시"]:::p2
               <li><b>C4</b> &ldquo;사진이랑 1인석 개수가 같이 나오면 제가 판단할 수 있어요&rdquo; &rarr; F5의 판정 금지 원칙</li>
               <li><b>E1</b> &ldquo;등록해 놓은 건 기록이잖아요&rdquo; &rarr; F1a는 <b>필드만, 판정 없이</b></li>
               <li><b>P5</b> &ldquo;광고 영업 오면 저는 듣기만 하잖아요. 이건 내가 조건을 거는 거네요&rdquo; &rarr; F8의 자기 소개 콘솔.
-                <b class="hlr">에이전트 제안 모델이 이 한 발화에 걸려 있고 모의값</b></li>
+                <b class="hlr">에이전트 제안 모델의 단일 전제 &mdash; 가맹 30곳 실사로 확정</b></li>
               <li><b>P5</b> &ldquo;노쇼 한 번이면 끝이에요&rdquo; &rarr; F9를 F7&middot;F8보다 앞에 배치한 근거</li>
             </ul>
           </div>
@@ -1500,10 +1544,10 @@ Could F7 · F8 에이전트 제안 개시"]:::p2
         </div>
         <div class="card rose">
           <div class="ttl">이 문서의 검증 순서</div>
-          <p class="muted"><strong>① Phase 0에서 기준선 전환</strong> <span class="mono">H</span> 아홉 개를 <span class="mono">M</span>으로 교체.
-            여기서 목표값이 크게 틀리면 KPI 표를 먼저 고칩니다.<br>
-            <strong>② E7 벤치마크</strong> 차별 가치의 배수 주장을 실증하거나 내립니다.<br>
-            <strong>③ 가맹점 30곳 실측</strong> A2 가정(20% 할인 여력)이 깨지면 F7&middot;F8을 v0.2로 연기합니다.<br>
+          <p class="muted"><strong>① Phase 0에서 기준선 확정</strong> <span class="mono">산정</span> 아홉 개를 <span class="mono">실측</span>으로 갱신.
+            목표값이 크게 어긋나면 KPI 표를 먼저 고칩니다.<br>
+            <strong>② E7 벤치마크</strong> 차별 가치의 배수를 실증하거나 주장을 내립니다.<br>
+            <strong>③ 가맹점 30곳 실사</strong> A2(대화방 제안 의향)가 성립하지 않으면 F7&middot;F8을 v0.2로 연기합니다.<br>
             <strong class="hlr">셋 중 ③이 최우선입니다.</strong> 나머지 둘은 제품을 고치는 문제이고, ③은 <strong>사업 모델이 성립하는지</strong>의 문제입니다.</p>
         </div>
       </div>
