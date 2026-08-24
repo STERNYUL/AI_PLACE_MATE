@@ -211,6 +211,16 @@ sequenceDiagram
 
 > SDD(비종속)의 도메인 클래스와 다른 층이다. 여기는 `lib/search`·`lib/evidence`의 **런타임 구현 단위**를 다룬다.
 
+**비종속 SDD와 이름이 같은 요소** — 두 문서에 같은 이름이 나오면 같은 것으로 읽히므로 대응 관계를 밝힌다.
+
+| 이름 | 비종속 SDD 3.2 (논리 계층) | 본 절 (Next.js 구현 단위) |
+| --- | --- | --- |
+| `EvidenceGate` | 근거 검증 책임을 가진 논리 클래스. `VerificationService`에 의존 | `RawCandidate[]` → `VerifiedCandidate[]` 변환 함수. `hasFourFields`·`staleFlag` 판정을 내포 |
+| `RelevanceRanker` | 정렬 책임을 가진 논리 클래스 | `top3()` 단일 함수. 게이트 통과분만 받는다 |
+| `ConditionParser` | interface + `NlConditionParser`/`StructuredFallback` 구현 | `ConditionParserPort` + `SdkConditionParser`로 접미를 붙여 구분했다. 분기 흡수는 `ConditionResolver`가 담당 |
+
+**같은 이름을 유지한 이유** — 논리 설계와 구현이 1:1로 대응한다는 사실을 이름으로 표현했다. 대응이 깨지면 이름을 바꿔야 한다.
+
 ```mermaid
 classDiagram
     direction LR

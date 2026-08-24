@@ -333,6 +333,12 @@ flowchart LR
 | REQ-NF-024 (스키마 확장성) | Prisma 스키마 단일 원천 + `scope` 필드 사전 확보 | REQ-IMPL-004 |
 | REQ-NF-028~030 (사용성) | shadcn 컴포넌트 규격 + 계측 이벤트 | REQ-IMPL-008 · 023 |
 
+**추적 검증용 전건 목록** — 위 표는 가독성을 위해 범위 표기(`REQ-FUNC-001~007`)를 쓴다. 자동 커버리지 검증을 위해 전건 ID를 아래에 나열한다.
+
+기능 — REQ-FUNC-001 · REQ-FUNC-002 · REQ-FUNC-003 · REQ-FUNC-004 · REQ-FUNC-005 · REQ-FUNC-006 · REQ-FUNC-007 · REQ-FUNC-008 · REQ-FUNC-009 · REQ-FUNC-010 · REQ-FUNC-011 · REQ-FUNC-012 · REQ-FUNC-013 · REQ-FUNC-014 · REQ-FUNC-015 · REQ-FUNC-016 · REQ-FUNC-017 · REQ-FUNC-018 · REQ-FUNC-019 · REQ-FUNC-020 · REQ-FUNC-021 · REQ-FUNC-022 · REQ-FUNC-023 · REQ-FUNC-024 · REQ-FUNC-025 · REQ-FUNC-026 · REQ-FUNC-027
+
+비기능 — REQ-NF-001 · REQ-NF-002 · REQ-NF-003 · REQ-NF-004 · REQ-NF-005 · REQ-NF-006 · REQ-NF-007 · REQ-NF-008 · REQ-NF-009 · REQ-NF-010 · REQ-NF-011 · REQ-NF-012 · REQ-NF-013 · REQ-NF-014 · REQ-NF-015 · REQ-NF-016 · REQ-NF-017 · REQ-NF-018 · REQ-NF-019 · REQ-NF-020 · REQ-NF-021 · REQ-NF-022 · REQ-NF-023 · REQ-NF-024 · REQ-NF-025 · REQ-NF-026 · REQ-NF-027 · REQ-NF-028 · REQ-NF-029 · REQ-NF-030 · REQ-NF-031 · REQ-NF-032
+
 ### 4.3 제약 충돌 분석 및 해소
 
 **본 문서의 핵심 절이다.** 지정 제약과 기준 요구사항이 충돌하는 11건을 숨기지 않고 해소 방식과 잔여 위험을 함께 밝힌다.
@@ -512,6 +518,8 @@ Git Push가 곧 배포이므로 순서를 사람이 지켜야 한다 (충돌 9).
 
 ## 5. 추적성 매트릭스
 
+> **추적성 표기 규칙** — 본 절의 표는 요구사항 ID를 항상 전체 형태로 적는다. 범위 표기(`REQ-IMPL-011~015`)나 약어(`· 012`)는 자동 커버리지 검증에 걸리지 않아 누락을 숨긴다. 4.2의 실현 대응표는 가독성을 위해 범위 표기를 쓰되, 그 절 하단에 전건 목록을 병기해 검증 가능성을 확보했다.
+
 ### 5.1 제약 → 구현 요구사항
 
 | 제약 | 구현 요구사항 |
@@ -539,26 +547,40 @@ Git Push가 곧 배포이므로 순서를 사람이 지켜야 한다 (충돌 9).
 
 | 구현 요구사항 | 코드 위치 | 테스트 케이스 ID |
 | --- | --- | --- |
-| REQ-IMPL-001 · 002 | 프로젝트 루트 · `lib/**` | TC-IMPL-001 · 002 |
+| REQ-IMPL-001 | 프로젝트 루트 (단일 배포 단위) | TC-IMPL-001 |
+| REQ-IMPL-002 | `lib/**` · 정적 검사 설정 | TC-IMPL-002 |
 | REQ-IMPL-003 | `app/**/actions.ts` · `app/api/**/route.ts` | TC-IMPL-003 |
-| REQ-IMPL-004 · 007 · 030 | `prisma/schema.prisma` · `prisma/migrations/**` | TC-IMPL-004 |
-| REQ-IMPL-005 · 006 | `lib/db/client.ts` · 환경 변수 | TC-IMPL-005 |
-| REQ-IMPL-008 · 009 | `components/ui/**` · `tailwind.config.ts` | TC-IMPL-008 |
+| REQ-IMPL-004 | `prisma/schema.prisma` | TC-IMPL-004 |
+| REQ-IMPL-005 | `lib/db/client.ts` · `DATABASE_URL` | TC-IMPL-005 |
+| REQ-IMPL-006 | `lib/db/client.ts` (풀러 호환 설정) | TC-IMPL-006 |
+| REQ-IMPL-007 | `prisma/migrations/**` · 시드 스크립트 | TC-IMPL-007 |
+| REQ-IMPL-008 | `components/ui/**` | TC-IMPL-008 |
+| REQ-IMPL-009 | `tailwind.config.ts` · shadcn 테마 | TC-IMPL-009 |
 | REQ-IMPL-010 | `components/candidate-card.tsx` | TC-IMPL-010 |
-| REQ-IMPL-011~015 | `lib/ai/**` | TC-IMPL-011 ~ 015 |
+| REQ-IMPL-011 | `lib/ai/model-factory.ts` | TC-IMPL-011 |
+| REQ-IMPL-012 | `lib/ai/model-factory.ts` · `AI_PROVIDER` · `AI_MODEL` | TC-IMPL-012 |
+| REQ-IMPL-013 | `lib/ai/index.ts` (단일 창구) | TC-IMPL-013 |
+| REQ-IMPL-014 | `lib/ai/timeout-guard.ts` · `AI_TIMEOUT_MS` | TC-IMPL-014 |
+| REQ-IMPL-015 | `app/api/reasons/route.ts` (스트리밍) | TC-IMPL-015 |
 | REQ-IMPL-016 | `lib/index/cache.ts` | TC-IMPL-016 |
-| REQ-IMPL-017~020 | `lib/room/**` · `components/room/**` | TC-IMPL-017 ~ 020 |
-| REQ-IMPL-021 · 024 | `app/api/cron/**` | TC-IMPL-021 · 024 |
+| REQ-IMPL-017 | `lib/room/repository.ts` | TC-IMPL-017 |
+| REQ-IMPL-018 | `lib/room/effective-status.ts` | TC-IMPL-018 |
+| REQ-IMPL-019 | `components/room/countdown.tsx` | TC-IMPL-019 |
+| REQ-IMPL-020 | `components/room/proposal-feed.tsx` | TC-IMPL-020 |
+| REQ-IMPL-021 | `app/api/cron/judge-no-show/route.ts` | TC-IMPL-021 |
 | REQ-IMPL-022 | `app/api/cron/_auth.ts` | TC-IMPL-022 |
 | REQ-IMPL-023 | `lib/tracking/**` | TC-IMPL-023 |
+| REQ-IMPL-024 | `app/api/cron/aggregate-kpi/route.ts` | TC-IMPL-024 |
 | REQ-IMPL-025 | `prisma/migrations/**` (RLS 정책) | TC-IMPL-025 |
-| REQ-IMPL-026 | `lib/auth/**` | TC-IMPL-026 |
+| REQ-IMPL-026 | `lib/auth/**` · `middleware.ts` | TC-IMPL-026 |
 | REQ-IMPL-027 | `lib/db/audit.ts` | TC-IMPL-027 |
 | REQ-IMPL-028 | `app/api/payment/**` | TC-IMPL-028 |
 | REQ-IMPL-029 | `lib/preferences/local.ts` | TC-IMPL-029 |
-| REQ-IMPL-031 · 032 | 저장소 설정 · Vercel 환경 설정 | TC-IMPL-031 |
+| REQ-IMPL-030 | `prisma/migrations/**` · 배포 절차 (4.5.3) | TC-IMPL-030 |
+| REQ-IMPL-031 | 저장소 브랜치 보호 설정 | TC-IMPL-031 |
+| REQ-IMPL-032 | Vercel Preview 환경 변수 설정 | TC-IMPL-032 |
 | REQ-IMPL-033 | `env.ts` (스키마 검증) | TC-IMPL-033 |
-| REQ-IMPL-034 | Supabase 프로젝트 설정 | TC-IMPL-034 |
+| REQ-IMPL-034 | Supabase 프로젝트 설정 (PITR) | TC-IMPL-034 |
 
 ---
 

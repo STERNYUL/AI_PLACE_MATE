@@ -504,6 +504,8 @@ flowchart TB
 
 ### 4.2 배포 구조
 
+> **플랫폼 확정 시 대체되는 절이다.** 아래 배치는 상주 프로세스(배치 워커)와 자체 인프라 요소(로드 밸런서·읽기 복제본)를 전제한다. 서버리스 플랫폼을 택하면 이 전제가 성립하지 않는다 — 실제 채택안은 [`SRS-ai-place-nextjs-v1.0.md`](SRS-ai-place-nextjs-v1.0.md) 1.5.2의 `C-DRV-001`(상주 프로세스 부재)과 [`DESIGN-ai-place-nextjs-v1.0.md`](DESIGN-ai-place-nextjs-v1.0.md) 2.1·6.3에 있다. 본 절은 **플랫폼 비종속 기준선**으로 남겨 다른 플랫폼을 검토할 때의 비교 대상으로 쓴다.
+
 ```mermaid
 flowchart TB
     subgraph EDGE["엣지"]
@@ -765,6 +767,8 @@ sequenceDiagram
 
 ### 5.6 노쇼 판정 → 정산 (REQ-FUNC-018)
 
+> `배치 워커`는 상주 프로세스를 전제한다. 서버리스 채택안에서는 **스케줄 트리거 + 지연 평가**로 대체된다 — 런타임 SDD 6.2·6.3 참조.
+
 ```mermaid
 sequenceDiagram
     autonumber
@@ -967,28 +971,44 @@ flowchart LR
 
 | 설계 요소 | 절 | 실현하는 요구사항 |
 | --- | --- | --- |
-| `Index Service` · `dishes.canonical_key` 인덱스 | 4.1 · 3.3 | REQ-FUNC-001 · 006 · REQ-NF-002 · 020 |
-| `PriceProfile.withinBudget()` · `deviationFrom()` | 3.1 | REQ-FUNC-002 · 003 · 005 |
-| `NlConditionParser` → `StructuredFallback` 위임 | 3.2 · 5.2 | REQ-FUNC-009 · REQ-NF-009 |
-| `EvidenceGate` (정렬 앞) · 근거 게이트 흐름 | 3.2 · 6.1 | REQ-FUNC-010 · 011 · 014 |
+| `Index Service` · `dishes.canonical_key` 인덱스 | 4.1 · 3.3 | REQ-FUNC-001 · REQ-FUNC-006 · REQ-NF-002 · REQ-NF-020 |
+| `PriceProfile.withinBudget()` · `deviationFrom()` | 3.1 | REQ-FUNC-002 · REQ-FUNC-003 · REQ-FUNC-005 |
+| `NlConditionParser` → `StructuredFallback` 위임 | 3.2 · 5.2 | REQ-FUNC-008 · REQ-FUNC-009 · REQ-NF-009 |
+| 조건 카테고리 사전 분기 (미등재는 정렬 가중치로만) | 6.2 | REQ-FUNC-004 · REQ-NF-010 |
+| 유사 메뉴 대체 분기 | 6.2 | REQ-FUNC-007 |
+| `EvidenceGate` (정렬 앞) · 근거 게이트 흐름 | 3.2 · 6.1 | REQ-FUNC-010 · REQ-FUNC-011 · REQ-FUNC-014 |
 | `ShareCardService` · 오브젝트 스토리지 | 4.1 · 5.3 | REQ-FUNC-012 · REQ-NF-003 |
 | `Verification` 상태 전이 · 재확인 큐 | 5.7 | REQ-FUNC-013 · REQ-NF-011 |
-| `AgentRoom.expiresAt` · 마감 루프 | 3.1 · 5.4 | REQ-FUNC-022 · 023 · 025 · REQ-NF-004 |
+| `AgentRoom.expiresAt` · 마감 루프 | 3.1 · 5.4 | REQ-FUNC-022 · REQ-FUNC-023 · REQ-FUNC-025 · REQ-NF-004 |
 | `Merchant Console.guardWording()` | 4.1 · 5.4 | REQ-FUNC-021 |
 | `matchCapacity()` | 4.1 · 5.4 | REQ-FUNC-020 |
+| 프로필 등록·갱신 (UC-09) | 2.3 · 4.1 | REQ-FUNC-019 · REQ-FUNC-027 |
 | 적합도 1순위 정렬 (가격 비정렬 키) | 5.4 | REQ-FUNC-024 |
-| 조건 승계 → `Reservation` → `Payment` | 5.5 | REQ-FUNC-015 · 016 · 017 |
+| 조건 승계 → `Reservation` → `Payment` | 5.5 | REQ-FUNC-015 · REQ-FUNC-016 · REQ-FUNC-017 |
 | 배치 워커 노쇼 판정 | 5.6 | REQ-FUNC-018 |
 | 소환 가중치 하향 | 2.3 (UC-12) | REQ-FUNC-026 |
-| 읽기 복제본 · 캐시 TTL 6h | 4.2 | REQ-NF-001 · 002 · 005 · 020 |
-| LB TLS 1.3 종료 · 감사 로그 저장소 | 4.2 | REQ-NF-018 · 025 · 026 |
-| 백업 주기 · 이중화 | 4.2 | REQ-NF-007 · 012 · 027 |
+| 읽기 복제본 · 캐시 TTL 6h | 4.2 | REQ-NF-001 · REQ-NF-002 · REQ-NF-005 · REQ-NF-020 |
+| LB TLS 1.3 종료 · 저장 암호화 · 감사 로그 저장소 | 4.2 | REQ-NF-017 · REQ-NF-018 · REQ-NF-025 · REQ-NF-026 |
+| 백업 주기 · 이중화 | 4.2 | REQ-NF-007 · REQ-NF-012 · REQ-NF-027 |
+| `ATTRIBUTES.scope` 사전 확보 (성분·접근성) | 3.3 | REQ-NF-024 |
+| 결제 컴포넌트 분리 (PCI-DSS 범위 · 오류율 임계 상이) | 4.1 · 5.5 | REQ-NF-008 · REQ-NF-016 |
 | `deleted_at` 논리 삭제 | 3.3 | REQ-NF-011 · SRS 8.6.5 |
 | `places.district_code` | 3.3 | SRS 3.1.6 지역 적응 · R2 |
 | 비동기 이벤트 발행 · 누락률 게이트 | 4.1 · 6.3 | SRS 6.1.2 · 6.1.3 |
 | `tracking_events` 파티셔닝 | 3.3 | SRS 8.6.2 |
 
-**미포함 요구사항** — REQ-NF-013 · 014 · 015 · 031 · 032(개인정보), REQ-NF-019 · 021 · 022 · 023(비용), REQ-NF-028 · 029 · 030(사용성)은 코드 구조가 아니라 **정책·운영·측정**으로 실현되므로 본 문서의 설계 대상이 아니다. 실현 방식은 SRS 4.4(표준·규제 준수)와 6.1(계측 계획)에 있다.
+**미포함 요구사항 13건** — 아래 항목은 코드 구조가 아니라 **정책·운영·측정 또는 플랫폼**으로 실현되므로 본 문서의 설계 대상이 아니다.
+
+| 요구사항 | 사유 | 실현 위치 |
+| --- | --- | --- |
+| REQ-NF-013 · REQ-NF-014 · REQ-NF-015 · REQ-NF-031 · REQ-NF-032 | 개인정보 — 정책과 스키마 부재로 실현 | SRS 4.4 |
+| REQ-NF-019 · REQ-NF-021 · REQ-NF-022 · REQ-NF-023 | 비용 — 계측과 운영 상한으로 실현 | SRS 4.2 · 6.1 |
+| REQ-NF-028 · REQ-NF-029 · REQ-NF-030 | 사용성 — 측정으로 실현 | SRS 6.1 |
+| REQ-NF-006 | 클라이언트 렌더 성능 — **플랫폼·프레임워크 종속** | 런타임 SDD 7.1 |
+
+**추적성 표기 규칙** — **추적성 표(본 절)에서는** 요구사항 ID를 항상 전체 형태(`REQ-FUNC-005`)로 적는다. `· 005` 같은 약어는 자동 커버리지 검증에 걸리지 않아 누락을 숨기기 때문이다. 커버리지 검증은 이 절을 대상으로 수행한다.
+
+다른 절(유스케이스 명세 2.3, 설계 판단 표, 본문 서술)에서는 가독성을 위해 약어와 범위 표기를 허용한다 — 그곳의 누락은 추적성에 영향을 주지 않으며, 전건 확인은 본 절이 담당한다.
 
 ---
 
