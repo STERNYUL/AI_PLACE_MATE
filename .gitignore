@@ -15,3 +15,7 @@ Desktop.ini
 # Temp
 *.tmp
 *.bak
+
+# 라이선스 제한 표준 문서 — 저작권상 배포 불가 (PUBLIC 저장소)
+29148-2018-ISOIECIEEE.pdf
+*.pdf
