@@ -4,13 +4,17 @@
 
 **문서 ID:** SRS-AIPLACE-MVP-001
 
-**개정 버전:** 1.8
+**개정 버전:** 1.9
 
 **날짜:** 2026-08-24
 
 **표준:** ISO/IEC/IEEE 29148:2018 (§9.6 Software requirements specification content)
 
 **상위 문서:** PRD v0.1 (`ai-place-prd-v0.1.html`, 2026-08-20, Owner 5팀)
+
+**하위 문서:** [`DESIGN-ai-place-v1.0.md`](DESIGN-ai-place-v1.0.md) (SDD-AIPLACE-MVP-001) — 설계 도식 17종
+
+> **도식의 소재 규칙** — 29148:2018 **§9.6.10**은 요구사항에 설계 해법을 넣으면 "다른 설계 대안이 배제될 위험"이 생긴다고 경고하고, **§5.2.5 Appropriate**는 아키텍처·설계에 불필요한 제약을 두지 말라고 규정한다. 따라서 본 문서에는 **외부에서 관찰 가능한 블랙박스 도식**만 두고(유스케이스 개요·여정 흐름·요구사항 의존성·블랙박스 시퀀스·엔터티 관계·상태 전이), 내부 구조 도식(클래스·컴포넌트 내부·내부 호출 시퀀스·물리 ERD·배포)은 SDD가 단일 원천이다. **같은 도식을 두 문서에 두지 않는다.**
 
 ---
 
@@ -462,6 +466,62 @@ flowchart TD
 
 ### 4.1 기능 요구사항
 
+**4.1.0 유스케이스 개요**
+
+> 어느 이용자 클래스(2.2)가 어떤 요구사항 군을 필요로 하는지 보여준다. 타원이 하나의 완결된 이용 목적, 사각형이 그 목적을 가진 액터다. 각 유스케이스의 상세 명세(사전 조건·주 흐름·대안 흐름·사후 조건)는 [SDD 2.3](DESIGN-ai-place-v1.0.md)에 있다.
+
+```mermaid
+flowchart LR
+    C2["예산 우선<br/>이용자 (C2)"]
+    C3["메뉴 우선<br/>이용자 (C3)"]
+    C4["사전 판단<br/>이용자 (C4)"]
+    C1["근거 요구<br/>이용자 (C1·N1)"]
+    A2["단체 총무<br/>이용자 (A2)"]
+    P5["매장 사장 (P5)"]
+    OP["서비스 운영자"]
+
+    subgraph P1G["Phase 1 — 탐색"]
+        U1(("조건으로<br/>후보 찾기<br/>001·008·009·014"))
+        U2(("예산 안에서<br/>걸러내기<br/>002·003·005"))
+        U3(("메뉴명으로<br/>찾기<br/>006·007"))
+        U4(("근거<br/>확인하기<br/>010·011"))
+        U5(("근거<br/>공유하기<br/>012"))
+        U6(("불일치<br/>신고하기<br/>013"))
+    end
+
+    subgraph P1M["Phase 1 말 — 실행"]
+        U8(("예약·결제<br/>하기<br/>015~018"))
+    end
+
+    subgraph P2G["Phase 2 — 에이전트 제안"]
+        U7(("제안<br/>받기<br/>020·022~025"))
+        U9(("프로필<br/>등록·갱신<br/>019·021·027"))
+        U10(("소환 받고<br/>제안 제출<br/>020·023"))
+        U11(("품질 심사·<br/>불이행 처리<br/>021·026"))
+    end
+
+    C2 --> U1
+    C2 --> U2
+    C3 --> U3
+    C4 --> U4
+    C4 --> U6
+    C1 --> U4
+    C1 --> U5
+    A2 --> U7
+    A2 --> U8
+    P5 --> U9
+    P5 --> U10
+    OP --> U11
+
+    U2 -. include .-> U1
+    U3 -. include .-> U1
+    U4 -. include .-> U1
+    U5 -. extend .-> U4
+    U8 -. include .-> U7
+    U10 -. include .-> U9
+    U11 -. extend .-> U10
+```
+
 | ID | 제목 | 출처 | 우선순위 | 유형 | 검증 방식 | 인수 기준 | 상태 | 담당자 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **REQ-FUNC-001** | 속성·dish 단위 공통 색인 | PRD §4 F1 · Pain C3-1 | Must Have | Functional | 1) 색인 단위 스키마 테스트<br>2) canonical_key 정규화 커버리지 검증<br>3) QA 검증 | 장소·메뉴·가격·속성·확인 상태·확인 일자를 단일 자료구조로 색인해야 하며, 메뉴명은 canonical_key로 정규화되어 '물냉면/평양냉면/냉면'이 동일 키로 묶여야 한다. 조건 검색 성공률 0% → 90% | Proposed | 데이터 엔지니어 |
@@ -703,6 +763,79 @@ Must 요구사항(REQ-FUNC-001~014) 합계는 10스프린트다. 3개 스트림 
 ```
 
 근거 4항목 검증은 **정렬보다 앞에** 놓는다. 근거가 없는 후보는 정렬 대상에 들어가지 않아야 한다 (REQ-FUNC-014).
+
+**탐색 흐름 — 시스템 경계 기준**
+
+> 세로선이 참여자, 가로 화살표가 주고받는 내용이다. 실선은 요청, 점선은 응답이며 `alt`는 조건 분기다. 시스템 내부의 서비스 간 호출은 [SDD 5.1~5.2](DESIGN-ai-place-v1.0.md)에 있다.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor U as 이용자
+    participant S as AI Place Mate
+    participant X as 외부 (추론 서비스)
+
+    U->>S: 조건 입력 (자연어 1줄 또는 조건 2~3개)
+    S->>X: 조건 파싱 요청
+    alt 파싱 성공
+        X-->>S: 구조화 조건
+    else 파싱 실패
+        X-->>S: 실패
+        S->>S: 구조화 필터로 전환 (REQ-FUNC-009)
+        Note over U,S: 빈 화면을 반환하지 않는다
+    end
+    S->>S: 예산·조건 필터 → 근거 4항목 검증 → 적합도 정렬
+    S->>X: 선정 이유 문장 생성
+    X-->>S: 근거 문장
+    S-->>U: Top-3 (인당가 범위 · 근거 4항목) · p95 ≤ 1,000ms
+    U->>S: 후보 1건 선택
+    opt 공유 요청
+        S-->>U: 공유 카드 (p95 ≤ 3,000ms)
+    end
+```
+
+**제안·실행 흐름 — 시스템 경계 기준**
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor U as 이용자
+    participant S as AI Place Mate
+    actor M as 매장 사장
+    participant PG as 외부 (PG)
+
+    U->>S: 카테고리 · 지역 · 조건 2개 이상
+    alt 적합 매장 3~5곳
+        S->>M: 에이전트 소환
+        S-->>U: 대화방 개시 · 카운트다운 180초
+        loop 마감 이내
+            M->>S: 제안 제출 (등록 속성 근거)
+            S->>S: 근거 없는 문구는 저장 거부 (REQ-FUNC-021)
+        end
+        alt 유효 제안 ≥ 1건
+            S-->>U: 적합도 1순위 정렬 (가격은 정렬 키 아님)
+        else 0건
+            S-->>U: 제안 없는 Top-3로 회귀 (REQ-FUNC-025)
+        end
+    else 적합 매장 0~2곳
+        S-->>U: 대화방 미개시
+    end
+
+    U->>S: 제안 선택
+    S->>S: 인원 · 메뉴 · 시간 자동 승계 (재입력 0개)
+    S->>PG: 주문량 기준 결제 승인
+    PG-->>S: 승인
+    S->>M: 확정 통보 (≤ 30s)
+    S-->>U: 예약 확정
+    opt 2시간 전 취소
+        U->>S: 취소
+        S->>PG: 전액 환불 (≤ 24h)
+    end
+    opt 방문 확인 없음
+        S->>S: 노쇼 기록
+        S->>PG: 매장 정산
+    end
+```
 
 **4.5.3 비정상 상황 대응** (§9.6.12 c)
 
@@ -1210,6 +1343,56 @@ classDiagram
     Reservation --> ReservationStatus
     Payment --> PaymentStatus
 ```
+
+**상태 전이**
+
+> 열거형 중 상태를 나타내는 셋의 전이 규칙이다. 둥근 모서리가 상태, 화살표 위 문구가 전이를 일으키는 사건이다. `[*]`는 시작·종료를 뜻한다. 이 전이 규칙은 8.6.3의 정합성 제약과 같은 내용이다.
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    state "확인 상태 (Verification)" as VG {
+        [*] --> VERIFIED : 최초 확인 등록
+        VERIFIED --> STALE : verified_at + 90일 경과
+        STALE --> VERIFIED : 재확인 완료
+        VERIFIED --> RECHECK_REQUIRED : 조건 불일치 신고
+        STALE --> RECHECK_REQUIRED : 조건 불일치 신고
+        RECHECK_REQUIRED --> VERIFIED : 실사 후 갱신
+    }
+```
+
+`STALE`은 노출 금지 상태가 **아니다.** 경고를 병기해 노출하며, 판정은 이용자에게 맡긴다 (REQ-FUNC-011 · 8.3 규칙 3). 어떤 전이에서도 데이터를 삭제하지 않는다 (8.3 규칙 12).
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    state "대화방 (AgentRoom)" as AG {
+        [*] --> OPEN : 소환 3~5곳 성공
+        [*] --> VOID : 소환 0~2곳
+        OPEN --> CLOSED : 마감 · 유효 제안 1건 이상
+        OPEN --> VOID : 마감 · 유효 제안 0건
+        CLOSED --> [*]
+        VOID --> [*] : 제안 없는 Top-3로 회귀
+    }
+```
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    state "예약 (Reservation)" as RG {
+        [*] --> CONFIRMED : 조건 승계 + 결제 승인
+        CONFIRMED --> CANCELLED : 예약 2시간 전 취소
+        CONFIRMED --> VISITED : 방문 확인
+        CONFIRMED --> NO_SHOW : 예약 시각 경과 · 방문 확인 없음
+    }
+    state "결제 (Payment)" as PGG {
+        [*] --> AUTHORIZED : 주문량 기준 승인
+        AUTHORIZED --> REFUNDED : 취소 접수 (24시간 내)
+        AUTHORIZED --> SETTLED : 방문 확인 또는 노쇼 판정
+    }
+```
+
+예약과 결제는 상태를 함께 움직인다 — `CANCELLED` ↔ `REFUNDED`, (`VISITED` 또는 `NO_SHOW`) ↔ `SETTLED`. `Payment`는 `Reservation` 없이 존재할 수 없다 (8.6.3).
 
 **열거형 값의 의미**
 
