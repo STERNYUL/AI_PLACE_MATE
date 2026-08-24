@@ -4,7 +4,7 @@
 
 **문서 ID:** SRS-AIPLACE-MVP-001
 
-**개정 버전:** 1.0
+**개정 버전:** 1.1
 
 **날짜:** 2026-08-24
 
@@ -210,6 +210,8 @@ v0.1이 정면으로 노리는 대상은 C2·C3·C4 세 클래스다. 셋 다 �
     - Reservation Service : 조건 승계, 예약 생성, 노쇼 판정
     - Payment Service : 주문량 기반 금액 산출, 환불, 매장 정산
     - Tracking Service : 이벤트 수집, KPI 집계, 대시보드 공급
+- **공통 인프라**
+    - API Gateway : 인증·라우팅. 응답 시간·오류율 SLO의 계측 지점 (마이크로서비스가 아닌 공통 계층)
 - **외부 시스템**
     - PG (주문량 기반 결제) — 승인·취소·환불. 카드 정보 비보관
     - 지도·경로 API — v0.1 미사용. v0.2에서 접근성 가중치와 함께 도입
@@ -290,9 +292,9 @@ v0.1이 정면으로 노리는 대상은 C2·C3·C4 세 클래스다. 셋 다 �
 | ID | 제목 | 출처 | 우선순위 | 유형 | 검증 방식 | 인수 기준 | 상태 | 담당자 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **REQ-NF-001** | 조건 파싱 + Top-3 응답 시간 | PRD §5 성능 | Must Have | Performance | 조건 파싱·색인 조회를 포함한 부하 테스트 | 조건 파싱부터 Top-3 렌더 완료까지 p95 ≤ 1,000ms, p99 ≤ 2,000ms를 만족해야 한다 | Proposed | 시스템 운영자 |
-| **REQ-NF-002** | 메뉴 색인 질의 응답 시간 | PRD §5 성능 | Must Have | Performance | canonical_key 질의 부하 테스트 및 캐시 히트/미스 구분 측정 | 메뉴 색인 질의는 p95 ≤ 400ms, 캐시 히트 시 ≤ 120ms를 만족해야 한다 | Proposed | 시스템 운영자 |
+| **REQ-NF-002** | 메뉴 색인 질의 응답 시간 | PRD §5 성능 | Should Have | Performance | canonical_key 질의 부하 테스트 및 캐시 히트/미스 구분 측정 | 메뉴 색인 질의는 p95 ≤ 400ms, 캐시 히트 시 ≤ 120ms를 만족해야 한다 | Proposed | 시스템 운영자 |
 | **REQ-NF-003** | 공유 카드 생성 시간 | PRD §5 성능 | Must Have | Performance | 이미지·링크 생성 경로 부하 테스트 | 공유 카드 생성은 p95 ≤ 3,000ms를 만족해야 한다 | Proposed | 시스템 운영자 |
-| **REQ-NF-004** | 제안 도착 시간 및 마감 | PRD §5 성능 | Should Have | Performance | 대화방 수명주기 시뮬레이션 및 만료 정확도 측정 | 첫 제안은 p50 ≤ 60s에 도착해야 하며, 마감은 180s로 고정되어야 한다 | Proposed | 시스템 운영자 |
+| **REQ-NF-004** | 제안 도착 시간 및 마감 | PRD §5 성능 | Could Have | Performance | 대화방 수명주기 시뮬레이션 및 만료 정확도 측정 | 첫 제안은 p50 ≤ 60s에 도착해야 하며, 마감은 180s로 고정되어야 한다 | Proposed | 시스템 운영자 |
 | **REQ-NF-005** | 피크 처리량 3,000 RPS | PRD §5 성능 | Should Have | Scalability | 서비스별 수평 확장 조건 부하 테스트 | 동시 세션 피크 3,000 RPS에서 REQ-NF-001~003의 응답 목표를 유지해야 한다 | Proposed | 개발팀 리드 |
 | **REQ-NF-006** | 모바일 초기 렌더 | PRD §5 성능 | Should Have | Performance | 4G 세그먼트 RUM 측정 | 모바일 초기 렌더 LCP는 4G 기준 ≤ 2.5s를 만족해야 한다 | Proposed | 시스템 운영자 |
 | **REQ-NF-007** | 월 가용성 99.5% | PRD §5 신뢰성 | Must Have | Reliability | 5분 간격 헬스체크 및 SLA 집계 | 월 가용성은 99.5% 이상이어야 하며 월 누적 다운타임은 3시간 39분 이하여야 한다 | Proposed | 사업관리 및 계약 담당자 |
@@ -309,13 +311,32 @@ v0.1이 정면으로 노리는 대상은 C2·C3·C4 세 클래스다. 셋 다 �
 | **REQ-NF-018** | 콘솔 접근 통제 | PRD §5 보안 | Must Have | Security | 2FA 강제 검증 및 감사 로그 완전성 스캔 | 가맹점 콘솔은 2FA를 요구해야 하며, 내부 조회는 전량 감사 로그로 남겨야 한다 | Proposed | 시스템 운영자 |
 | **REQ-NF-019** | 세션당 추론 비용 | PRD §5 비용 | Must Have | Cost | 토큰 사용량 일간 집계 | 조건 파싱과 근거 문장 생성을 포함한 세션당 추론 비용은 12원 이하여야 한다 | Proposed | 개발팀 리드 |
 | **REQ-NF-020** | 캐시 히트율 | PRD §5 비용 | Should Have | Cost | 속성·메뉴 조회 캐시 히트/미스 집계 | 속성·메뉴 조회의 캐시 히트율은 70% 이상이어야 한다 | Proposed | 시스템 운영자 |
-| **REQ-NF-021** | 단위 경제 | PRD §5 비용 | Must Have | Cost | 성사 건당 수수료 대 처리 비용 배수 산출 | 성사 1건당 수수료는 처리 비용의 3배를 초과해야 한다 | Proposed | 사업관리 및 계약 담당자 |
+| **REQ-NF-021** | 단위 경제 | PRD §5 비용 | Should Have | Cost | 성사 건당 수수료 대 처리 비용 배수 산출 | 성사 1건당 수수료는 처리 비용의 3배를 초과해야 한다 | Proposed | 사업관리 및 계약 담당자 |
 | **REQ-NF-022** | 제안 품질 심사 인력 상한 | PRD §5 비용 · R7 | Should Have | Cost | 가맹점 수 대 심사 FTE 비율 월간 집계 | 제안 품질 심사는 가맹점 150곳당 1 FTE를 상한으로 하며, 상한 초과 시 신규 가맹 온보딩 속도를 조절해야 한다 | Proposed | 서비스 운영자 |
-| **REQ-NF-023** | 외부 데이터 조달 단가 | PRD §5 비용 · R2 | Should Have | Cost | 제휴 계약 단가 대 수수료 비율 검토 | 외부 실시간 상태 API 도입 시 건당 단가는 수수료의 15% 이하여야 한다 | Proposed | 사업관리 및 계약 담당자 |
-| **REQ-NF-024** | 속성 스키마 확장성 | ADR-001 · PRD §4 F1a·F1b | Could Have | Maintainability | 코드 리뷰 및 신규 속성 추가 회귀 테스트 | 성분(F1a)·접근성(F1b) 속성은 Attribute 테이블에 scope 구분으로 사전 확보되어야 하며, 신규 속성 추가 시 재색인이 발생하지 않아야 한다 | Proposed | 개발 엔지니어 |
+| **REQ-NF-023** | 외부 데이터 조달 단가 | PRD §5 비용 · R2 | Could Have | Cost | 제휴 계약 단가 대 수수료 비율 검토 | 외부 실시간 상태 API 도입 시 건당 단가는 수수료의 15% 이하여야 한다 | Proposed | 사업관리 및 계약 담당자 |
+| **REQ-NF-024** | 속성 스키마 확장성 | ADR-001 · REQ-FUNC-001 | Must Have | Maintainability | 코드 리뷰 및 신규 속성 추가 회귀 테스트 | 성분(F1a)·접근성(F1b) 속성은 Attribute 테이블에 scope 구분으로 사전 확보되어야 하며, 신규 속성 추가 시 재색인이 발생하지 않아야 한다 | Proposed | 개발 엔지니어 |
 
 > 유형 어휘 중 `Cost`는 예시 SRS에 없다. PRD §5가 비용을 독립 NFR 블록으로 규정하므로 유형을 추가했다.
-> 비기능 요구사항의 우선순위는 PRD에 지정되어 있지 않아 본 SRS에서 부여했다. 릴리스 게이트(6.2)와의 연동 여부를 기준으로 삼았다.
+
+**우선순위 판정 기준** — PRD가 비기능 요구사항에 MSCW를 지정하지 않았으므로 본 SRS에서 아래 기준으로 부여했다. PRD §4가 기능 요구사항에 적용한 기준(가치 크기가 아니라 선행 의존성과 릴리스 단계)을 비기능으로 확장한 것이다.
+
+| 등급 | 판정 기준 | 건수 |
+| --- | --- | --- |
+| Must Have | ① Phase 1 Must 기능(REQ-FUNC-001~014)의 인수 기준이나 릴리스 게이트(6.2)가 직접 참조하는 항목, ② 법규·규제 준수 항목, ③ 사후 변경 비용이 전면 재작업인 항목 | 15 |
+| Should Have | Phase 1에 적용되지만 게이트가 참조하지 않는 항목, 또는 Must 항목의 내부 성능 예산·달성 수단 | 7 |
+| Could Have | 적용 대상이 Could 기능(Phase 2) 착수 이후에 발생하는 항목 | 2 |
+
+경계에 놓인 5건의 판정 근거는 다음과 같다.
+
+| ID | 판정 | 근거 |
+| --- | --- | --- |
+| REQ-NF-002 | Should | REQ-FUNC-006의 인수 기준이 참조하는 것은 첫 결과 p95(REQ-NF-001)다. 400ms는 그 예산의 내부 배분이며 게이트가 직접 참조하지 않는다 |
+| REQ-NF-004 | Could | 제안 도착·마감은 REQ-FUNC-023(Could)의 성능 요구다. Phase 2 착수 전에는 적용 대상이 없다 |
+| REQ-NF-021 | Should | 성사 건당 수수료는 REQ-FUNC-016 가동 이후에 발생한다. 사업 모델의 존립 조건이지만 Phase 1 릴리스 게이트는 아니다 |
+| REQ-NF-023 | Could | 외부 실시간 상태 API는 v0.1 미도입·제휴 검토 단계다 (1.2 범위) |
+| REQ-NF-024 | **Must** | REQ-FUNC-001의 스키마 확정 시점에 함께 결정해야 하며, ADR-001에 따라 사후 변경 비용이 **전면 재색인**이다. 되돌리기 비용이 최대인 항목을 Could로 둘 수 없다 |
+
+REQ-NF-022(심사 150곳당 1 FTE)는 Phase 1 가맹 규모가 150곳이므로 Phase 1부터 상한이 구속된다 — Could가 아니라 Should로 유지했다.
 
 ### 4.3 요구사항 의존성 및 구현 규모
 
@@ -370,7 +391,7 @@ Must 요구사항(REQ-FUNC-001~014) 합계는 10스프린트다. 3개 스트림 
 | REQ-FUNC-002 | Search Service | 미정 | TC-FUNC-002 |
 | REQ-FUNC-003 | Search Service | 미정 | TC-FUNC-003 |
 | REQ-FUNC-004 | Search Service | 미정 | TC-FUNC-004 |
-| REQ-FUNC-005 | Tracking Service | 미정 | TC-FUNC-005 |
+| REQ-FUNC-005 | Tracking Service · Index Service | 미정 | TC-FUNC-005 |
 | REQ-FUNC-006 | Search Service | 미정 | TC-FUNC-006 |
 | REQ-FUNC-007 | Search Service | 미정 | TC-FUNC-007 |
 | REQ-FUNC-008 | Search Service | 미정 | TC-FUNC-008 |
@@ -394,12 +415,30 @@ Must 요구사항(REQ-FUNC-001~014) 합계는 10스프린트다. 3개 스트림 
 | REQ-FUNC-026 | Agent Room Service | 미정 | TC-FUNC-026 |
 | REQ-NF-001 | API Gateway | 미정 | TC-NF-001 |
 | REQ-NF-002 | Index Service | 미정 | TC-NF-002 |
+| REQ-NF-003 | Evidence Service | 미정 | TC-NF-003 |
+| REQ-NF-004 | Agent Room Service | 미정 | TC-NF-004 |
 | REQ-NF-005 | API Gateway | 미정 | TC-NF-005 |
+| REQ-NF-006 | 클라이언트 (모바일 웹) | 미정 | TC-NF-006 |
 | REQ-NF-007 | All Services | 미정 | TC-NF-007 |
+| REQ-NF-008 | API Gateway · Payment Service | 미정 | TC-NF-008 |
 | REQ-NF-009 | Search Service | 미정 | TC-NF-009 |
-| REQ-NF-011 | Index Service | 미정 | TC-NF-011 |
-| REQ-NF-013~018 | All Services | 미정 | TC-NF-013 ~ TC-NF-018 |
-| REQ-NF-019~023 | Tracking Service | 미정 | TC-NF-019 ~ TC-NF-023 |
+| REQ-NF-010 | Search Service | 미정 | TC-NF-010 |
+| REQ-NF-011 | Evidence Service | 미정 | TC-NF-011 |
+| REQ-NF-012 | All Services | 미정 | TC-NF-012 |
+| REQ-NF-013 | Search Service · Tracking Service | 미정 | TC-NF-013 |
+| REQ-NF-014 | 클라이언트 (모바일 웹) | 미정 | TC-NF-014 |
+| REQ-NF-015 | Reservation Service | 미정 | TC-NF-015 |
+| REQ-NF-016 | Payment Service | 미정 | TC-NF-016 |
+| REQ-NF-017 | Payment Service | 미정 | TC-NF-017 |
+| REQ-NF-018 | Merchant Console Service | 미정 | TC-NF-018 |
+| REQ-NF-019 | Tracking Service | 미정 | TC-NF-019 |
+| REQ-NF-020 | Index Service | 미정 | TC-NF-020 |
+| REQ-NF-021 | Tracking Service | 미정 | TC-NF-021 |
+| REQ-NF-022 | Merchant Console Service | 미정 | TC-NF-022 |
+| REQ-NF-023 | Index Service | 미정 | TC-NF-023 |
+| REQ-NF-024 | Index Service | 미정 | TC-NF-024 |
+
+**모듈 구성** — 마이크로서비스 8개(Index · Search · Evidence · Agent Room · Merchant Console · Reservation · Payment · Tracking)와 공통 계층 1개(API Gateway)로 확정했다. `All Services`는 전 서비스 공통 적용을, `클라이언트 (모바일 웹)`는 서버 측 모듈이 아닌 클라이언트 책임을 뜻한다. 구성 근거는 PRD §6.3 내부 API 5개와 §6 엔터티 9개다.
 
 ### 5.2 요구사항 → 측정 지표
 
