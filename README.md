@@ -244,6 +244,7 @@ AI_PLACE_MATE/
 ├── SRS-ai-place-v1.0.md                        # ★ SRS v1.9 — 요구사항 59건 · 도식 12 (플랫폼 비종속)
 ├── SRS-ai-place-nextjs-v1.0.md                 # ★ SRS 구현 제약 반영본 — REQ-IMPL 34건 · 도식 5
 ├── DESIGN-ai-place-v1.0.md                     # ★ SDD v1.0 — 설계 도식 17 (플랫폼 비종속)
+├── DESIGN-ai-place-nextjs-v1.0.md              # ★ SDD 런타임 설계 — 도식 14 (Next.js 종속)
 ├── ai-place-prd-v0.1.html                      # PRD v0.1 (변환 원본, 보존)
 ├── REVIEW-prd-v0.1.md                          # PRD v0.1 완성도 검토서
 └── reference/
@@ -253,12 +254,16 @@ AI_PLACE_MATE/
 ### 5.2 문서 계층과 도식의 소재 규칙
 
 ```
-                                              ┌─ SDD v1.0 ─────────── 플랫폼 비종속 설계
-PRD v0.1 ──→ SRS v1.9 (기준) ─────────────────┤   DESIGN-ai-place-v1.0.md
-(무엇을 왜)   (무엇을 만족해야)                 │
-                                              └─ SRS 구현 제약 반영본 ─ Next.js·Vercel·Supabase 확정
-                                                  SRS-ai-place-nextjs-v1.0.md
+                          ┌─ SDD v1.0 ────────────────── 플랫폼 비종속 설계 (도식 17)
+                          │   DESIGN-ai-place-v1.0.md
+PRD v0.1 ─→ SRS v1.9 ─────┤
+(무엇을 왜)  (무엇을      │   SRS 구현 제약 반영본 ─────→ SDD 런타임 설계 (도식 14)
+             만족해야)     └─  SRS-…-nextjs-v1.0.md        DESIGN-…-nextjs-v1.0.md
+                              (이 스택에서 어떻게 ·         (런타임·캐시·RLS·
+                               무엇이 불가능한가)            지연평가·컴포넌트)
 ```
+
+**두 갈래로 나눈 이유** — 왼쪽(비종속)은 스택을 바꿔도 살아남고, 오른쪽(종속)은 스택과 함께 폐기됩니다. 같은 문서에 섞으면 스택 교체 시 무엇을 버릴지 판단할 수 없습니다.
 
 ### 5.2.1 SRS 두 갈래 — 왜 나눴는가
 
