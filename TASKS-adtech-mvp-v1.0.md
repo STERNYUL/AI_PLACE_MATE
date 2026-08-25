@@ -181,35 +181,191 @@
 
 ---
 
-## 부록 A · 크리티컬 패스
+## 부록 A · 의존 관계도
 
+### A-1. Epic 레벨 의존 그래프
+
+```mermaid
+graph LR
+  A["<b>A · Foundation</b><br/>Enum · 스키마 · 소프트삭제<br/>FR-001~011"]
+  B["<b>B · Audience</b><br/>MECE · 멀티태그<br/>FR-012~018"]
+  C["<b>C · Campaign</b><br/>CRUD · 타게팅 · 예산<br/>FR-019~028"]
+  D["<b>D · Ad Serving</b><br/>3단계 폴백 · 수익 최적화<br/>FR-029~038"]
+  E["<b>E · Tracking</b><br/>이벤트 · 집계 · 어트리뷰션<br/>FR-039~045"]
+  F["<b>F · Client</b><br/>모바일 · 데스크톱 연동<br/>FR-046~048"]
+  G["<b>G · External</b><br/>Profile · Portal · Dashboard<br/>FR-049~051"]
+  H["<b>H · Infra / NF</b><br/>Gateway · 성능 · 보안<br/>NF-001~011"]
+  I["<b>I · QA</b><br/>TC 구현 9건<br/>QA-001~009"]
+  J["<b>J · UI/UX</b><br/>슬롯 · 규격 · 화면<br/>UX-001~006"]
+
+  A --> B
+  A --> C
+  A --> E
+  A --> G
+  A --> H
+  B --> D
+  C --> D
+  E --> C
+  E --> G
+  C --> G
+  D --> F
+  D --> H
+  E --> F
+  B --> I
+  C --> I
+  D --> I
+  E --> I
+  H --> I
+
+  classDef crit fill:#fdeceb,stroke:#bc3226,stroke-width:2px,color:#6f1a13
+  classDef plain fill:#eef1f8,stroke:#8b93a5,color:#1f2430
+  classDef free fill:#eaf4ee,stroke:#1e7a55,color:#124434
+  class A,D,H crit
+  class B,C,E,F,G,I plain
+  class J free
 ```
-FR-001~004 (Enum)
-   └─ FR-006 / FR-007 / FR-008 (스키마)
-        ├─ FR-012 (MECE 분류기) ─┐
-        ├─ FR-019 (캠페인 CRUD) ─┤
-        └─ FR-021 (타게팅 조건) ─┴─ FR-032 (폴백 오케스트레이션)
-                                      └─ FR-034 (수익 최적화)
-                                           └─ FR-037 (광고 요청 API)
-                                                └─ NF-001 (Gateway)
-                                                     └─ NF-002 → NF-003 → NF-004 → NF-006
+
+> `J · UI/UX`는 태스크 상 선행 의존이 없어 그래프에서 분리되어 있습니다. **즉시 착수 가능** 구간입니다.
+> `E → C` 간선은 FR-028(캠페인 성과 조회 API)이 FR-041(지표 산출)을 선행으로 갖는 데서 발생합니다.
+
+### A-2. 크리티컬 패스 — Feature 레벨
+
+```mermaid
+graph TD
+  subgraph FOUND["EPIC A · Foundation"]
+    E1["FR-001~004<br/>Enum 정의 9종"]
+    S1["FR-006<br/>user_profiles"]
+    S2["FR-007<br/>campaigns"]
+    S3["FR-008<br/>ad_events"]
+  end
+
+  MECE["FR-012<br/>MECE 분류기"]
+  CRUD["FR-019<br/>캠페인 CRUD"]
+  TGT["FR-021<br/>타게팅 조건"]
+
+  FB["FR-032<br/>3단계 폴백 오케스트레이션"]
+  YO["FR-034<br/>수익 최적화 선택"]
+  BG["FR-035<br/>예산 검증·차감"]
+  REQ["FR-037<br/>POST /ads/request"]
+
+  GW["NF-001<br/>API Gateway"]
+  PERF["NF-002<br/>100ms 최적화"]
+  LOAD["NF-003<br/>부하 테스트"]
+  SCALE["NF-004<br/>1,000 RPS 확장"]
+  HA["NF-006<br/>가용성 99% 이중화"]
+
+  E1 --> S1
+  E1 --> S2
+  E1 --> S3
+  S1 --> MECE
+  S2 --> CRUD
+  CRUD --> TGT
+  MECE --> FB
+  TGT --> FB
+  FB --> YO
+  YO --> BG
+  YO --> REQ
+  REQ --> GW
+  GW --> PERF
+  GW --> LOAD
+  LOAD --> SCALE
+  SCALE --> HA
+
+  classDef crit fill:#fdeceb,stroke:#bc3226,stroke-width:2px,color:#6f1a13
+  classDef plain fill:#eef1f8,stroke:#8b93a5,color:#1f2430
+  class E1,S1,S2,S3,MECE,TGT,FB,YO,REQ,GW,PERF,LOAD,SCALE,HA crit
+  class CRUD,BG plain
 ```
 
 | 구간 | 근거 |
 | --- | --- |
-| **Enum·스키마 확정** | 전체 태스크의 최상위 선행. 미확정 시 병렬 개발 불가 |
+| **Enum·스키마 확정** (FR-001~008) | 전체 태스크의 최상위 선행. 미확정 시 병렬 개발 불가 |
 | **FR-032 → FR-034 → FR-037** | Ad Serving Engine은 Audience·Campaign 양쪽 산출물이 모두 있어야 통합 가능 |
 | **NF-002 이후 체인** | 성능·확장·가용성은 통합 이후에만 측정 가능. 후반 집중 시 회복 불가 |
 
-### 병렬 착수 가능 구간
+### A-3. 병렬 착수 트랙
 
-| 트랙 | 태스크 |
-| --- | --- |
-| Track 1 | FR-012 ~ FR-018 (Audience) |
-| Track 2 | FR-019 ~ FR-028 (Campaign) |
-| Track 3 | FR-039 ~ FR-045 (Tracking) — FR-008 완료 후 |
-| Track 4 | UX-001 ~ UX-004 (디자인) — 선행 없음, 즉시 착수 |
-| Track 5 | NF-003 (부하 테스트 환경) — NF-001 완료 후 조기 착수 권장 |
+```mermaid
+graph LR
+  GATE(["게이트<br/>FR-001~008 확정"])
+
+  subgraph T1["Track 1 · Audience"]
+    direction TB
+    t1a["FR-012~015<br/>분류기 · 처리기"] --> t1b["FR-016~018<br/>API 3종"]
+  end
+  subgraph T2["Track 2 · Campaign"]
+    direction TB
+    t2a["FR-019~025<br/>CRUD · 타게팅 · 예산"] --> t2b["FR-026~028<br/>API 3종"]
+  end
+  subgraph T3["Track 3 · Tracking"]
+    direction TB
+    t3a["FR-039~042<br/>수집 · 지표 · 분해"] --> t3b["FR-043~045<br/>집계 배치 · API"]
+  end
+  subgraph T5["Track 5 · 성능 환경"]
+    direction TB
+    t5a["NF-001<br/>Gateway"] --> t5b["NF-003<br/>부하 테스트 환경"]
+  end
+
+  GATE --> T1
+  GATE --> T2
+  GATE --> T3
+  T1 --> MERGE
+  T2 --> MERGE
+  T3 --> MERGE
+  MERGE(["통합<br/>EPIC D · Ad Serving"]) --> T5
+
+  subgraph T4["Track 4 · 선행 없음 · 즉시 착수"]
+    direction TB
+    t4a["UX-001<br/>노출 위치 5종"] --> t4b["UX-002~004<br/>레이아웃 · 규격"]
+  end
+
+  classDef gate fill:#fdeceb,stroke:#bc3226,stroke-width:2px,color:#6f1a13
+  classDef free fill:#eaf4ee,stroke:#1e7a55,color:#124434
+  classDef plain fill:#eef1f8,stroke:#8b93a5,color:#1f2430
+  class GATE,MERGE gate
+  class t4a,t4b free
+  class t1a,t1b,t2a,t2b,t3a,t3b,t5a,t5b plain
+```
+
+| 트랙 | 태스크 | 착수 조건 |
+| --- | --- | --- |
+| Track 1 | FR-012 ~ FR-018 (Audience) | FR-001, FR-002, FR-006 완료 |
+| Track 2 | FR-019 ~ FR-028 (Campaign) | FR-003, FR-007 완료 |
+| Track 3 | FR-039 ~ FR-045 (Tracking) | FR-008 완료 |
+| Track 4 | UX-001 ~ UX-004 (디자인) | **선행 없음 — 즉시 착수** |
+| Track 5 | NF-003 (부하 테스트 환경) | NF-001 완료 후 **조기 착수 권장** |
+
+> 일정(기간·날짜) 기반 간트 차트는 작성하지 않았습니다. SRS에 공정 기간·인력 배정 정보가 없어
+> 임의 추정 없이는 산출할 수 없습니다 — 도출 원칙("SRS 명시 범위만")에 따른 제외입니다.
+
+### A-4. 3단계 폴백 처리 흐름 (FR-029 ~ FR-037)
+
+```mermaid
+flowchart TD
+  RQ(["POST /api/v1/ads/request<br/>FR-037"]) --> PF["프로파일 조회<br/>FR-016"]
+  PF --> S1{"1단계 정밀<br/>인구통계 + 행동<br/>FR-029"}
+  S1 -->|후보 있음| YO
+  S1 -->|후보 없음| S2{"2단계 인구통계 전용<br/>FR-030"}
+  S2 -->|후보 있음| YO
+  S2 -->|후보 없음| S3{"3단계 컨텍스트·기본<br/>FR-031"}
+  S3 -->|후보 있음| YO
+  S3 -->|후보 없음| UNDEF["미정의<br/>부록 C 참조"]
+  YO["최고 입찰가 선택<br/>FR-034"] --> BG["예산 제약 검증·차감<br/>FR-035"]
+  BG --> SLOT["위치별 슬롯 수 제어<br/>FR-036"]
+  SLOT --> STG["FallbackStage 기록<br/>FR-033"]
+  STG --> RES(["응답"])
+  RES --> EV["이벤트 수집<br/>FR-039 · FR-040"]
+
+  classDef undef fill:#fdeceb,stroke:#bc3226,stroke-width:2px,stroke-dasharray:4 3,color:#6f1a13
+  classDef plain fill:#eef1f8,stroke:#8b93a5,color:#1f2430
+  classDef term fill:#eaf4ee,stroke:#1e7a55,color:#124434
+  class UNDEF undef
+  class RQ,RES,EV term
+  class PF,S1,S2,S3,YO,BG,SLOT,STG plain
+```
+
+> **점선 붉은 노드**는 SRS에 동작이 규정되지 않은 지점입니다(3단계에서도 후보가 없는 경우).
+> 각 단계의 실패 판정 기준 역시 미정의이며, 부록 C에 미결 항목으로 기록했습니다.
 
 ---
 
