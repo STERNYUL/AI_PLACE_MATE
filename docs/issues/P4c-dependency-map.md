@@ -655,3 +655,72 @@ gh auth refresh -s project,read:project
 §5-3의 뷰(Ready Now · Blocked by Decision · By Phase · Critical Path · AC 준비도 · By Epic · 요구사항 커버리지)를 구성한다.
 
 **Project 없이도 라벨 필터로 대체 가능하다** — `label:critical-path`, `label:blocked-d01`, `label:no-blocker` 등.
+
+---
+
+## 10. 문서 재편 (v1.2)
+
+**축약 실행에 따라 이슈 본문 파일을 46건 기준으로 재편했다.**
+
+### 10-1. 파일 구조 변경
+
+| 이전 (93건 기준) | 이후 (46건 기준) | 수록 |
+| --- | --- | --- |
+| `P1ab-contracts.md` (11) | **`P1-contracts-data.md`** | 계약 6 + 데이터·모킹 6 = **12** |
+| `P1cd-database-mocks.md` (9) | ↑ 통합 | — |
+| `P2a-queries.md` (12) | **`P2-logic.md`** | Audience 3 · Campaign 4 · Ad Serving 5 · Tracking 3 = **15** |
+| `P2b-commands.md` (23) | ↑ 통합 | — |
+| `P3-tests.md` (14) | **`P3-tests.md`** | **6** |
+| `P4a-infra-security.md` (12) | **`P4a-infra-security.md`** | Infra 4 · Sec 2 = **6** |
+| `P4b-integration-design.md` (12) | **`P4b-integration-design.md`** | Integration 4 · Design 3 = **7** |
+| `P4c-dependency-map.md` | **유지** | 의존성 원장 · 이슈 매핑 |
+
+**7개 파일 → 5개 파일 + 매핑 1개.** `P2a`/`P2b`를 합친 이유는 병합 결과 Query·Command가
+한 이슈에 섞인 경우가 생겨(예: `AUD-C` = FR-016 Query + FR-017·018 Command) 파일 단위 분리가 무의미해졌기 때문이다.
+
+### 10-2. 정보 손실 없음 — 흡수 상세 보존 방식
+
+**GitHub 이슈 본문에는 흡수된 이슈의 상세가 없다.** 대표 이슈 본문 + 축약 반영 절만 있다.
+문서에서는 그것을 보완했다.
+
+```
+# SPEC-B: Audience 계약 3종
+  이슈 #2 · 신규 ID SPEC-B · 원장 태스크 SPEC-001 · SPEC-002 · SPEC-003
+  원장 태스크 체크리스트
+  ---
+  [대표 #2 의 전체 상세]
+  ---
+  <details> 흡수 · #3 SPEC-002 상세 </details>
+  ---
+  <details> 흡수 · #4 SPEC-003 상세 </details>
+```
+
+흡수된 47건의 상세(Task Breakdown · Acceptance Criteria · Constraints · DoD · Dependencies)가
+**접힌 블록으로 전량 보존**된다. GitHub에서는 Close된 이슈에 남고, 문서에서는 대표 섹션 안에 남는다.
+
+### 10-3. 재편 검증
+
+| 항목 | 결과 |
+| --- | --- |
+| 섹션 수 | **46** (12 + 15 + 6 + 6 + 7) |
+| 원장 ID 체크박스 | **99개 · 각 1회 · 중복 0** |
+| 흡수 상세 블록 | **47** · `<details>` 태그 짝 일치 |
+| 총 행수 | 8,710 (재편 전 7개 파일 대비 상세 보존) |
+
+**원장 ID 99개가 정확히 한 번씩 나타남을 검증했다.** 축약이 추적성을 훼손하지 않았다는 증거다.
+
+### 10-4. SRS v1.1 반영
+
+`reference/SRS-example-AD-Core-Platform.md`를 **v1.1로 개정**했다. W0 결정 5건의 결과다.
+
+| 조항 | 변경 | 상태 |
+| --- | --- | --- |
+| REQ-FUNC-005 | eCPM 환산 · 3단 계단식 CTR · 동점 규칙 | `Proposed` → **`Approved`** |
+| REQ-NF-001 | 측정 5항목 · G1 200ms / G2 100ms · 단계별 타임아웃 | `Proposed` → **`Approved`** |
+| REQ-NF-002 | 응답 시간 조건 추가 · 유실률 0.1% | `Proposed` → **`Approved`** |
+| REQ-NF-004 | Bearer 토큰 · 소유자 검증 · **`404` 정책** · 역할 3종 | `Proposed` → **`Approved`** |
+| §5 매트릭스 | `TC-NF-002`~`005` 4행 신설 + 단일 책임자 지정 | 9행 → **13행** |
+| §6.2 enum | `UNKNOWN` 3종 · 통화 단위 KRW 명시 | 격자 36 → **80칸** |
+| §6.3 규칙 5·7·8 | 개인정보 삭제 예외 · 원자 갱신 · 기록/집계 분리 | 개정 |
+
+**13개 조항 중 4건이 `Approved`로 전환됐다.** 나머지 9건은 여전히 `Proposed`이며 승인 회의 대상이다.
