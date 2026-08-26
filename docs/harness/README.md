@@ -68,7 +68,7 @@ AGENTS.md         41행    크로스툴 요약 (Cursor · Antigravity)
 
 .claude/agents/     8종 · 988행   도메인 지식 — 위임 대상
 .claude/commands/   8종 · 553행   절차
-.claude/skills/    13종           코딩 규칙 — 자동 적용 (외부 3종 포함)
+.claude/skills/    14종           코딩 규칙 — 자동 적용 (외부 3종 포함)
 docs/goals/         1종           장기 실행 /goal 프롬프트
 
 docs/harness/README.md · skills-marketplace.md
@@ -102,7 +102,7 @@ docs/harness/README.md · skills-marketplace.md
 
 ### 스킬 12종
 
-`102` UX 단계 산출물 · `200`~`202` 협업 · `300`~`305` 기술 · 외부 3종(`goal-setting` `grill-it` `review-merge`)
+`102` UX 단계 산출물 · `103` 단계 오케스트레이션 · `200`~`202` 협업 · `300`~`305` 기술 · 외부 3종(`goal-setting` `grill-it` `review-merge`)
 
 **번호 체계** — 100–199 프로세스 · 200–299 협업 · 300–399 기술 종속. 원본 하네스의 de-facto 관행을 따랐다.
 
@@ -152,9 +152,9 @@ docs/harness/README.md · skills-marketplace.md
 
 | 단계 | 파일 | 범위 | 엮은 하네스 자산 |
 | --- | --- | --- | --- |
-| **UX 설계** | `ux-design-stage.md` | `UX-A`~`UX-F` 6건 (`#140`~`#145`) | 스킬 `102` · 에이전트 `ux-design-system`·`domain-invariants` · 커맨드 `/task-start`·`/task-done`·`/review-invariants` |
+| **UX 설계** (오케스트레이션) | `ux-design-stage.md` | `UX-A`~`UX-H` 8건 (`#140`~`#147`) · 웨이브 3 · 최대 병렬 5레인 | 스킬 `102`·`103` · 에이전트 `ux-design-system`·`domain-invariants` · 커맨드 `/task-start`·`/task-done`·`/review-invariants` |
 
 **검증 명령이 `gh`·`git`·텍스트 도구만 쓴다.** 이 환경에 Node가 없어 `pnpm test exits 0` 류를 증명 명령으로 쓸 수 없기 때문이다.
 UX 산출물이 코드가 아니라 **문서**라서 이 제약 아래에서도 완료 판정이 성립한다.
 
-**범위에서 뺀 것** — `UX-G`(#146) · `UX-H`(#147)는 Phase 2 조건부 이월 단위다. 게이트 미통과 시 통째로 버려지므로 별도 `/goal`로 분리했다.
+**Phase 2 격리** — `UX-G`(#146) · `UX-H`(#147)는 조건부 이월 단위다. `W1` 레인으로 병렬 실행하되 산출물을 `docs/design/ux/phase2/` 에 격리해, 게이트 미통과 시 그 디렉터리만 통째로 이월한다. 최대 병렬 폭(5레인)을 얻으면서 이월 단위를 깨지 않는 편성이다.
