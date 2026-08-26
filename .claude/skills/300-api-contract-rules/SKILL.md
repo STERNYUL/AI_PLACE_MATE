@@ -42,6 +42,18 @@ description: API 계약 규칙 — 엔드포인트 명명, 상태 코드, 응답
 - 날짜 **ISO-8601**
 - `null` 필드는 생략 (명시적 `null`이 의미를 가질 때만 유지)
 
+### 근거 4항목 필드명 — 네 곳이 같은 이름을 쓴다
+
+`selectionReason` · `evidenceAttribute` · `verifiedAt` · `verifiedBy`
+
+**`SPEC-008` 확정 전까지 잠정**이며 정본은 `types/draft.ts` 하나다 (`// DRAFT: SPEC-008`).
+소비처가 `EVD-A`·`EVD-C`·`AGT-C`·`CLI-C` 네 곳이므로 **한 곳이 다른 이름을 쓰면 통합에서 터진다.**
+
+### wire ↔ 컴포넌트 props 변환은 한 곳에서
+
+DB는 snake_case, API는 camelCase다. 변환은 `lib/<domain>/client.ts`의 단일 함수에서만 한다.
+**컴포넌트가 wire 형식을 직접 읽지 않는다** — 표기가 바뀌면 그 함수 하나만 고친다.
+
 ## 페이지네이션 없음
 `REQ-FUNC-014`는 **Top-3 고정**이다. 페이지네이션을 만들지 않는다.
 

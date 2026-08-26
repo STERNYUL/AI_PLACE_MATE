@@ -64,6 +64,7 @@ app/
   (room)/[roomId]/           openRoom()             ← POST /v1/agent-rooms   [Phase 2]
   (booking)/actions.ts       예약·결제
   console/actions.ts         매장 콘솔               [MFA 보호]
+  preview/page.tsx           시각 스파이크 갤러리     [PREVIEW_ENABLED 로 차단 · 네트워크 호출 없음]
   api/
     proposals/route.ts       ← POST /v1/proposals   [외부 호출 · 서명 검증]
     payment/webhook/route.ts ← PG 웹훅              [멱등 필수]
@@ -134,6 +135,7 @@ app ──→ search ──→ evidence ──→ index ──→ db
 | `SUPABASE_SERVICE_ROLE_KEY` — **넘어가면 RLS 전체 무력** | `NEXT_PUBLIC_SUPABASE_ANON_KEY` |
 | `AI_PROVIDER` · `AI_MODEL` · `AI_TIMEOUT_MS` · `GOOGLE_GENERATIVE_AI_API_KEY` | |
 | `CRON_SECRET` · `PG_API_KEY` · `PG_WEBHOOK_SECRET` · `FEATURE_AGENT_ROOM` | |
+| `PREVIEW_ENABLED` — `app/preview` 시각 갤러리 차단. **프로덕션 기본 `false`** | |
 
 ---
 
