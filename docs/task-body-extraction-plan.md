@@ -9,7 +9,7 @@
 > ## ⚠️ 이 문서는 대체되었다
 >
 > 웨이브 체계(`W0`~`W7`)로 짠 **초안**이다. 이후 4단계 표준 추출 방법론
-> (계약·데이터 → 로직/CQRS → 테스트 → NFR·의존성)이 채택되면서
+> (계약·데이터 → 로직·상태 변경 → 테스트 → NFR·의존성)이 채택되면서
 > **[`task-extraction-assessment-aiplace.md`](task-extraction-assessment-aiplace.md)** 의
 > `P1a`~`P4b` 체계가 정본이 되었다.
 >
