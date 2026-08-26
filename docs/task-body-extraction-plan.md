@@ -4,7 +4,7 @@
 **날짜:** 2026-08-25
 **대상 원장:** [`TASKS-ai-place-v1.0.md`](../TASKS-ai-place-v1.0.md) — 111건 (UX 15 · IN 14 · FR 82)
 **템플릿:** [`.github/ISSUE_TEMPLATE/aiplace_feature_task.md`](../.github/ISSUE_TEMPLATE/aiplace_feature_task.md)
-**근거:** [`SRS-ai-place-v1.0.md`](../SRS-ai-place-v1.0.md) v1.9
+**근거:** [`[SRS]ai-place -mate-SRSv1.0.md`](../%5BSRS%5Dai-place%20-mate-SRSv1.0.md) v1.9
 
 > ## ⚠️ 이 문서는 대체되었다
 >
@@ -210,7 +210,7 @@ SPEC-D 이벤트     SPEC-E 캐시        SPEC-F 참조  SPEC-G 상수
 
 대상: TASKS-ai-place-v1.0.md 의 {웨이브 ID} — 태스크 {ID 목록}
 템플릿: .github/ISSUE_TEMPLATE/aiplace_feature_task.md
-근거: SRS-ai-place-v1.0.md (SRS-AIPLACE-MVP-001 v1.9)
+근거: [SRS]ai-place -mate-SRSv1.0.md (SRS-AIPLACE-MVP-001 v1.9)
 확정된 공유 계약: docs/issues-aiplace/W0-contracts.md (SPEC-A~G)
 
 지시

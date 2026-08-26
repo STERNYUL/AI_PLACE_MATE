@@ -1,7 +1,7 @@
 # P4b · 의존 관계 재계산 및 착수 판정
 
 **웨이브:** 제작 순서 15번 (최종) · **전 Phase**
-**근거:** `SRS-ai-place-v1.0.md` v1.9 · **원장** v1.1 · 본문 문서 14종
+**근거:** `[SRS]ai-place -mate-SRSv1.0.md` v1.9 · **원장** v1.1 · 본문 문서 14종
 **정본** [`task-extraction-assessment-aiplace.md`](../task-extraction-assessment-aiplace.md) Step 4
 
 > **이 문서는 새 이슈를 만들지 않는다.** 앞의 14개 문서에서 드러난 사실을 모아

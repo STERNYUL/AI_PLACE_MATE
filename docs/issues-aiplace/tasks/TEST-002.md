@@ -2,7 +2,7 @@
 
 > **웨이브** `P3a-tests-search` · **라벨** `test, verification, pricing, priority:high, phase-1`
 > **원본** [`docs/issues-aiplace/P3a-tests-search.md`](../P3a-tests-search.md#test-002)
-> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
+> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `[SRS]ai-place -mate-SRSv1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 
 **대상** `REQ-FUNC-002` `003` `005` · **TC** `TC-FUNC-002·003·005`
 

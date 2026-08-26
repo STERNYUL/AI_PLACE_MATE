@@ -2,7 +2,7 @@
 
 > **웨이브** `P2a-search` · **라벨** `feature, backend, search-service, priority:high, phase-1`
 > **원본** [`docs/issues-aiplace/P2a-search.md`](../P2a-search.md#src-a)
-> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
+> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `[SRS]ai-place -mate-SRSv1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 
 **원문** `FR-011` `FR-012` `FR-013` `FR-020`
 

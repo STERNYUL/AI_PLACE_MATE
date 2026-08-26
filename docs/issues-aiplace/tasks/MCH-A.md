@@ -2,7 +2,7 @@
 
 > **웨이브** `P2g-phase2` · **라벨** `feature, backend, merchant-service, priority:high, phase-2, conditional, gateway`
 > **원본** [`docs/issues-aiplace/P2g-phase2.md`](../P2g-phase2.md#mch-a)
-> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
+> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `[SRS]ai-place -mate-SRSv1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 
 **원문** `FR-037` `FR-038` `FR-039` `FR-040`
 

@@ -1,7 +1,7 @@
 # P2b · 근거 및 확인 상태 — `EVD-A` ~ `EVD-D`
 
 **웨이브:** 제작 순서 5번 · **Phase 1**
-**근거:** `SRS-ai-place-v1.0.md` v1.9 · **원장** v1.1
+**근거:** `[SRS]ai-place -mate-SRSv1.0.md` v1.9 · **원장** v1.1
 **공유 계약:** [`P1a-contracts.md`](P1a-contracts.md) — **`SPEC-008`(근거 4항목)** · `SPEC-004`
 **Mock:** [`P1c-mock.md`](P1c-mock.md) — `MOCK-003` `MOCK-004` `MOCK-005`
 

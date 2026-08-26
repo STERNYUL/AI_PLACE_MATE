@@ -1,7 +1,7 @@
 # P2d · 예약·결제 및 개인정보 — `RSV-A`~`D` · `PRV-A`~`B`
 
 **웨이브:** 제작 순서 7번 · **Phase 1 말**
-**근거:** `SRS-ai-place-v1.0.md` v1.9 · **원장** v1.1
+**근거:** `[SRS]ai-place -mate-SRSv1.0.md` v1.9 · **원장** v1.1
 **공유 계약:** [`P1a-contracts.md`](P1a-contracts.md) — **`SPEC-007`(PG 연동)**
 **Mock:** [`P1c-mock.md`](P1c-mock.md) — `MOCK-007`
 

@@ -1,7 +1,7 @@
 # 태스크 축약 계획 — AI-Place-Mate 111건 → 50건
 
 **대상:** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.0 · 111 태스크)
-**상위 문서:** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
+**상위 문서:** `[SRS]ai-place -mate-SRSv1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 **목표:** 50건 내외 · **결과: 50건** (55% 감축)
 **성격:** 분석·계획서. **실행 전 승인 대기.**
 

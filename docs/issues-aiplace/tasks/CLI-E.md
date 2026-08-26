@@ -2,7 +2,7 @@
 
 > **웨이브** `P2e-client` · **라벨** `feature, frontend, client, performance, tracking, priority:high, phase-1`
 > **원본** [`docs/issues-aiplace/P2e-client.md`](../P2e-client.md#cli-e)
-> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
+> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `[SRS]ai-place -mate-SRSv1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 
 **원문** `FR-077` `FR-078` `FR-079`
 

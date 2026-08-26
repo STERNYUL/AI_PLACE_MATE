@@ -1,7 +1,7 @@
 # P3c · 검증 태스크 (Phase 2 · 비기능) — `TEST-011` ~ `TEST-014d`
 
 **웨이브:** 제작 순서 11번 · **Phase 1 / 2**
-**근거:** `SRS-ai-place-v1.0.md` v1.9 **§5.1** · 정본 Step 3
+**근거:** `[SRS]ai-place -mate-SRSv1.0.md` v1.9 **§5.1** · 정본 Step 3
 **선행 문서** [`P3a-tests-search.md`](P3a-tests-search.md) · [`P3b-tests-evidence.md`](P3b-tests-evidence.md)
 
 > **`TEST-011`~`TEST-013`은 Phase 2 조건부다** — [`P2g-phase2.md`](P2g-phase2.md)의 8건과 함께 이월된다.

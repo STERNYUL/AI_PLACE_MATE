@@ -2,7 +2,7 @@
 
 > **웨이브** `P3b-tests-evidence` · **라벨** `test, verification, evidence, priority:critical, phase-1, identity`
 > **원본** [`docs/issues-aiplace/P3b-tests-evidence.md`](../P3b-tests-evidence.md#test-006)
-> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
+> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `[SRS]ai-place -mate-SRSv1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 
 **대상** `REQ-FUNC-010` `014` · **TC** `TC-FUNC-010·014`
 

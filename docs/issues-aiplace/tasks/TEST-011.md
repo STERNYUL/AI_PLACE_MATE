@@ -2,7 +2,7 @@
 
 > **웨이브** `P3c-tests-phase2-nf` · **라벨** `test, verification, merchant, priority:high, phase-2, conditional`
 > **원본** [`docs/issues-aiplace/P3c-tests-phase2-nf.md`](../P3c-tests-phase2-nf.md#test-011)
-> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
+> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `[SRS]ai-place -mate-SRSv1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 
 **대상** `REQ-FUNC-019`~`021` `027` · **TC** `TC-FUNC-019~021·027`
 

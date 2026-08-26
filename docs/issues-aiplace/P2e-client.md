@@ -1,7 +1,7 @@
 # P2e · 사용자 클라이언트 — `CLI-A` ~ `CLI-E`
 
 **웨이브:** 제작 순서 8번 · **Phase 1 / 1말**
-**근거:** `SRS-ai-place-v1.0.md` v1.9 · **원장** v1.1
+**근거:** `[SRS]ai-place -mate-SRSv1.0.md` v1.9 · **원장** v1.1
 **공유 계약:** [`P1a-contracts.md`](P1a-contracts.md) — `SPEC-002` `SPEC-003` `SPEC-004` `SPEC-007` `SPEC-009`
 **Mock:** [`P1c-mock.md`](P1c-mock.md) — `MOCK-001`~`MOCK-007`
 

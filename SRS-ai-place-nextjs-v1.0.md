@@ -10,9 +10,9 @@
 
 **표준:** ISO/IEC/IEEE 29148:2018 (§9.6 Software requirements specification content)
 
-**기준 문서:** [`SRS-ai-place-v1.0.md`](SRS-ai-place-v1.0.md) (SRS-AIPLACE-MVP-001, 개정 1.9) — 요구사항 59건
+**기준 문서:** [`[SRS]ai-place -mate-SRSv1.0.md`](%5BSRS%5Dai-place%20-mate-SRSv1.0.md) (SRS-AIPLACE-MVP-001, 개정 1.9) — 요구사항 59건
 
-**관련 문서:** [`DESIGN-ai-place-v1.0.md`](DESIGN-ai-place-v1.0.md) (SDD-AIPLACE-MVP-001) — 플랫폼 비종속 설계
+**관련 문서:** [`[DIAGRAMS]DESIGN-ai-place-v1.0.md`](%5BDIAGRAMS%5DDESIGN-ai-place-v1.0.md) (SDD-AIPLACE-MVP-001) — 플랫폼 비종속 설계
 
 ---
 

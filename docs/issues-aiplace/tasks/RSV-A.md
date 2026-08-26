@@ -2,7 +2,7 @@
 
 > **웨이브** `P2d-reservation-privacy` · **라벨** `feature, backend, reservation-service, priority:high, phase-1-late`
 > **원본** [`docs/issues-aiplace/P2d-reservation-privacy.md`](../P2d-reservation-privacy.md#rsv-a)
-> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
+> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `[SRS]ai-place -mate-SRSv1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 
 **원문** `FR-028` `FR-029`
 

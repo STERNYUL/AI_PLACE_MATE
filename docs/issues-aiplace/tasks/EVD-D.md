@@ -2,7 +2,7 @@
 
 > **웨이브** `P2b-evidence` · **라벨** `feature, command, backend, evidence-service, priority:high, phase-1`
 > **원본** [`docs/issues-aiplace/P2b-evidence.md`](../P2b-evidence.md#evd-d)
-> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
+> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `[SRS]ai-place -mate-SRSv1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 
 **원문** `FR-026` `FR-027`
 

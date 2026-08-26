@@ -3,7 +3,7 @@
 **문서 ID:** EXEC-AIPLACE-MVP-001
 **개정 버전:** 1.0
 **날짜:** 2026-08-26
-**상위 문서:** [`SRS-ai-place-v1.0.md`](SRS-ai-place-v1.0.md) (SRS-AIPLACE-MVP-001 v1.9) · [`TASKS-ai-place-v1.0.md`](TASKS-ai-place-v1.0.md) (TASKS-AIPLACE-MVP-001 v1.1 · 50건)
+**상위 문서:** [`[SRS]ai-place -mate-SRSv1.0.md`](%5BSRS%5Dai-place%20-mate-SRSv1.0.md) (SRS-AIPLACE-MVP-001 v1.9) · [`TASKS-ai-place-v1.0.md`](TASKS-ai-place-v1.0.md) (TASKS-AIPLACE-MVP-001 v1.1 · 50건)
 **제작 순서 근거:** [`docs/task-extraction-assessment-aiplace.md`](docs/task-extraction-assessment-aiplace.md) §3 · [`docs/issues-aiplace/P4b-dependency.md`](docs/issues-aiplace/P4b-dependency.md)
 **태스크 본문:** [`docs/issues-aiplace/tasks/`](docs/issues-aiplace/tasks/) 84건 (대조표 [`INDEX.md`](docs/issues-aiplace/tasks/INDEX.md)) · GitHub 이슈 `#94`~`#178`
 **작성 관점:** Technical Project Manager / System Architect

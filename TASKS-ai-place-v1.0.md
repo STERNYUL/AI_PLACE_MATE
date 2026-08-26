@@ -3,7 +3,7 @@
 **문서 ID:** TASKS-AIPLACE-MVP-001
 **개정 버전:** 1.1
 **날짜:** 2026-08-26
-**상위 문서:** [`SRS-ai-place-v1.0.md`](SRS-ai-place-v1.0.md) (SRS-AIPLACE-MVP-001 v1.9, ISO/IEC/IEEE 29148:2018)
+**상위 문서:** [`[SRS]ai-place -mate-SRSv1.0.md`](%5BSRS%5Dai-place%20-mate-SRSv1.0.md) (SRS-AIPLACE-MVP-001 v1.9, ISO/IEC/IEEE 29148:2018)
 **작성 관점:** Technical Project Manager / System Architect
 
 ### 개정 이력

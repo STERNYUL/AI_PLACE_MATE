@@ -1,7 +1,7 @@
 # P2g · Phase 2 조건부 — `MCH-A` · `AGT-A~C` · `CLI-F` · `CLI-G` · `UX-G` · `UX-H`
 
 **웨이브:** 제작 순서 10번 · **Phase 2 (조건부)**
-**근거:** `SRS-ai-place-v1.0.md` v1.9 · **원장** v1.1
+**근거:** `[SRS]ai-place -mate-SRSv1.0.md` v1.9 · **원장** v1.1
 **공유 계약:** [`P1a-contracts.md`](P1a-contracts.md) — `SPEC-005`(대화방) `SPEC-006`(제안) · **`SPEC-010` 신설 검토**(매장 콘솔 · [`P1c-mock.md`](P1c-mock.md) 발견)
 
 > **⚠️ 이 8건은 착수가 확정되지 않았다.**

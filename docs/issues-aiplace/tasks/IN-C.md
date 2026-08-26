@@ -2,7 +2,7 @@
 
 > **웨이브** `P4a-infra` · **라벨** `infra, observability, priority:critical, phase-0`
 > **원본** [`docs/issues-aiplace/P4a-infra.md`](../P4a-infra.md#in-c)
-> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
+> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `[SRS]ai-place -mate-SRSv1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 
 **원문** `IN-004` `IN-008` `IN-009`
 

@@ -1,7 +1,7 @@
 # P2a · 검색 — `SRC-A` ~ `SRC-D`
 
 **웨이브:** 제작 순서 4번 · **Phase 1**
-**근거:** `SRS-ai-place-v1.0.md` v1.9 · **원장** `TASKS-ai-place-v1.0.md` v1.1
+**근거:** `[SRS]ai-place -mate-SRSv1.0.md` v1.9 · **원장** `TASKS-ai-place-v1.0.md` v1.1
 **공유 계약:** [`P1a-contracts.md`](P1a-contracts.md) — `SPEC-001` `SPEC-002` `SPEC-008`
 **Mock:** [`P1c-mock.md`](P1c-mock.md) — `MOCK-002`
 

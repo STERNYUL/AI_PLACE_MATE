@@ -1,7 +1,7 @@
 # P2c · 계측 및 KPI — `TRK-A` ~ `TRK-E`
 
 **웨이브:** 제작 순서 6번 · **Phase 0~1**
-**근거:** `SRS-ai-place-v1.0.md` v1.9 §6 · **원장** v1.1
+**근거:** `[SRS]ai-place -mate-SRSv1.0.md` v1.9 §6 · **원장** v1.1
 **공유 계약:** [`P1a-contracts.md`](P1a-contracts.md) — **`SPEC-009`(이벤트 스키마)**
 
 > **⚠️ `TRK-A` ↔ `SPEC-009` 중복이 미해소 상태다.** 평가서 §1은 `FR-049`를 `SPEC-009`로 대체하라고 지시했고

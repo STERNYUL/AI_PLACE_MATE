@@ -1,7 +1,7 @@
 # P3a · 검증 태스크 (색인·검색) — `TEST-001` ~ `TEST-005`
 
 **웨이브:** 제작 순서 11번 · **Phase 0~1**
-**근거:** `SRS-ai-place-v1.0.md` v1.9 **§5.1** · 정본 [`task-extraction-assessment-aiplace.md`](../task-extraction-assessment-aiplace.md) Step 3
+**근거:** `[SRS]ai-place -mate-SRSv1.0.md` v1.9 **§5.1** · 정본 [`task-extraction-assessment-aiplace.md`](../task-extraction-assessment-aiplace.md) Step 3
 
 > **이 웨이브가 존재하는 이유 — 원장 v1.1에 검증 태스크가 0건이었다.**
 > SRS §5.1은 `TC-FUNC-001`~`TC-NF-032` 총 **59개 테스트 케이스 ID를 이미 부여**했는데,

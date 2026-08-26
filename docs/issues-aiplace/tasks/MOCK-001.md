@@ -2,7 +2,7 @@
 
 > **웨이브** `P1c-mock` · **라벨** `mock, backend, priority:high, phase-0, blocks-mock`
 > **원본** [`docs/issues-aiplace/P1c-mock.md`](../P1c-mock.md#mock-001)
-> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
+> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `[SRS]ai-place -mate-SRSv1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 
 ### 🎯 Summary
 - **Task ID** `MOCK-001` · **Epic** Mock · **Must / M**

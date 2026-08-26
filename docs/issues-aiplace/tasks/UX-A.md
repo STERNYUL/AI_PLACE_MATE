@@ -2,7 +2,7 @@
 
 > **웨이브** `P2f-ux` · **라벨** `design, ux, foundation, priority:high, phase-0, needs-pm-approval`
 > **원본** [`docs/issues-aiplace/P2f-ux.md`](../P2f-ux.md#ux-a)
-> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
+> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `[SRS]ai-place -mate-SRSv1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 
 **원문** `UX-001` `UX-013`
 

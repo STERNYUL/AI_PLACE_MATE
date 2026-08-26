@@ -10,7 +10,7 @@
 
 **상위 문서:** [`SRS-ai-place-nextjs-v1.0.md`](SRS-ai-place-nextjs-v1.0.md) (SRS-AIPLACE-NEXT-001) — `REQ-IMPL` 34건 · 제약 충돌 해소 11건
 
-**관련 문서:** [`SRS-ai-place-v1.0.md`](SRS-ai-place-v1.0.md) (기준 요구사항 59건) · [`DESIGN-ai-place-v1.0.md`](DESIGN-ai-place-v1.0.md) (플랫폼 비종속 설계)
+**관련 문서:** [`[SRS]ai-place -mate-SRSv1.0.md`](%5BSRS%5Dai-place%20-mate-SRSv1.0.md) (기준 요구사항 59건) · [`[DIAGRAMS]DESIGN-ai-place-v1.0.md`](%5BDIAGRAMS%5DDESIGN-ai-place-v1.0.md) (플랫폼 비종속 설계)
 
 ---
 
@@ -26,8 +26,8 @@
 
 | 문서 | 담는 것 | 담지 않는 것 |
 | --- | --- | --- |
-| `SRS-ai-place-v1.0.md` | 무엇을 만족해야 하는가 — 요구사항 59건, 인수 기준 | 플랫폼, 구현 방식 |
-| `DESIGN-ai-place-v1.0.md` | 플랫폼 비종속 설계 — 도메인 클래스, 논리 컴포넌트, 유스케이스 명세 | 런타임, 프레임워크 API |
+| `[SRS]ai-place -mate-SRSv1.0.md` | 무엇을 만족해야 하는가 — 요구사항 59건, 인수 기준 | 플랫폼, 구현 방식 |
+| `[DIAGRAMS]DESIGN-ai-place-v1.0.md` | 플랫폼 비종속 설계 — 도메인 클래스, 논리 컴포넌트, 유스케이스 명세 | 런타임, 프레임워크 API |
 | `SRS-ai-place-nextjs-v1.0.md` | 제약과 그 결과 — C-TEC·C-DRV, 충돌 해소 11건, Prisma 스키마, 디렉터리, 환경 변수, 모듈 의존 규칙 | 런타임 내부 동작, 정책 상세 |
 | **본 문서** | **런타임 설계** — 실행 경계, 캐시 계층, RLS 정책 매트릭스, 지연 평가 쿼리, Cron 상세, 컴포넌트 경계, 오류 열화 | 요구사항, 제약 선언, 스키마 정의 |
 

@@ -2,7 +2,7 @@
 
 > **웨이브** `P1b-data` · **라벨** `db, backend, index-service, priority:high, phase-1, adr-002`
 > **원본** [`docs/issues-aiplace/P1b-data.md`](../P1b-data.md#idx-d)
-> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
+> **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `[SRS]ai-place -mate-SRSv1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 
 **원문** `FR-007`
 

@@ -8,7 +8,7 @@
 
 **날짜:** 2026-08-24
 
-**상위 문서:** [`SRS-ai-place-v1.0.md`](SRS-ai-place-v1.0.md) (SRS-AIPLACE-MVP-001, 개정 1.9)
+**상위 문서:** [`[SRS]ai-place -mate-SRSv1.0.md`](%5BSRS%5Dai-place%20-mate-SRSv1.0.md) (SRS-AIPLACE-MVP-001, 개정 1.9)
 
 ---
 

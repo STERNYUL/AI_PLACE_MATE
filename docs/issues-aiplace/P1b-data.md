@@ -2,7 +2,7 @@
 
 **웨이브:** 제작 순서 2번 · **Phase 0~1**
 **템플릿:** `.github/ISSUE_TEMPLATE/aiplace_feature_task.md`
-**근거:** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
+**근거:** `[SRS]ai-place -mate-SRSv1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 **원장:** `TASKS-ai-place-v1.0.md` v1.1 · 50건
 **공유 계약:** [`P1a-contracts.md`](P1a-contracts.md) — `SPEC-001` · `SPEC-003`
 

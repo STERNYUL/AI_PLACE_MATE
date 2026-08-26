@@ -1,7 +1,7 @@
 # P3b · 검증 태스크 (근거·예약) — `TEST-006` ~ `TEST-010`
 
 **웨이브:** 제작 순서 11번 · **Phase 1 / 1말**
-**근거:** `SRS-ai-place-v1.0.md` v1.9 **§5.1** · 정본 Step 3
+**근거:** `[SRS]ai-place -mate-SRSv1.0.md` v1.9 **§5.1** · 정본 Step 3
 **선행 문서** [`P3a-tests-search.md`](P3a-tests-search.md)
 
 > **`TEST-006`·`TEST-007`이 이 프로젝트에서 가장 중요한 검증 태스크다.**

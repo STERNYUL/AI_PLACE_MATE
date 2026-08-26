@@ -10,9 +10,9 @@ assignees: ''
   ═══════════════════════════════════════════════════════════════
    GitHub Project 용 TASK 템플릿 · AI Place Mate · v1.0
   ═══════════════════════════════════════════════════════════════
-  근거 문서 : SRS-ai-place-v1.0.md (SRS-AIPLACE-MVP-001 v1.9)
+  근거 문서 : [SRS]ai-place -mate-SRSv1.0.md (SRS-AIPLACE-MVP-001 v1.9)
   태스크 원장 : TASKS-ai-place-v1.0.md (TASKS-AIPLACE-MVP-001 v1.0 · 111건)
-  설계 문서 : DESIGN-ai-place-v1.0.md (SDD-AIPLACE-MVP-001)
+  설계 문서 : [DIAGRAMS]DESIGN-ai-place-v1.0.md (SDD-AIPLACE-MVP-001)
 
   작성 규칙
   1. Task ID는 원장의 ID를 그대로 쓴다. 새 ID를 임의로 만들지 않는다.
@@ -46,7 +46,7 @@ assignees: ''
 > 💡 **AI Agent & Dev Note**: 작업 시작 전 아래 문서를 반드시 먼저 Read/Evaluate 할 것.
 > 특히 **인수 기준 열과 §8.3 비즈니스 규칙**을 읽지 않고 착수하면 재작업이 발생한다.
 
-- **SRS 요구사항**: `SRS-ai-place-v1.0.md` §4.1 `REQ-FUNC-XXX` / §4.2 `REQ-NF-XXX`
+- **SRS 요구사항**: `[SRS]ai-place -mate-SRSv1.0.md` §4.1 `REQ-FUNC-XXX` / §4.2 `REQ-NF-XXX`
 - **기능 처리 규격**: 동 문서 §4.5.1 입력 유효성 · §4.5.2 연산 순서 · §4.5.3 비정상 대응 · §4.5.4 파라미터 · §4.5.5 출입력 관계
 - **API 명세**: 동 문서 §8.1 엔드포인트 목록 · §8.1.1 상세 규격(단위·타이밍·유효 범위)
 - **데이터 모델 (ERD)**: 동 문서 §8.2 엔터티 관계도 · 상태 전이 · 필드 제약
@@ -54,7 +54,7 @@ assignees: ''
 - **논리 DB 요구사항**: 동 문서 §8.6 정보 유형 · 접근 패턴 · 정합성 제약 · 보안 · 보존
 - **태스크 원장**: `TASKS-ai-place-v1.0.md` §3.{N} (선행 태스크 · 복잡도)
 - **의존 관계**: 동 문서 §4 임계 경로 · §5 Phase 배분
-- **설계(내부 구조)**: `DESIGN-ai-place-v1.0.md` <!-- 클래스·컴포넌트 내부·물리 ERD는 SDD가 단일 원천 -->
+- **설계(내부 구조)**: `[DIAGRAMS]DESIGN-ai-place-v1.0.md` <!-- 클래스·컴포넌트 내부·물리 ERD는 SDD가 단일 원천 -->
 - **학습 · 배경 해설**: `AIPLACE-SRS-READER.html` {해당 장}
 
 ## ✅ Task Breakdown (실행 계획)

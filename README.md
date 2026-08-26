@@ -8,7 +8,7 @@
 
 ## 1. 작업 목표
 
-`ai-place-prd-v0.1.html` (PRD v0.1 · §1–§9 · 14슬라이드)을 **SRS 형식 문서로 변환**합니다.
+`[PRD]ai-place-prd-v0.1.html` (PRD v0.1 · §1–§9 · 14슬라이드)을 **SRS 형식 문서로 변환**합니다.
 
 ### 1.1 무엇을 만드는가
 
@@ -100,7 +100,7 @@ GitHub은 ```` ```mermaid ```` 펜스를 네이티브 렌더링합니다. 노드
 
 ## 3. 매핑 결과 — PRD → SRS
 
-**산출물:** [`SRS-ai-place-v1.0.md`](SRS-ai-place-v1.0.md) — 문서 ID `SRS-AIPLACE-MVP-001` · 개정 1.9 · 요구사항 **59건**(REQ-FUNC 27 · REQ-NF 32)
+**산출물:** [`[SRS]ai-place -mate-SRSv1.0.md`](%5BSRS%5Dai-place%20-mate-SRSv1.0.md) — 문서 ID `SRS-AIPLACE-MVP-001` · 개정 1.9 · 요구사항 **59건**(REQ-FUNC 27 · REQ-NF 32)
 
 > 초기 변환은 50건이었습니다. 최종 검토에서 29148 **§5.2.5 Singular**("요구사항은 단일 능력·특성·제약·품질 인자를 진술한다") 위반 7건을 분할해 59건이 되었습니다. 판정 기준은 SRS 4.2에 명문화했습니다 — **이행 수단이 서로 다른 통제는 분리**(2FA/감사로그, 저장/전송 암호화, RTO/RPO, 보관기간/목적제한 등), **하나의 인자를 여러 지표로 측정하는 경우는 유지**(p95/p99, 캐시 히트/미스).
 
@@ -241,11 +241,11 @@ PRD §8은 A/B 실험 7건(E1~E7)의 표본 크기·성공 임계까지 사전 �
 ```
 AI_PLACE_MATE/
 ├── README.md                                   # 변환 목표 · 규격 · 매핑 결과
-├── SRS-ai-place-v1.0.md                        # ★ SRS v1.9 — 요구사항 59건 · 도식 12 (플랫폼 비종속)
+├── [SRS]ai-place -mate-SRSv1.0.md                        # ★ SRS v1.9 — 요구사항 59건 · 도식 12 (플랫폼 비종속)
 ├── SRS-ai-place-nextjs-v1.0.md                 # ★ SRS 구현 제약 반영본 — REQ-IMPL 34건 · 도식 5
-├── DESIGN-ai-place-v1.0.md                     # ★ SDD v1.0 — 설계 도식 17 (플랫폼 비종속)
+├── [DIAGRAMS]DESIGN-ai-place-v1.0.md                     # ★ SDD v1.0 — 설계 도식 17 (플랫폼 비종속)
 ├── DESIGN-ai-place-nextjs-v1.0.md              # ★ SDD 런타임 설계 — 도식 14 (Next.js 종속)
-├── ai-place-prd-v0.1.html                      # PRD v0.1 (변환 원본, 보존)
+├── [PRD]ai-place-prd-v0.1.html                      # PRD v0.1 (변환 원본, 보존)
 ├── REVIEW-prd-v0.1.md                          # PRD v0.1 완성도 검토서
 └── reference/
     └── SRS-example-AD-Core-Platform.md         # 변환 규격 레퍼런스 (예시 SRS)
@@ -255,7 +255,7 @@ AI_PLACE_MATE/
 
 ```
                           ┌─ SDD v1.0 ────────────────── 플랫폼 비종속 설계 (도식 17)
-                          │   DESIGN-ai-place-v1.0.md
+                          │   [DIAGRAMS]DESIGN-ai-place-v1.0.md
 PRD v0.1 ─→ SRS v1.9 ─────┤
 (무엇을 왜)  (무엇을      │   SRS 구현 제약 반영본 ─────→ SDD 런타임 설계 (도식 14)
              만족해야)     └─  SRS-…-nextjs-v1.0.md        DESIGN-…-nextjs-v1.0.md
