@@ -67,7 +67,7 @@
 - [ ] 입력하지 않은 조건이 추가되지 않는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `CLI-A` `UX-B` `SPEC-002`
+- **Depends on** `CLI-A` `UX-B` `UX-F` `SPEC-002`
 - **Blocks** `CLI-C`
 - **미정 — 확정 필요** 부분 파싱 시 필드 이월 여부
 

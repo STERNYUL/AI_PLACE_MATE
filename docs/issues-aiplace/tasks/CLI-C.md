@@ -69,7 +69,7 @@
 - [ ] 화면 문구가 판정형 검증을 통과했는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SRC-D` `EVD-C` `EVD-D` `UX-C` `UX-D` `SPEC-003` `SPEC-004` `SPEC-008`
+- **Depends on** `SRC-D` `EVD-C` `EVD-D` `UX-C` `UX-D` `UX-F` `SPEC-003` `SPEC-004` `SPEC-008`
 - **Blocks** `CLI-E`
 - **미정 — 확정 필요** 후보 3개 미만 시 화면 (`SRC-D` 연동) · 인앱 외부 전송 가능 여부
 

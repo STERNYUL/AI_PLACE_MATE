@@ -71,7 +71,7 @@
 - [ ] 모든 라우트에 오류 경계가 있는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IN-A` `SPEC-002`
+- **Depends on** `IN-A` `SPEC-002` `UX-A` `UX-F`
 - **Blocks** `CLI-B` `CLI-C` `CLI-D` `CLI-E` `PRV-B`
 - **미정 — 확정 필요** **인앱 브라우저 제약 실측** (`PRV-B` 단말 저장 · `CLI-C` 외부 전송이 걸림)
 

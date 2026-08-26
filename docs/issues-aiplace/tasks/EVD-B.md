@@ -76,7 +76,7 @@
 - [ ] 문장 생성 비용이 12원 상한 안에 있는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `EVD-A`
+- **Depends on** `EVD-A` `UX-C`
 - **Blocks** `EVD-C` `CLI-C`
 - **미정 — 확정 필요** **판정형 문구 판정 기준** (PM + `UX-C` 담당) · 추론 장애 시 대체 문안
 
