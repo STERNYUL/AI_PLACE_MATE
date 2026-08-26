@@ -1,6 +1,6 @@
 # 태스크 개별 파일 · GitHub 이슈 대조표
 
-**생성일:** 2026-08-26 · **총 81건** (GitHub 이슈 `#94` ~ `#174`)
+**생성일:** 2026-08-26 · **총 84건** (GitHub 이슈 `#94` ~ `#178`, `#167`은 4분할로 종료)
 **원장:** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건)
 **웨이브 문서:** `docs/issues-aiplace/P1a` ~ `P4a` (14건) · 의존 분석 `P4b-dependency.md`
 
@@ -144,7 +144,10 @@
 | `TEST-011` | [콘솔 및 근거 없는 문구 차단 검증](TEST-011.md) | [#164](https://github.com/STERNYUL/AI_PLACE_MATE/issues/164) | `test, verification, merchant, priority:high, phase-2, conditional` |
 | `TEST-012` | [소환·180초 마감·0건 회귀 검증](TEST-012.md) | [#165](https://github.com/STERNYUL/AI_PLACE_MATE/issues/165) | `test, verification, agent-room, priority:high, phase-2, conditional` |
 | `TEST-013` | [제안 정렬·불이행 검증](TEST-013.md) | [#166](https://github.com/STERNYUL/AI_PLACE_MATE/issues/166) | `test, verification, agent-room, priority:high, phase-2, conditional` |
-| `TEST-014` | [비기능 검증 스크립트](TEST-014.md) | [#167](https://github.com/STERNYUL/AI_PLACE_MATE/issues/167) | `test, verification, non-functional, priority:critical, phase-1, oversized` |
+| `TEST-014a` | [성능·가용성 검증](TEST-014a.md) | [#175](https://github.com/STERNYUL/AI_PLACE_MATE/issues/175) | `test, verification, non-functional, performance, priority:critical, phase-1` |
+| `TEST-014b` | [데이터·결과 품질 검증](TEST-014b.md) | [#176](https://github.com/STERNYUL/AI_PLACE_MATE/issues/176) | `test, verification, non-functional, reliability, priority:critical, phase-1` |
+| `TEST-014c` | [보안·개인정보 검증](TEST-014c.md) | [#177](https://github.com/STERNYUL/AI_PLACE_MATE/issues/177) | `test, verification, non-functional, security, privacy, priority:critical, phase-1-late` |
+| `TEST-014d` | [비용·KPI 검증](TEST-014d.md) | [#178](https://github.com/STERNYUL/AI_PLACE_MATE/issues/178) | `test, verification, non-functional, tracking, priority:high, phase-1` |
 
 ## `P4a-infra`
 
