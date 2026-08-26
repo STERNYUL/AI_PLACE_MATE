@@ -71,6 +71,7 @@ AGENTS.md                          크로스툴 요약 (Cursor · Antigravity)
   agents/       4종                도메인 지식 — 위임 대상
   commands/     4종                절차 — /task-start /fix-error /setup-env /gitflow-commit
   skills/       5종                코딩 규칙 — 자동 적용
+                + 3종             외부 도입 — goal-setting · grill-it · review-merge
 docs/harness/
   README.md                        이 문서
   skills-marketplace.md            마켓플레이스 채택안
