@@ -23,15 +23,16 @@
 ## 토픽 원장
 
 ```markdown
-RESOLVED: 6 / TOTAL: 8   (CORE 4/4 · MINOR 2/4) — **CORE 전건 해소**
+RESOLVED: 8 / TOTAL: 8   (CORE 4/4 · MINOR 4/4)
+STOP REASON: ALL_RESOLVED
 - [x] T1 | CORE  | 실행 형태 — Next.js(Node 설치) vs 단일 HTML 목업 vs Vite   | depends:-  | status:RESOLVED
 - [x] T2 | CORE  | 스파이크 코드의 지위 — 본 코드베이스 흡수 vs 판정 후 폐기   | depends:T1 | status:RESOLVED
 - [x] T3 | CORE  | 잠정 타입 범위 — 근거 4항목 필드명 지금 확정 vs 계약 시 교체 | depends:T2 | status:RESOLVED
 - [x] T4 | CORE  | fixture 시나리오 집합 — 15상태 전부 vs 카드+열화 10상태만    | depends:T3 | status:RESOLVED
 - [x] T5 | MINOR | 산출물 배치 — /preview 갤러리 1페이지 vs 화면별 라우트        | depends:T1 | status:RESOLVED (T1 흡수)
 - [x] T6 | MINOR | 열화 6상태 명칭 — 102 스킬의 6개 채택 여부                    | depends:T4 | status:RESOLVED (하네스 강제)
-- [ ] T7 | MINOR | fixture 카피 — 실제 카피 초안 vs 자리표시자                   | depends:T4 | status:UNRESOLVED
-- [ ] T8 | MINOR | 브랜치·커밋 처리 — 스파이크 브랜치명 · PR 여부                | depends:T2 | status:UNRESOLVED
+- [x] T7 | MINOR | fixture 데이터 출처 — 실제 매장 조사 vs 가상                   | depends:T4 | status:RESOLVED
+- [x] T8 | MINOR | 브랜치·커밋 처리 — 스파이크 브랜치명 · PR 여부                | depends:T2 | status:RESOLVED
 ```
 
 ---
@@ -101,3 +102,47 @@ RESOLVED: 6 / TOTAL: 8   (CORE 4/4 · MINOR 2/4) — **CORE 전건 해소**
 - **decision:** `폴백표시` `근거대기` `근거생략` `유사메뉴대체` `제안없음` `재시도안내` **그대로 채택.** 새 이름을 만들지 않는다.
 - **근거:** `.claude/skills/102-ux-stage-deliverables`와 `docs/goals/ux-design-stage.md` §3의 완료 판정 grep이 이 6개 문자열을 그대로 센다. 다른 이름을 쓰면 **판정 명령이 0을 반환해 UX 단계가 완료 판정을 받지 못한다.** 선택지가 존재하지 않는다.
 - **applied:** `docs/prototype-visual-spike.md` §1 표 · §1 말미 각주("새 이름을 만들지 않는다") · 원장 카운터 `RESOLVED: 6`
+
+### T7 · MINOR · fixture 데이터 출처 — RESOLVED (2026-08-26)
+
+- **decision:** `top3.json`은 **실제 매장 3곳의 공개 정보**로 채운다. `evidence-missing.json`·`freshness.json`은 가상 — 인위적 케이스를 만드는 것이 목적이므로 실제 매장에서 재현할 이유가 없다.
+- **근거:** 판정형 어휘 grep이 `lib/fixtures/`까지 검사하므로 자리표시자를 쓸 수 없다. 실제 3곳을 채우면 `SPEC-008`의 미해소 쟁점(*"4항목 각각의 데이터 출처를 엔터티·필드 수준에서 확정"*)에 직접 기여한다 — **어느 항목이 현실에서 비는지, `verifiedBy`가 매장인지 운영자인지**가 드러난다. 조사 비용 1시간.
+- **파생 가드 (중요):** **실제 매장명 + 미확인 사실 = 근거 없는 정보 노출**이며 §8.3 규칙 1 위반이다. `verifiedBy`는 **"내부 조사"** 로 명시하고 "사장 확인" 등 확인 주체를 사칭하지 않는다. **T2의 `PREVIEW_ENABLED` 차단이 이 결정으로 인해 선택이 아니라 필수 조건이 된다.**
+- **applied:**
+  - `.claude/skills/302-mock-contract-server/SKILL.md` — **§"실제 매장명을 쓸 때 — 확인 주체를 사칭하지 않는다" 신설.** 하는 것/하지 않는 것 대조표 + `PREVIEW_ENABLED` 차단 요구
+  - `docs/prototype-visual-spike.md` §3 fixture 3행에 출처 표기 · **§3 하위에 사칭 금지 경고 절 신설**
+  - `docs/grill/GRILL_LEDGER.md` 카운터 `RESOLVED: 7 / TOTAL: 8`
+
+### T8 · MINOR · 브랜치·커밋 처리 — RESOLVED (2026-08-26)
+
+- **decision:** **`docs/prototype-scope`** (문서·하네스 — 지금) + **`feat/137-visual-spike`** (코드 — Node 설치 후). 대표 이슈는 `#137`(`CLI-C`). 둘 다 draft PR로 열고 **`main` 머지는 사용자 확인**.
+- **근거:** `UX-A`·`B`·`C`·`F` 4건은 문서 티켓이고 스파이크는 그 코드적 선반영이므로, 실제 코드 티켓 하나를 대표로 쓰는 것이 사실에 맞다(`CLAUDE.md` §9 명명 규칙 준수). 티켓별 5개 브랜치는 `components/candidate-card.tsx` 하나가 `UX-A`·`UX-C`·`CLI-C` 세 티켓에 동시에 걸려 **분리가 성립하지 않는다.**
+- **applied:**
+  - `.claude/skills/200-git-commit-push-pr/SKILL.md` — **§"여러 티켓에 걸치는 작업 — 대표 이슈 하나를 쓴다" 신설.** 문서 브랜치 분리 · PR 본문에 걸친 티켓 전체와 잔여 항목 명시
+  - `docs/prototype-visual-spike.md` — **§8.1 브랜치 절 신설**
+  - `docs/grill/GRILL_LEDGER.md` 카운터 `RESOLVED: 8 / TOTAL: 8` · `STOP REASON: ALL_RESOLVED`
+
+---
+
+## Closeout — 2026-08-26
+
+**STOP REASON: ALL_RESOLVED** · RESOLVED 8 / TOTAL 8 (CORE 4/4 · MINOR 4/4)
+
+질문한 것 6건 · 기존 결정·하네스가 강제해 질문 없이 기록한 것 2건(T5·T6).
+
+### 이번 세션에 반영된 것
+
+| 대상 | 변경 |
+| --- | --- |
+| `docs/prototype-visual-spike.md` | 범위 재확정(**5건 부분 착수 · 13상태 · 4일**) · §1 공유 카드 제외 근거 · §3 사칭 금지 가드 · §4.1 실행 형태 확정 · §7 확정 2건 · §7.1 존속·폐기 경계 · §8.1 브랜치 · §9 판정 명령 갱신 |
+| `docs/prototype-suggestion.md` | §12에 경량 스파이크 진입 경로 추가 |
+| `CLAUDE.md` | §4 `app/preview/page.tsx` · §6 `PREVIEW_ENABLED` |
+| `.claude/skills/200-git-commit-push-pr` | 여러 티켓에 걸치는 작업의 브랜치 규칙 |
+| `.claude/skills/300-api-contract-rules` | 근거 4항목 필드명 고정 · wire ↔ props 변환은 한 곳 |
+| `.claude/skills/302-mock-contract-server` | 실제 매장명 사용 시 확인 주체 사칭 금지 |
+
+### 스파이크가 판정할 것 — 질문하지 않은 6건
+
+`신선도 경고 위계` · `후보 3개 미만 화면` · `부분 파싱 필드 이월` · `후보 0건 조건 완화` · `STALE 근거 유효성` · `판정형 어휘 기준(부분)`
+
+**판정 결과를 이 원장 아래에 이어 기록한다.** `UX-B`·`UX-C`·`UX-F` 정식 착수의 입력이 된다.
