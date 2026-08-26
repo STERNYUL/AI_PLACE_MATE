@@ -1,96 +1,143 @@
 # 에이전트 하네스 — 구성과 판정 근거
 
 **출처 하네스:** [`wild-mental/AI-multivender-harness-sample`](https://github.com/wild-mental/AI-multivender-harness-sample)
-**이식일:** 2026-08-26
-
-원본 하네스는 **Java · Spring Boot · Gradle · JPA/QueryDSL · Kafka · MySQL · Redis · React(Vite) · Flutter** 기준이다.
-이 프로젝트는 **Next.js · TypeScript · Vercel · Supabase(PostgreSQL) · Prisma** 라서 **스택 종속 규칙이 거의 전부 무효**였다.
+**마켓플레이스:** [skills.sh](https://www.skills.sh/) — 채택안은 [`skills-marketplace.md`](skills-marketplace.md)
+**최종 갱신:** 2026-08-26
 
 ---
 
-## 판정 결과
+## 1. 원본을 거의 못 쓴 이유
 
-원본 50개 파일 중 **재사용 8 · 각색 6 · 폐기 25 · 신규 12**.
+원본은 **Java · Spring Boot · Gradle · JPA/QueryDSL · Kafka · MySQL · Redis · React(Vite) · Flutter** 기준이다.
+이 프로젝트는 **Next.js · TypeScript · Vercel · Supabase(PostgreSQL) · Prisma** 다.
 
-### 폐기 — 스택 불일치 (25)
-
-| 원본 | 폐기 사유 |
-| --- | --- |
-| `agents/java-spring` `agents/gradle` `agents/jpa-querydsl` | Java·Spring·Gradle·JPA를 쓰지 않는다 |
-| `agents/spring-redis` `skills/303-spring-redis-*` | **별도 캐시 서버가 없다** (`C-DRV-006`). Next.js Data Cache만 쓴다 |
-| `agents/kafka-pipeline` `agents/kafka-saga` `skills/304-kafka-*` `skills/305-kafka-msa-saga-*` | Kafka가 없다. 이벤트는 큐 → Postgres 파티션 테이블이다 |
-| `agents/react-frontend` `skills/306-react-vite-tailwind-*` | **Vite가 아니라 Next.js App Router**다. RSC 경계 규칙이 정반대다 |
-| `agents/flutter-app` `skills/307-flutter-riverpod-*` | 모바일 앱이 아니라 모바일 **웹**이다 |
-| `skills/300-java-spring-*` `skills/301-gradle-groovy-*` `skills/302-jpa-querydsl-*` | 상동 |
-| `skills/302-python-fastapi-*` | Python을 쓰지 않는다 |
-| `skills/303-database-mysql-jpa-*` | MySQL이 아니라 **PostgreSQL + RLS**다 |
-| `skills/305-api-swagger-testing-*` | Swagger/SpringDoc이 아니다. 계약은 `SPEC-001`~`009`가 정본 |
-| `skills/306-three-tier-architecture-*` (425행) | Controller/Service/Repository 3계층 + `@Transactional` 전제. **서버리스라 트랜잭션 경계가 다르다** |
-| `.cursor/**` (17 스킬 + 3 rules + 1 agent) | 벤더 중복. `AGENTS.md`가 Cursor·Antigravity를 커버한다 |
-| `.gemini/agents/readme-architect` | Gemini를 쓰지 않는다 |
-| `README-*-harness.md` 4종 | 원본 하네스 사용법. 이 문서로 대체 |
-
-### 재사용 — 스택 무관 프로세스 (8)
-
-`100-error-fixing-process`(→ `/fix-error`) · `200-git-commit-push-pr` · `201-code-commenting` · `202-github-issue-handling` ·
-`102-gitflow-agent`(→ `/gitflow-commit`) · `101-build-and-env-setup`(→ `/setup-env`) · `generate-tasks-from-srs` · `AGENTS.md` 구조
-
-### 각색 — 뼈대는 살리고 내용 교체 (6)
-
-| 원본 | 이 프로젝트 |
-| --- | --- |
-| `CLAUDE.md` (Spring 템플릿) | 스택·4대 불변 규칙·Phase 게이트·라우팅으로 전면 재작성 |
-| `AGENTS.md` (사업계획 템플릿) | 요약본으로 재작성. `CLAUDE.md`가 정본 |
-| `commands/setup-env` (Gradle) | Node·pnpm·Supabase·Prisma·**마켓플레이스 스킬 설치** |
-| `commands/fix-error` | 7단계 유지 + **이 프로젝트에서 자주 걸리는 6증상** 표 추가 |
-| `commands/gitflow-commit` | 이슈 84건 연동 · 불변 규칙 PR 기재 |
-| `skills/304-api-rest-design` | `300-api-contract-rules` — SRS §8.1.1 단위·상태 코드·**Top-3 고정(페이지네이션 없음)** |
-
-### 신규 — 이 프로젝트에만 있는 제약 (12)
-
-원본에 대응물이 없다. **설계 문서에서 뽑아 규칙으로 고정**한 것이다.
-
-| 신규 | 무엇을 고정하나 |
-| --- | --- |
-| `agents/nextjs-runtime` | Edge/Node 판정 순서 · 캐시 태그 매트릭스 · Server/Client 경계 4종 |
-| `agents/data-access` | **Pooler transaction mode 금지 5종** · 지연 평가 · RLS 매트릭스 · 감사 래퍼 |
-| `agents/domain-invariants` | **4대 불변 규칙**의 구현 강제 방법 |
-| `agents/tracking-observability` | 이벤트 22종 · **누락률 5% 게이트** · 알림 임계 4종 |
-| `commands/task-start` | **선행 완료 기계 검증** 후 착수 |
-| `skills/301-serverless-idempotency` | **실행 시간 상한에 의존하지 않는** 배치 설계 |
-| `docs/harness/skills-marketplace.md` | 마켓플레이스 채택 9종 + 보류 3종 |
-
----
-
-## 구조
-
-```
-CLAUDE.md                          항상 적용 · 라우팅
-AGENTS.md                          크로스툴 요약 (Cursor · Antigravity)
-.claude/
-  agents/       4종                도메인 지식 — 위임 대상
-  commands/     4종                절차 — /task-start /fix-error /setup-env /gitflow-commit
-  skills/       5종                코딩 규칙 — 자동 적용
-                + 3종             외부 도입 — goal-setting · grill-it · review-merge
-docs/harness/
-  README.md                        이 문서
-  skills-marketplace.md            마켓플레이스 채택안
-```
-
-**새 규칙을 넣을 자리** — 항상 적용은 `CLAUDE.md`, 도메인 지식은 `agents/`, 절차는 `commands/`, 코딩 규칙은 `skills/`.
-
----
-
-## 원본과 갈라진 가장 큰 지점
-
-원본은 **상주 프로세스 · 3계층 · `@Transactional` 경계**를 전제한다.
-이 프로젝트는 **서버리스**라 셋 다 성립하지 않는다.
+겹치지 않는 게 스택만이 아니다. **원본은 상주 프로세스 · 3계층 · `@Transactional` 경계를 전제**하는데, 여기는 서버리스라 셋 다 성립하지 않는다.
 
 | 원본 전제 | 이 프로젝트 |
 | --- | --- |
-| Service 계층에서 트랜잭션 관리 | **대화형 트랜잭션 금지.** 조건부 UPDATE/INSERT로 동시성 표현 |
+| Service 계층에서 트랜잭션 관리 | **대화형 트랜잭션 금지** (`C-DRV-005`). 조건부 UPDATE/INSERT로 동시성 표현 |
 | Redis 분산락 | **advisory lock 금지.** 유일 제약으로 대체 |
-| 배치 = 상주 스케줄러 | **부분 완료 + 다음 트리거 이어받기** |
-| Repository가 DB 접근 통제 | **RLS가 유일한 방어선** (클라이언트 직접 구독) |
+| 배치 = 상주 스케줄러 | **부분 완료 + 다음 트리거 이어받기** (`C-DRV-002`) |
+| Repository가 DB 접근 통제 | **RLS가 유일한 방어선** (`C-DRV-004` — 클라이언트 직접 구독) |
+| 별도 캐시 서버(Redis) | **Next.js Data Cache만** (`C-DRV-006`) |
 
-이 차이를 모르고 원본 규칙을 그대로 쓰면 **런타임에서 깨진다.** 그래서 각색이 아니라 폐기한 항목이 많다.
+이 차이를 모르고 원본 규칙을 그대로 쓰면 **런타임에서 깨진다.** 각색이 아니라 폐기한 항목이 많은 이유다.
+
+---
+
+## 2. 판정 결과 — 원본 50파일
+
+| 판정 | 건수 |
+| --- | --- |
+| 재사용 (스택 무관 프로세스) | 8 |
+| 각색 (뼈대 유지, 내용 교체) | 6 |
+| **폐기 (스택 불일치)** | **25** |
+| 신규 (설계 문서에서 도출) | 27 |
+
+### 폐기 25
+
+| 원본 | 사유 |
+| --- | --- |
+| `agents/java-spring` `gradle` `jpa-querydsl` | Java·Spring·Gradle·JPA 미사용 |
+| `agents/spring-redis` `skills/303-spring-redis-*` | **별도 캐시 서버 없음** (`C-DRV-006`) |
+| `agents/kafka-pipeline` `kafka-saga` `skills/304-kafka-*` `305-kafka-msa-saga-*` | Kafka 없음. 이벤트는 큐 → Postgres 파티션 |
+| `agents/react-frontend` `skills/306-react-vite-tailwind-*` | **Vite 아니라 App Router.** RSC 경계 규칙이 정반대 |
+| `agents/flutter-app` `skills/307-flutter-riverpod-*` | 모바일 앱이 아니라 모바일 **웹** |
+| `skills/300-java-spring-*` `301-gradle-groovy-*` `302-jpa-querydsl-*` | 상동 |
+| `skills/302-python-fastapi-*` | Python 미사용 |
+| `skills/303-database-mysql-jpa-*` | MySQL 아니라 **PostgreSQL + RLS** |
+| `skills/305-api-swagger-testing-*` | 계약은 `SPEC-001`~`009`가 정본 |
+| `skills/306-three-tier-architecture-*` (425행) | **`@Transactional` 3계층 전제.** 서버리스에서 성립 안 함 |
+| `.cursor/**` (17 스킬 + 3 rules + 1 agent) | 벤더 중복. `AGENTS.md`가 Cursor·Antigravity를 커버 |
+| `.gemini/agents/readme-architect` | Gemini 미사용 |
+| `README-*-harness.md` 4종 | 원본 사용법. 이 문서로 대체 |
+
+### 재사용 8 · 각색 6
+
+`100-error-fixing-process`→`/fix-error` · `101-build-and-env-setup`→`/setup-env` · `102-gitflow-agent`→`/gitflow-commit` ·
+`200-git-commit-push-pr` · `201-code-commenting` · `202-github-issue-handling` · `304-api-rest-design`→`300-api-contract-rules` ·
+`CLAUDE.md`·`AGENTS.md` 구조 · 스킬 번호 체계
+
+---
+
+## 3. 구성 — 최종
+
+```
+CLAUDE.md        203행    항상 적용 · 4대 불변 규칙 · 디렉터리 · 모듈 의존 · 환경변수 · 라우팅
+AGENTS.md         41행    크로스툴 요약 (Cursor · Antigravity)
+
+.claude/agents/     8종 · 988행   도메인 지식 — 위임 대상
+.claude/commands/   8종 · 553행   절차
+.claude/skills/    12종 · 1478행  코딩 규칙 — 자동 적용 (외부 3종 포함)
+
+docs/harness/README.md · skills-marketplace.md
+```
+
+### 에이전트 8종 — 태스크 84건을 나눠 덮는다
+
+| 에이전트 | 덮는 태스크 | 핵심 강제 사항 |
+| --- | --- | --- |
+| `nextjs-runtime` | `CLI-*` `IN-A` | 런타임 판정 순서 · 캐시 금지 4종 · `'use client'` 4종 제한 |
+| `data-access` | `IDX-*` `RSV-*` `MCH-A` | Pooler 금지 5종 · 지연 평가 · RLS 기본 거부 |
+| `domain-invariants` | `EVD-*` `SRC-D` `CLI-C` | 게이트가 정렬 앞 · 타입 수준 4항목 강제 |
+| `ai-provider` | `SRC-A` `EVD-B` `TRK-E` | `ModelFactory` 단일 · Port 격리 · 시한 · 12원 상한 |
+| `testing-verification` | `TEST-*` 17건 | 시나리오 4종 · **판정 불가를 통과로 접지 않기** |
+| `security-privacy` | `PRV-*` `IN-B` `TEST-014c` | 수집 안 함 · 감사 래퍼 · 법령 3건 블로커 |
+| `tracking-observability` | `TRK-*` `IN-C` | 누락률 5% 게이트 · 시각 기반 집계 |
+| `ux-design-system` | `UX-*` 8건 | 라이팅 = 요구사항 · 열화 6상태 · 토큰 하드코딩 0건 |
+
+### 커맨드 8종
+
+| 커맨드 | 하는 일 |
+| --- | --- |
+| `/task-start` | 선행 이슈 상태를 `gh`로 **기계 검증** 후 브랜치 생성 |
+| `/task-done` | 인수 기준 4종 대조 → 이슈 종료 → 보드 → **해제된 후행 보고** |
+| `/deps` | `Blockers=0` 착수 가능 · 임계 경로 8건 · Phase 게이트 진행률 |
+| `/review-invariants` | 4대 불변 규칙을 `grep`으로 감사. 애매하면 실패 처리 |
+| `/spec-trace` | SRS → 설계 → 태스크 → 코드 4층 추적. 커버리지 59/58 확인 |
+| `/fix-error` | 7단계 + **이 프로젝트에서 자주 걸리는 6증상 표** |
+| `/setup-env` | Node · Supabase · Prisma · **마켓플레이스 스킬 설치** |
+| `/gitflow-commit` | 이슈 연동 · 불변 규칙 PR 기재 |
+
+### 스킬 12종
+
+`200`~`202` 협업 · `300`~`305` 기술 · 외부 3종(`goal-setting` `grill-it` `review-merge`)
+
+**번호 체계** — 100–199 프로세스 · 200–299 협업 · 300–399 기술 종속. 원본 하네스의 de-facto 관행을 따랐다.
+
+---
+
+## 4. 설계 문서 → 하네스 매핑
+
+하네스의 신규 27건은 **설계 문서에 흩어져 있던 제약을 규칙으로 고정**한 것이다.
+
+| 출처 | 옮긴 곳 |
+| --- | --- |
+| 제약 SRS §3.2 Action/Handler 기준 | `CLAUDE.md` §5 · `nextjs-runtime` §1 |
+| 제약 SRS §4.4 모듈 의존 규칙 | `CLAUDE.md` §4 |
+| 제약 SRS §8.1 디렉터리 | `CLAUDE.md` §4 |
+| 제약 SRS §8.3 Action/Handler 목록 | `nextjs-runtime` §1 |
+| 제약 SRS §8.4 환경 변수 | `CLAUDE.md` §6 · `303-zod-boundary` |
+| 런타임 SDD §3.3 Pooler 제약 | `data-access` §1 |
+| 런타임 SDD §4.2 캐시 매트릭스 | `nextjs-runtime` §3 |
+| 런타임 SDD §5.1 RLS 매트릭스 | `data-access` §4 |
+| 런타임 SDD §6.3 Cron 설계 | `301-serverless-idempotency` |
+| 런타임 SDD §7.3 열화 상태 | `304-error-degradation` |
+| 기준 SRS §8.3 비즈니스 규칙 | `domain-invariants` |
+| 기준 SRS §6.1·6.3 계측·알림 | `tracking-observability` |
+
+**`REQ-IMPL` 34건이 하네스에 반영됐는지는 `/spec-trace`로 확인한다.**
+
+---
+
+## 5. 새 규칙을 넣을 자리
+
+| 성격 | 위치 |
+| --- | --- |
+| 항상 적용 · 라우팅 | `CLAUDE.md` |
+| 도메인 지식 (위임 대상) | `.claude/agents/` |
+| 절차 (사람이 부르는 것) | `.claude/commands/` |
+| 코딩 규칙 (자동 적용) | `.claude/skills/` |
+
+**중복을 만들지 않는다.** 같은 규칙이 두 곳에 있으면 한쪽만 갱신되는 순간 어긋난다.
+겹치면 한 곳에 두고 다른 곳은 **참조만** 한다 — 예: RLS 매트릭스는 `data-access` §4에만 있고 `security-privacy`는 가리키기만 한다.
