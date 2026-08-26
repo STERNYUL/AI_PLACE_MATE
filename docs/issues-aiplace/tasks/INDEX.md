@@ -11,14 +11,14 @@
 
 | 태스크 | 파일 | 이슈 | 라벨 |
 | --- | --- | --- | --- |
-| `SPEC-001` | [공통 응답 · 에러 규약](SPEC-001.md) | [#94](https://github.com/STERNYUL/AI_PLACE_MATE/issues/94) | `spec, contract, backend, priority:high, blocks-all` |
-| `SPEC-002` | [`POST /v1/query` 계약](SPEC-002.md) | [#95](https://github.com/STERNYUL/AI_PLACE_MATE/issues/95) | `spec, contract, backend, search-service, priority:high, critical-path` |
-| `SPEC-003` | [`GET /v1/places/{id}/dishes` 계약](SPEC-003.md) | [#96](https://github.com/STERNYUL/AI_PLACE_MATE/issues/96) | `spec, contract, backend, index-service, priority:high` |
-| `SPEC-004` | [`POST /v1/share-cards` 계약](SPEC-004.md) | [#97](https://github.com/STERNYUL/AI_PLACE_MATE/issues/97) | `spec, contract, backend, evidence-service, priority:high` |
+| `SPEC-001` | [공통 응답 · 에러 규약](SPEC-001.md) | [#94](https://github.com/STERNYUL/AI_PLACE_MATE/issues/94) | `spec, contract, backend, priority:high, phase-0, blocks-all` |
+| `SPEC-002` | [`POST /v1/query` 계약](SPEC-002.md) | [#95](https://github.com/STERNYUL/AI_PLACE_MATE/issues/95) | `spec, contract, backend, search-service, priority:high, phase-0, critical-path` |
+| `SPEC-003` | [`GET /v1/places/{id}/dishes` 계약](SPEC-003.md) | [#96](https://github.com/STERNYUL/AI_PLACE_MATE/issues/96) | `spec, contract, backend, index-service, priority:high, phase-0` |
+| `SPEC-004` | [`POST /v1/share-cards` 계약](SPEC-004.md) | [#97](https://github.com/STERNYUL/AI_PLACE_MATE/issues/97) | `spec, contract, backend, evidence-service, priority:high, phase-0` |
 | `SPEC-005` | [`POST /v1/agent-rooms` 계약](SPEC-005.md) | [#98](https://github.com/STERNYUL/AI_PLACE_MATE/issues/98) | `spec, contract, backend, agent-room, priority:medium, phase-2` |
 | `SPEC-006` | [`POST /v1/proposals` 계약](SPEC-006.md) | [#99](https://github.com/STERNYUL/AI_PLACE_MATE/issues/99) | `spec, contract, backend, agent-room, priority:medium, phase-2` |
-| `SPEC-007` | [PG 연동 계약](SPEC-007.md) | [#100](https://github.com/STERNYUL/AI_PLACE_MATE/issues/100) | `spec, contract, backend, payment-service, priority:high, external` |
-| `SPEC-008` | [근거 4항목 계약](SPEC-008.md) | [#101](https://github.com/STERNYUL/AI_PLACE_MATE/issues/101) | `spec, contract, backend, evidence-service, priority:high, blocks-all` |
+| `SPEC-007` | [PG 연동 계약](SPEC-007.md) | [#100](https://github.com/STERNYUL/AI_PLACE_MATE/issues/100) | `spec, contract, backend, payment-service, priority:high, phase-0, external` |
+| `SPEC-008` | [근거 4항목 계약](SPEC-008.md) | [#101](https://github.com/STERNYUL/AI_PLACE_MATE/issues/101) | `spec, contract, backend, evidence-service, priority:high, phase-0, blocks-all` |
 | `SPEC-009` | [계측 이벤트 스키마](SPEC-009.md) | [#102](https://github.com/STERNYUL/AI_PLACE_MATE/issues/102) | `spec, contract, backend, tracking-service, priority:high, phase-0` |
 
 ## `P1b-data`

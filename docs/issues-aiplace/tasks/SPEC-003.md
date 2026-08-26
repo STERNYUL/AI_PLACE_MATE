@@ -1,6 +1,6 @@
 # SPEC-003 · `GET /v1/places/{id}/dishes` 계약
 
-> **웨이브** `P1a-contracts` · **라벨** `spec, contract, backend, index-service, priority:high`
+> **웨이브** `P1a-contracts` · **라벨** `spec, contract, backend, index-service, priority:high, phase-0`
 > **원본** [`docs/issues-aiplace/P1a-contracts.md`](../P1a-contracts.md#spec-003)
 > **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 

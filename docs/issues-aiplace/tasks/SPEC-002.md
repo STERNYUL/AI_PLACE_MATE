@@ -1,6 +1,6 @@
 # SPEC-002 · `POST /v1/query` 계약
 
-> **웨이브** `P1a-contracts` · **라벨** `spec, contract, backend, search-service, priority:high, critical-path`
+> **웨이브** `P1a-contracts` · **라벨** `spec, contract, backend, search-service, priority:high, phase-0, critical-path`
 > **원본** [`docs/issues-aiplace/P1a-contracts.md`](../P1a-contracts.md#spec-002)
 > **원장** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건) · **SRS** `SRS-ai-place-v1.0.md` (SRS-AIPLACE-MVP-001 v1.9)
 

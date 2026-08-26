@@ -82,7 +82,7 @@
 
 ## SPEC-001 · 공통 응답 · 에러 규약 {#spec-001}
 
-**labels** `spec, contract, backend, priority:high, blocks-all`
+**labels** `spec, contract, backend, priority:high, phase-0, blocks-all`
 
 ### 🎯 Summary
 - **Task ID** `SPEC-001` · **Epic** Contract · **Must / M**
@@ -169,7 +169,7 @@
 
 ## SPEC-002 · `POST /v1/query` 계약 {#spec-002}
 
-**labels** `spec, contract, backend, search-service, priority:high, critical-path`
+**labels** `spec, contract, backend, search-service, priority:high, phase-0, critical-path`
 
 ### 🎯 Summary
 - **Task ID** `SPEC-002` · **Epic** Contract · **Must / H**
@@ -248,7 +248,7 @@
 
 ## SPEC-003 · `GET /v1/places/{id}/dishes` 계약 {#spec-003}
 
-**labels** `spec, contract, backend, index-service, priority:high`
+**labels** `spec, contract, backend, index-service, priority:high, phase-0`
 
 ### 🎯 Summary
 - **Task ID** `SPEC-003` · **Epic** Contract · **Must / M**
@@ -325,7 +325,7 @@
 
 ## SPEC-004 · `POST /v1/share-cards` 계약 {#spec-004}
 
-**labels** `spec, contract, backend, evidence-service, priority:high`
+**labels** `spec, contract, backend, evidence-service, priority:high, phase-0`
 
 ### 🎯 Summary
 - **Task ID** `SPEC-004` · **Epic** Contract · **Must / M**
@@ -511,7 +511,7 @@ SRS §8.1이 *"가격 협상 필드 없음"* 을 인터페이스 규격에 **명
 
 ## SPEC-007 · PG 연동 계약 {#spec-007}
 
-**labels** `spec, contract, backend, payment-service, priority:high, external`
+**labels** `spec, contract, backend, payment-service, priority:high, phase-0, external`
 
 ### 🎯 Summary
 - **Task ID** `SPEC-007` · **Epic** Contract · **Must / H**
@@ -585,7 +585,7 @@ SRS §8.1이 *"가격 협상 필드 없음"* 을 인터페이스 규격에 **명
 
 ## SPEC-008 · 근거 4항목 계약 {#spec-008}
 
-**labels** `spec, contract, backend, evidence-service, priority:high, blocks-all`
+**labels** `spec, contract, backend, evidence-service, priority:high, phase-0, blocks-all`
 
 ### 🎯 Summary
 - **Task ID** `SPEC-008` · **Epic** Contract · **Must / H**
