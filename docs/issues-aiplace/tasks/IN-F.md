@@ -75,8 +75,8 @@
 - [ ] 개인정보 파기가 파티션 단위로 가능한가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IN-A`
-- **Blocks** `IDX-E` `TRK-B` `PRV-A`
+- **Depends on** `IN-A` (#168)
+- **Blocks** `IDX-E` (#107) `TRK-B` (#125) `PRV-A` (#133)
 - **미정 — 확정 필요** **캐시 무효화 경로** (`P1a` TTL↔신선도 충돌의 실제 해법) · 파티션 보존 기간
 
 ### 공통 DoD — 웨이브 `P4a-infra` 전체

@@ -71,8 +71,8 @@
 - [ ] 모든 라우트에 오류 경계가 있는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IN-A` `SPEC-002` `UX-A` `UX-F`
-- **Blocks** `CLI-B` `CLI-C` `CLI-D` `CLI-E` `PRV-B`
+- **Depends on** `IN-A` (#168) `SPEC-002` (#95) `UX-A` (#140) `UX-F` (#145)
+- **Blocks** `CLI-B` (#136) `CLI-C` (#137) `CLI-D` (#138) `CLI-E` (#139) `PRV-B` (#134)
 - **미정 — 확정 필요** **인앱 브라우저 제약 실측** (`PRV-B` 단말 저장 · `CLI-C` 외부 전송이 걸림)
 
 ### 공통 DoD — 웨이브 `P2e-client` 전체

@@ -48,8 +48,8 @@
 - [ ] `UX-H`가 설정 3화면·필수 5항목 제약을 이 Mock으로 검증했는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `MOCK-001` · **콘솔 API 계약 (미정)**
-- **Blocks** `CLI-G` `UX-H`
+- **Depends on** `MOCK-001` (#108) · **콘솔 API 계약 (미정)**
+- **Blocks** `CLI-G` (#153) `UX-H` (#147)
 - **⚠️ Phase 게이트** Phase 2 조건부
 - **미정 — 확정 필요** **콘솔 API 계약 부재** — `SPEC-010` 신설 판단 (담당: 개발팀 리드)
 

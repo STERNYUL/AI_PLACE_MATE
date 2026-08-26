@@ -39,8 +39,8 @@
 - [ ] `SPEC-008` 확정 후 동작이 갱신되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `MOCK-001` `SPEC-002` `SPEC-008`
-- **Blocks** `CLI-C` `UX-C`
+- **Depends on** `MOCK-001` (#108) `SPEC-002` (#95) `SPEC-008` (#101)
+- **Blocks** `CLI-C` (#137) `UX-C` (#142)
 - **미정** `SPEC-008`의 누락 시 동작 (제외 vs 표기)
 
 ### 공통 DoD — 웨이브 `P1c-mock` 전체

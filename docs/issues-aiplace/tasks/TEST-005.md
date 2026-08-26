@@ -41,7 +41,7 @@
 - [ ] 추론 비용이 12원 상한 안에 있는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SRC-A` `CLI-B` `SPEC-002`
+- **Depends on** `SRC-A` (#116) `CLI-B` (#136) `SPEC-002` (#95)
 - **미정 — 확정 필요** 파싱 실패 응답 코드 (`SPEC-002`) · 부분 파싱 이월 · 추론 타임아웃
 
 ### 공통 DoD — 웨이브 `P3a-tests-search` 전체

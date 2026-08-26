@@ -60,8 +60,8 @@ SRS §8.1이 *"가격 협상 필드 없음"* 을 인터페이스 규격에 **명
 - [ ] `Attribute` 참조 검증 기준이 `MCH-A`(FR-040)과 일치하는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-001` · `SPEC-005`(room id)
-- **Blocks** `AGT-C`(FR-044) · `MOCK-006`
+- **Depends on** `SPEC-001` (#94) · `SPEC-005` (#98)(room id)
+- **Blocks** `AGT-C` (#151)(FR-044) · `MOCK-006` (#113)
 - **⚠️ Phase 게이트** Phase 2 조건부
 - **미정 — 확정 필요** 마감 후 등록 시 거부 코드
 

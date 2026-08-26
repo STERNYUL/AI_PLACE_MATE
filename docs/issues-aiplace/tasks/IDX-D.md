@@ -73,8 +73,8 @@ VERIFIED/STALE --> RECHECK_REQUIRED : 불일치 신고 수신 (REQ-FUNC-013)
 - [ ] 확인 주체 없는 등록이 차단되는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IDX-A`
-- **Blocks** `EVD-A` `EVD-D` `SRC-D`(경유)
+- **Depends on** `IDX-A` (#103)
+- **Blocks** `EVD-A` (#120) `EVD-D` (#123) `SRC-D` (#119)(경유)
 - **미정 — 확정 필요** **`STALE` 후보 유효성** (`SPEC-008` · 최우선) · 90일 판정 시점 · 캐시 6h 충돌 해소
 
 ### 공통 DoD — 웨이브 `P1b-data` 전체

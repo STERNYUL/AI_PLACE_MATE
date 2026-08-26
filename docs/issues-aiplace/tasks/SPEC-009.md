@@ -73,8 +73,8 @@
 - [ ] 22종 목록이 §6.1.1 원문과 **건수까지** 일치하는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-001` · `IDX-A`(FR-001 · 색인 스키마 — 이벤트가 참조하는 엔터티)
-- **Blocks** `TRK-B`(FR-050) · `TRK-B`(FR-051) · `TRK-B`(FR-053) · `TRK-C`(FR-054) · `CLI-E`(FR-079) · 전 KPI 태스크
+- **Depends on** `SPEC-001` (#94) · `IDX-A` (#103)(FR-001 · 색인 스키마 — 이벤트가 참조하는 엔터티)
+- **Blocks** `TRK-B` (#125)(FR-050) · `TRK-B` (#125)(FR-051) · `TRK-B` (#125)(FR-053) · `TRK-C` (#126)(FR-054) · `CLI-E` (#139)(FR-079) · 전 KPI 태스크
 - **원장 수정 필요** `TRK-A`(FR-049) 제거 및 선행 관계 교체
 
 ### 공통 DoD — 웨이브 `P1a-contracts` 전체

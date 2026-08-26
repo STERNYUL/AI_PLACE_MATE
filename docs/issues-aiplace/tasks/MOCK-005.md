@@ -33,8 +33,8 @@
 - [ ] `400` 경로가 `UX-D` 플로우에 반영되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `MOCK-001` `SPEC-004`
-- **Blocks** `CLI-C`(FR-070) `UX-D`
+- **Depends on** `MOCK-001` (#108) `SPEC-004` (#97)
+- **Blocks** `CLI-C` (#137)(FR-070) `UX-D` (#143)
 - **미정** `SPEC-004` 이미지 생성 실패 시 동작
 
 ### 공통 DoD — 웨이브 `P1c-mock` 전체

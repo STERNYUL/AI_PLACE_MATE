@@ -55,8 +55,8 @@
 - [ ] 오류율이 다른 API와 분리되어 계측되는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `RSV-A` `RSV-C` `IN-C`
-- **Blocks** `RSV-D` `CLI-D`
+- **Depends on** `RSV-A` (#129) `RSV-C` (#131) `IN-C` (#170)
+- **Blocks** `RSV-D` (#132) `CLI-D` (#138)
 - **미정 — 확정 필요** **매장 통보 실패 시 예약 상태** — 신규 발견
 
 ### 공통 DoD — 웨이브 `P2d-reservation-privacy` 전체

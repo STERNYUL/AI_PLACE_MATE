@@ -79,8 +79,8 @@
 - [ ] 확인 주체·일자가 자동 기록되는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `UX-A`
-- **Blocks** `CLI-G` · `SPEC-010` 신설
+- **Depends on** `UX-A` (#140)
+- **Blocks** `CLI-G` (#153) · `SPEC-010` 신설
 - **미정 — 확정 필요** **`SPEC-010` 콘솔 API 계약 신설** (`P1c-mock.md` 발견 · 최우선)
 
 ### 공통 DoD — 웨이브 `P2g-phase2` 전체

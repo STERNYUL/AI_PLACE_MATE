@@ -81,8 +81,8 @@
 - [ ] 22종 건수가 §6.1.1과 일치하는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IDX-A`(참조 엔터티)
-- **Blocks** `TRK-B` `TRK-C` `TRK-D` `TRK-E` `CLI-E` · **전 KPI**
+- **Depends on** `IDX-A` (#103)(참조 엔터티)
+- **Blocks** `TRK-B` (#125) `TRK-C` (#126) `TRK-D` (#127) `TRK-E` (#128) `CLI-E` (#139) · **전 KPI**
 - **미정 — 확정 필요** **`SPEC-009` 중복 해소** (최우선) · 미정의 이벤트 유입 처리
 
 ### 공통 DoD — 웨이브 `P2c-tracking` 전체

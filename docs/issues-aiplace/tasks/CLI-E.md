@@ -68,8 +68,8 @@
 - [ ] 페이로드에 개인정보가 없는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `CLI-C` `TRK-B` `UX-A` `SPEC-009`
-- **Blocks** `TRK-C` KPI 산출의 실효성
+- **Depends on** `CLI-C` (#137) `TRK-B` (#125) `UX-A` (#140) `SPEC-009` (#102)
+- **Blocks** `TRK-C` (#126) KPI 산출의 실효성
 - **미정 — 확정 필요** **4G 실측 방법·프로파일** · 22종 중 클라이언트 발생분 분담
 
 ### 공통 DoD — 웨이브 `P2e-client` 전체

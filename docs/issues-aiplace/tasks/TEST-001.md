@@ -57,7 +57,7 @@
 - [ ] 실패 원인이 "원천 변경"과 "로직 결함"으로 구분되는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IDX-B` `IDX-C`
+- **Depends on** `IDX-B` (#104) `IDX-C` (#105)
 - **Blocks** **Phase 0 게이트 판정**
 - **미정 — 확정 필요** **정규화 평가셋** (PM + 데이터 담당 · `P1b` 발견) · 3% 경계 판정
 

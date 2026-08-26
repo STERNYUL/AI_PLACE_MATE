@@ -62,7 +62,7 @@
 - [ ] 5% 경계 판정이 확정되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `TRK-B` `TRK-C`
+- **Depends on** `TRK-B` (#125) `TRK-C` (#126)
 - **Blocks** 게이트 판정 보고
 - **미정 — 확정 필요** 5% 경계 포함 여부 · 대시보드 소비처
 

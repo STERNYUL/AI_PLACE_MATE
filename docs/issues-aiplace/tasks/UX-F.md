@@ -83,8 +83,8 @@ v1.0은 `UX-F`의 선행을 `UX-003` · **`UX-009`(Phase 2 대화방)** 로 적�
 - [ ] 상태 카피가 실제 동작과 일치하는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `UX-B` `UX-C`
-- **Blocks** `CLI-A` 오류 경계 · `CLI-B` `CLI-C`
+- **Depends on** `UX-B` (#141) `UX-C` (#142)
+- **Blocks** `CLI-A` (#135) 오류 경계 · `CLI-B` (#136) `CLI-C` (#137)
 - **미정 — 확정 필요** 후보 0건 시 조건 완화 여부 (`SRC-B`) · 근거 미비 제외 시 화면 (`SRC-D`)
 
 ### 공통 DoD — 웨이브 `P2f-ux` 전체

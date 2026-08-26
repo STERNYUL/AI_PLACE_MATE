@@ -66,7 +66,7 @@ Phase 2 착수 시 **가장 먼저 할 일이 `SPEC-010` 확정**이며,
 - [ ] 콘솔 대상 환경(데스크톱/모바일)이 확정되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `MCH-A` `UX-H` `IN-B` · **`SPEC-010`**
+- **Depends on** `MCH-A` (#148) `UX-H` (#147) `IN-B` (#169) · **`SPEC-010`**
 - **Blocks** 없음
 - **미정 — 확정 필요** **`SPEC-010` 신설** · 콘솔 대상 환경
 

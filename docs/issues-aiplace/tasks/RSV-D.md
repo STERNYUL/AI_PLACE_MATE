@@ -72,8 +72,8 @@
 - [ ] 상태 전이 이력이 보존되는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `RSV-C`
-- **Blocks** `CLI-D`(FR-073) · Phase 1 말 게이트
+- **Depends on** `RSV-C` (#131)
+- **Blocks** `CLI-D` (#138)(FR-073) · Phase 1 말 게이트
 - **미정 — 확정 필요**
   - **방문 확인 주체·방법** — PM + 서비스 운영자 · **신규 발견**
   - **노쇼 판정 시점 · 정산 금액 산정 규칙** — PM + 사업팀 · **신규 발견**

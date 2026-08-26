@@ -69,8 +69,8 @@
 - [ ] `PriceProfile` 구조가 `IDX-A`(FR-005)와 일치하는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-001`
-- **Blocks** `IDX-E`(FR-008) · `IDX-E`(FR-009)
+- **Depends on** `SPEC-001` (#94)
+- **Blocks** `IDX-E` (#107)(FR-008) · `IDX-E` (#107)(FR-009)
 - **미정 — 확정 필요**
   - **캐시 6h ↔ 신선도 90일 충돌** — 개발팀 리드 (평가서 §4 항목)
   - p95 400ms 초과 시 동작 · 미존재 place 응답

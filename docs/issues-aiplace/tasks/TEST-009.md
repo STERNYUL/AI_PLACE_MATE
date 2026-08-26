@@ -44,7 +44,7 @@
 - [ ] 오류율이 분리 계측되는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `RSV-A` `RSV-B` `RSV-C` `CLI-D` `SPEC-007`
+- **Depends on** `RSV-A` (#129) `RSV-B` (#130) `RSV-C` (#131) `CLI-D` (#138) `SPEC-007` (#100)
 - **미정 — 확정 필요** **PG 멱등키 규약** (`P2d` 4번) · PG 장애 시 예약 상태 · **매장 통보 실패 시 상태**
 
 ### 공통 DoD — 웨이브 `P3b-tests-evidence` 전체

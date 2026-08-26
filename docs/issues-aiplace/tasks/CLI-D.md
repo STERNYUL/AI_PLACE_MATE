@@ -66,7 +66,7 @@
 - [ ] 중복 제출이 클라이언트·서버 양쪽에서 막히는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `RSV-C` `RSV-D` `UX-E` `SPEC-007`
+- **Depends on** `RSV-C` (#131) `RSV-D` (#132) `UX-E` (#144) `SPEC-007` (#100)
 - **Blocks** 없음
 - **미정 — 확정 필요** **PG 위젯 인앱 동작 여부** · 취소 시한 경계 (`RSV-D`)
 

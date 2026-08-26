@@ -59,7 +59,7 @@ EVD-B 서버 생성 문장 · CLI-C 화면 카피 · MCH-A 매장 입력
 - [ ] 시각 위계 검증 방법이 정해졌는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `EVD-B` `CLI-C` **`UX-C`(UX-015)**
+- **Depends on** `EVD-B` (#121) `CLI-C` (#137) **`UX-C` (#142)(UX-015)**
 - **Blocks** Phase 1 게이트 신뢰성
 - **미정 — 확정 필요** **판정형 어휘 기준** (`UX-015` · `P2b` 1번) · 시각 위계 검증 자동화 여부
 

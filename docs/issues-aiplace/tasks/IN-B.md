@@ -69,8 +69,8 @@
 - [ ] 암호화가 결제·정산 데이터 전체에 적용되는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IN-A`
-- **Blocks** `RSV-C` `PRV-A` `CLI-G`
+- **Depends on** `IN-A` (#168)
+- **Blocks** `RSV-C` (#131) `PRV-A` (#133) `CLI-G` (#153)
 - **미정 — 확정 필요** **감사 로그의 "목적" 기록 방식** (`REQ-NF-031` · 신규 발견) · 키 관리 방식 · 로그 보존 기간
 
 ### 공통 DoD — 웨이브 `P4a-infra` 전체

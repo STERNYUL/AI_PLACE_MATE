@@ -80,8 +80,8 @@ UX-015 라이팅 가이드
 - [ ] 후보 3개 미만 화면이 확정되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `UX-A`
-- **Blocks** `UX-D` `UX-F` `CLI-C` · **`EVD-B` 판정형 기준**
+- **Depends on** `UX-A` (#140)
+- **Blocks** `UX-D` (#143) `UX-F` (#145) `CLI-C` (#137) · **`EVD-B` (#121) 판정형 기준**
 - **미정 — 확정 필요** 판정형 어휘 기준 확정 (PM 공동) · 후보 3개 미만 화면 (`SRC-D`)
 
 ### 공통 DoD — 웨이브 `P2f-ux` 전체

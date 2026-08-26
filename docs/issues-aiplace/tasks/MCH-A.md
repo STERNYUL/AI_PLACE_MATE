@@ -81,8 +81,8 @@ Phase 1의 온보딩이 수기·스프레드시트로 이뤄진다는 뜻이거�
 - [ ] Phase 1 온보딩 데이터 이관 경로가 있는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IDX-A` `SPEC-010`
-- **Blocks** `AGT-A` `AGT-C` `CLI-G` · **Phase 2 전체**
+- **Depends on** `IDX-A` (#103) `SPEC-010`
+- **Blocks** `AGT-A` (#149) `AGT-C` (#151) `CLI-G` (#153) · **Phase 2 전체**
 - **미정 — 확정 필요** **Phase 배분 모순** (PM) · 수용 조건 경계값 판정
 
 ### 공통 DoD — 웨이브 `P2g-phase2` 전체

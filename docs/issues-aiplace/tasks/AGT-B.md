@@ -67,8 +67,8 @@
 - [ ] 끊김 후 재연결 시 제안이 복구되는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `AGT-A`
-- **Blocks** `AGT-C` `CLI-F`
+- **Depends on** `AGT-A` (#149)
+- **Blocks** `AGT-C` (#151) `CLI-F` (#152)
 - **미정 — 확정 필요** **단방향 채널 방식** (`CLI-A` 인앱 실측 결과 반영)
 
 ### 공통 DoD — 웨이브 `P2g-phase2` 전체

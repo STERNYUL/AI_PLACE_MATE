@@ -65,8 +65,8 @@
 - [ ] 승계 출처가 추적 가능한가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IDX-A`(`Proposal` 스키마 계약)
-- **Blocks** `RSV-B` `RSV-C` `CLI-D`
+- **Depends on** `IDX-A` (#103)(`Proposal` 스키마 계약)
+- **Blocks** `RSV-B` (#130) `RSV-C` (#131) `CLI-D` (#138)
 - **미정 — 확정 필요** Phase 2 미착수 시 `proposalId` 처리 · 승계 조건 불완전 시 동작
 
 ### 공통 DoD — 웨이브 `P2d-reservation-privacy` 전체

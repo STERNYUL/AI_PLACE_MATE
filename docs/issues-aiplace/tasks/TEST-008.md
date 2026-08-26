@@ -44,7 +44,7 @@
 - [ ] 인앱 브라우저에서 공유가 동작하는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `EVD-C` `EVD-D` `CLI-C`
+- **Depends on** `EVD-C` (#122) `EVD-D` (#123) `CLI-C` (#137)
 - **미정 — 확정 필요** 이미지 생성 실패 시 동작 (`EVD-C`) · 신고 사유 분류 (`EVD-D`)
 
 ### 공통 DoD — 웨이브 `P3b-tests-evidence` 전체

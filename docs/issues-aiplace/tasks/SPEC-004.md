@@ -53,8 +53,8 @@
 - [ ] `SPEC-008`의 4항목 정의를 **재정의하지 않고 참조만** 했는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-001` · **`SPEC-008`**
-- **Blocks** `EVD-C`(FR-025) · `CLI-C`(FR-070) · `MOCK-005`
+- **Depends on** `SPEC-001` (#94) · **`SPEC-008` (#101)**
+- **Blocks** `EVD-C` (#122)(FR-025) · `CLI-C` (#137)(FR-070) · `MOCK-005` (#112)
 - **미정 — 확정 필요** 이미지 생성 실패 시 동작 · 카드 유효기간
 
 ### 공통 DoD — 웨이브 `P1a-contracts` 전체

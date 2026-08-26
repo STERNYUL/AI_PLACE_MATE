@@ -39,7 +39,7 @@
 - [ ] 후보 0곳 정책이 확정되어 케이스에 반영되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SRC-B`
+- **Depends on** `SRC-B` (#117)
 - **미정 — 확정 필요** 후보 0곳 시 완화 여부 (`P2a` 3번)
 
 ### 공통 DoD — 웨이브 `P3a-tests-search` 전체

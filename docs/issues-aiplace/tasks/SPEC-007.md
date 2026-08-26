@@ -66,8 +66,8 @@
 - [ ] 카드 정보가 어느 경로로도 저장되지 않음을 계약이 보증하는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-001`
-- **Blocks** `RSV-C`(FR-031) · `CLI-D`(FR-072) · `CLI-D`(FR-073) · `MOCK-007`
+- **Depends on** `SPEC-001` (#94)
+- **Blocks** `RSV-C` (#131)(FR-031) · `CLI-D` (#138)(FR-072) · `CLI-D` (#138)(FR-073) · `MOCK-007` (#114)
 - **미정 — 확정 필요**
   - **PG사 선정** — 사업 계약. 이 계약의 절반이 여기 걸려 있다
   - PG 장애 시 예약 상태 처리

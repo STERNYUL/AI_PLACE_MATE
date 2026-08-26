@@ -66,8 +66,8 @@
 - [ ] 유실률이 측정 가능한가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `TRK-A`(또는 `SPEC-009`) `IN-F`
-- **Blocks** `TRK-C` `TRK-D` `TRK-E` `CLI-E` `PRV-A`
+- **Depends on** `TRK-A` (#124)(또는 `SPEC-009` (#102)) `IN-F` (#173)
+- **Blocks** `TRK-C` (#126) `TRK-D` (#127) `TRK-E` (#128) `CLI-E` (#139) `PRV-A` (#133)
 - **미정 — 확정 필요** 세션 정의 상세 · 제외 트래픽 판정 기준
 
 ### 공통 DoD — 웨이브 `P2c-tracking` 전체

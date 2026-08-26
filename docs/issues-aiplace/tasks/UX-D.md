@@ -65,8 +65,8 @@
 - [ ] 신고 후 안내 카피가 `EVD-D` 실제 처리와 일치하는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `UX-C`
-- **Blocks** `CLI-C`
+- **Depends on** `UX-C` (#142)
+- **Blocks** `CLI-C` (#137)
 - **미정 — 확정 필요** 신고 사유 분류 체계 (PM · P2b 4번) · 재확인 SLA 카피 (`EVD-D`)
 
 ### 공통 DoD — 웨이브 `P2f-ux` 전체

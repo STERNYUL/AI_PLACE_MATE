@@ -73,8 +73,8 @@
 - [ ] 상태 있는 서비스의 확장이 안전한가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IN-A`
-- **Blocks** `IN-E` `IN-G`
+- **Depends on** `IN-A` (#168)
+- **Blocks** `IN-E` (#172) `IN-G` (#174)
 - **미정 — 확정 필요** **3,000 RPS의 적용 시점** (PM · Phase 1 규모와 불일치 · 신규 발견) · 확장 한계 시 동작
 
 ### 공통 DoD — 웨이브 `P4a-infra` 전체

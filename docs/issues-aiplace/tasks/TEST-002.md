@@ -47,7 +47,7 @@
 - [ ] `PriceProfile` 없는 매장 처리가 확정되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IDX-A` `SRC-B` `TRK-E`
+- **Depends on** `IDX-A` (#103) `SRC-B` (#117) `TRK-E` (#128)
 - **미정 — 확정 필요** **예산 판정 기준값** (`P2a` 1번) · `PriceProfile` 부재 매장 처리
 
 ### 공통 DoD — 웨이브 `P3a-tests-search` 전체

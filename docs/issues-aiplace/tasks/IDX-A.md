@@ -67,8 +67,8 @@
 - [ ] `PriceProfile` 단일값 표기가 확정되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IN-A`(IN-001)
-- **Blocks** `IDX-B` `IDX-C` `IDX-D` `SRC-B` `RSV-A` `TRK-A` `PRV-A` — **후행 12건**
+- **Depends on** `IN-A` (#168)(IN-001)
+- **Blocks** `IDX-B` (#104) `IDX-C` (#105) `IDX-D` (#106) `SRC-B` (#117) `RSV-A` (#129) `TRK-A` (#124) `PRV-A` (#133) — **후행 12건**
 - **미정 — 확정 필요** `PriceProfile` 단일값 표기 · 조건 카테고리 어휘의 상권별 관리 주체
 
 ### 공통 DoD — 웨이브 `P1b-data` 전체

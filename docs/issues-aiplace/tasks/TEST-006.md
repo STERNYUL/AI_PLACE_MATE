@@ -58,7 +58,7 @@ SPEC-008 근거 4항목 정의
 - [ ] `STALE` 판정이 확정되어 케이스에 반영되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-008` `EVD-A` `SRC-D` `EVD-C` `CLI-C`
+- **Depends on** `SPEC-008` (#101) `EVD-A` (#120) `SRC-D` (#119) `EVD-C` (#122) `CLI-C` (#137)
 - **Blocks** Phase 1 게이트 신뢰성
 - **미정 — 확정 필요** **`STALE` 후보 유효성** (`SPEC-008` · `P2b` 최우선)
 

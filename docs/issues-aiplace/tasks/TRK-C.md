@@ -69,8 +69,8 @@
 - [ ] 산출식이 §6.1.2 원문과 일치하는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `TRK-B` `EVD-D`
-- **Blocks** `TRK-D` `TRK-E` · **Phase 1·2 게이트 판정**
+- **Depends on** `TRK-B` (#125) `EVD-D` (#123)
+- **Blocks** `TRK-D` (#127) `TRK-E` (#128) · **Phase 1·2 게이트 판정**
 - **미정 — 확정 필요** 배치 주기 · **기준선 15건 실측** (Phase 0 종료 시)
 
 ### 공통 DoD — 웨이브 `P2c-tracking` 전체

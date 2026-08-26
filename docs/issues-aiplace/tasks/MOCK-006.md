@@ -48,8 +48,8 @@
 - [ ] **제안 0건 → Top-3 회귀**가 `UX-F`에서 검증되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `MOCK-001` `SPEC-005` `SPEC-006`
-- **Blocks** `CLI-F` `UX-G`
+- **Depends on** `MOCK-001` (#108) `SPEC-005` (#98) `SPEC-006` (#99)
+- **Blocks** `CLI-F` (#152) `UX-G` (#146)
 - **⚠️ Phase 게이트** SRS §6.2 게이트 1 미통과 시 이월
 - **미정** `SPEC-005` 0곳 미개시 응답 형태
 

@@ -70,8 +70,8 @@
 - [ ] 말하지 않은 조건이 조용히 채워지지 않는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `UX-A`
-- **Blocks** `CLI-B` `UX-F`
+- **Depends on** `UX-A` (#140)
+- **Blocks** `CLI-B` (#136) `UX-F` (#145)
 - **미정 — 확정 필요** 부분 파싱 결과 표시 방식 (`CLI-B` 공통)
 
 ### 공통 DoD — 웨이브 `P2f-ux` 전체

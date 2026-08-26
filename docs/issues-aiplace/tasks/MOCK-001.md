@@ -50,8 +50,8 @@
 - [ ] 스키마 위반 응답이 **구조적으로 불가능**한가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-001`
-- **Blocks** `MOCK-002`~`MOCK-008`
+- **Depends on** `SPEC-001` (#94)
+- **Blocks** `MOCK-002` (#109)~`MOCK-008` (#115)
 - **위험** 계약 변경 시 Mock이 뒤처지면 **실구현과 어긋난 채 개발이 진행된다**
 
 ### 공통 DoD — 웨이브 `P1c-mock` 전체

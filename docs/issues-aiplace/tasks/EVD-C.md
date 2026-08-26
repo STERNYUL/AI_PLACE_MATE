@@ -58,8 +58,8 @@
 - [ ] 이미지 생성 실패 동작이 확정되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-004` `SPEC-008` `EVD-A` `EVD-B`
-- **Blocks** `CLI-C`(FR-070)
+- **Depends on** `SPEC-004` (#97) `SPEC-008` (#101) `EVD-A` (#120) `EVD-B` (#121)
+- **Blocks** `CLI-C` (#137)(FR-070)
 - **미정 — 확정 필요** 이미지 생성 실패 시 동작 · 카드 유효기간
 
 ### 공통 DoD — 웨이브 `P2b-evidence` 전체

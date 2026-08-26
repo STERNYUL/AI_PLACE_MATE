@@ -50,8 +50,8 @@ Phase 1 후반에 초과가 드러나면 검증 위치를 바꿔야 하고, 그�
 - [ ] 조기 착수가 실제로 이뤄졌는가? (Phase 1 초반)
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IN-D`
-- **Blocks** `TEST-014a` 성능 항목
+- **Depends on** `IN-D` (#171)
+- **Blocks** `TEST-014a` (#175) 성능 항목
 - **미정 — 확정 필요** 3,000 RPS 적용 시점 (`IN-D`) · 부하 데이터 생성 방식
 
 ### 공통 DoD — 웨이브 `P4a-infra` 전체

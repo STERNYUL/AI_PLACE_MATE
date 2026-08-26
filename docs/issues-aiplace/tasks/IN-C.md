@@ -68,8 +68,8 @@
 - [ ] 알림 에스컬레이션이 정해졌는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IN-A`
-- **Blocks** `SRC-A` `RSV-B` `CLI-E` · Phase 0 게이트 측정
+- **Depends on** `IN-A` (#168)
+- **Blocks** `SRC-A` (#116) `RSV-B` (#130) `CLI-E` (#139) · Phase 0 게이트 측정
 - **미정 — 확정 필요** **4G 실측 방법·프로파일** (`CLI-E` 공통) · 알림 수신자·에스컬레이션
 
 ### 공통 DoD — 웨이브 `P4a-infra` 전체

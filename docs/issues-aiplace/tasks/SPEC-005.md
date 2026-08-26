@@ -53,8 +53,8 @@
 - [ ] `expiresAt`이 서버 시각 기준임이 계약에 명시되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-001`
-- **Blocks** `AGT-A`(FR-042) · `CLI-F`(FR-074) · `MOCK-006`
+- **Depends on** `SPEC-001` (#94)
+- **Blocks** `AGT-A` (#149)(FR-042) · `CLI-F` (#152)(FR-074) · `MOCK-006` (#113)
 - **⚠️ Phase 게이트** SRS §6.2 게이트 1 미통과 시 후행 구현이 v0.2로 이월된다
 - **미정 — 확정 필요** 0곳 미개시 응답 형태 (`200` + 플래그 vs `4xx`)
 

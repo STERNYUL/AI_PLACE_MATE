@@ -62,8 +62,8 @@ SRS는 목표 수치를 제시하지만 **무엇으로 측정하는지가 없다
 - [ ] 사전 갱신 절차가 운영 문서에 있는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IDX-A`
-- **Blocks** `IDX-C` `IDX-E` `SRC-C`
+- **Depends on** `IDX-A` (#103)
+- **Blocks** `IDX-C` (#105) `IDX-E` (#107) `SRC-C` (#118)
 - **미정 — 확정 필요** **정확도 평가셋** (담당: 개발팀 리드 + PM) · 사전 미등재 처리 · 동음이의 방지 규칙
 
 ### 공통 DoD — 웨이브 `P1b-data` 전체

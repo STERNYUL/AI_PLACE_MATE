@@ -59,7 +59,7 @@ UX-015 라이팅 가이드
 - [ ] 2FA가 검증되는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `MCH-A` `CLI-G` `UX-H` `IN-B` · **`SPEC-010`**
+- **Depends on** `MCH-A` (#148) `CLI-G` (#153) `UX-H` (#147) `IN-B` (#169) · **`SPEC-010`**
 - **미정 — 확정 필요** `SPEC-010` 신설 · 수용 조건 경계값 판정
 
 ### 공통 DoD — 웨이브 `P3c-tests-phase2-nf` 전체

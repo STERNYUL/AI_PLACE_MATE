@@ -70,7 +70,7 @@
 - [ ] 복구 후 상태 이력이 보존되는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IN-D`
+- **Depends on** `IN-D` (#171)
 - **Blocks** 없음
 - **미정 — 확정 필요** **백업본의 개인정보 파기 처리** (PM + 법무 · 신규 발견 · `PRV-A` 공통)
 

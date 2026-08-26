@@ -53,7 +53,7 @@
 - [ ] 0곳 시 방이 생성되지 않는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `AGT-A` `AGT-B` `AGT-C` `CLI-F`
+- **Depends on** `AGT-A` (#149) `AGT-B` (#150) `AGT-C` (#151) `CLI-F` (#152)
 - **미정 — 확정 필요** **소환 선정 규칙** (`P2g` 2번 · 재현성 검증의 전제) · 3곳 미만 개시 여부 · 채널 방식
 
 ### 공통 DoD — 웨이브 `P3c-tests-phase2-nf` 전체

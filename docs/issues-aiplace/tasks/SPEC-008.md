@@ -85,8 +85,8 @@
 - [ ] 네 소비처(`EVD-A`(FR-021)·`EVD-C`(FR-025)·`AGT-C`(FR-046)·`CLI-C`(FR-068)) 담당자가 동일 해석에 동의했는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-001`
-- **Blocks** `SPEC-002` · `SPEC-004` · `EVD-A`(FR-021) · `EVD-C`(FR-025) · `AGT-C`(FR-046) · `CLI-C`(FR-068) · `MOCK-003` · `MOCK-004`
+- **Depends on** `SPEC-001` (#94)
+- **Blocks** `SPEC-002` (#95) · `SPEC-004` (#97) · `EVD-A` (#120)(FR-021) · `EVD-C` (#122)(FR-025) · `AGT-C` (#151)(FR-046) · `CLI-C` (#137)(FR-068) · `MOCK-003` (#110) · `MOCK-004` (#111)
 - **미정 — 확정 필요**
   - **`STALE` 근거의 유효성** — PM + 개발팀 리드 (평가서 §4 항목, 최우선)
   - `RECHECK_REQUIRED` 후보 취급

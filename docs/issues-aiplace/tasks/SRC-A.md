@@ -66,8 +66,8 @@
 - [ ] 재시도 정책이 12원 상한을 넘지 않는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IN-A` `IN-C` `SPEC-001` `SPEC-002`
-- **Blocks** `SRC-D` `CLI-B`
+- **Depends on** `IN-A` (#168) `IN-C` (#170) `SPEC-001` (#94) `SPEC-002` (#95)
+- **Blocks** `SRC-D` (#119) `CLI-B` (#136)
 - **미정** `SPEC-001` `422` 채택 여부 · 추론 서비스 타임아웃 값
 
 ### 공통 DoD — 웨이브 `P2a-search` 전체

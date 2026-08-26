@@ -70,8 +70,8 @@
 - [ ] 후보 전수 검증이 p95 예산을 넘지 않는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-008` `IDX-D`
-- **Blocks** `SRC-D` `EVD-B` `EVD-C` `AGT-C` `CLI-C`
+- **Depends on** `SPEC-008` (#101) `IDX-D` (#106)
+- **Blocks** `SRC-D` (#119) `EVD-B` (#121) `EVD-C` (#122) `AGT-C` (#151) `CLI-C` (#137)
 - **미정 — 확정 필요** **`STALE` 후보 유효성** (`SPEC-008` · 최우선)
 
 ### 공통 DoD — 웨이브 `P2b-evidence` 전체

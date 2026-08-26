@@ -49,8 +49,8 @@
 - [ ] `CLI-B`·`CLI-C` 담당자가 이 Mock으로 착수했는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `MOCK-001` `SPEC-002`
-- **Blocks** `CLI-B` `CLI-C` `UX-F`
+- **Depends on** `MOCK-001` (#108) `SPEC-002` (#95)
+- **Blocks** `CLI-B` (#136) `CLI-C` (#137) `UX-F` (#145)
 - **미정** `SPEC-002` Scenario 4 (3개 고정 ↔ 근거 제외 충돌)
 
 ### 공통 DoD — 웨이브 `P1c-mock` 전체

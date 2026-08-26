@@ -57,8 +57,8 @@
 - [ ] 색인 갱신 시 캐시 무효화가 동작하는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-003` `IDX-B` `IN-F`(IN-012 캐시 계층)
-- **Blocks** `SRC-C`
+- **Depends on** `SPEC-003` (#96) `IDX-B` (#104) `IN-F` (#173)(IN-012 캐시 계층)
+- **Blocks** `SRC-C` (#118)
 - **미정 — 확정 필요** 캐시 6h ↔ 신선도 90일 충돌 · p95 초과 시 동작
 
 ### 공통 DoD — 웨이브 `P1b-data` 전체

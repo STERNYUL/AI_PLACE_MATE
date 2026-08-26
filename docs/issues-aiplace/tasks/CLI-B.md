@@ -67,8 +67,8 @@
 - [ ] 입력하지 않은 조건이 추가되지 않는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `CLI-A` `UX-B` `UX-F` `SPEC-002`
-- **Blocks** `CLI-C`
+- **Depends on** `CLI-A` (#135) `UX-B` (#141) `UX-F` (#145) `SPEC-002` (#95)
+- **Blocks** `CLI-C` (#137)
 - **미정 — 확정 필요** 부분 파싱 시 필드 이월 여부
 
 ### 공통 DoD — 웨이브 `P2e-client` 전체

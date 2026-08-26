@@ -75,8 +75,8 @@
 - [ ] 0건 회귀가 `SRC-D` 결과를 재사용하는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-006` `SPEC-008` `AGT-B` `EVD-A` `SRC-D` `MCH-A`
-- **Blocks** `CLI-F`
+- **Depends on** `SPEC-006` (#99) `SPEC-008` (#101) `AGT-B` (#150) `EVD-A` (#120) `SRC-D` (#119) `MCH-A` (#148)
+- **Blocks** `CLI-F` (#152)
 - **미정 — 확정 필요** **가중치 하향 폭·회복 규칙** (PM · 신규 발견) · **적합도 산출식**
 
 ### 공통 DoD — 웨이브 `P2g-phase2` 전체

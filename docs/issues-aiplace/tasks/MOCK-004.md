@@ -36,8 +36,8 @@
 - [ ] `UX-C` 담당자가 세 상태 표기를 실제로 그렸는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `MOCK-001` `SPEC-002`
-- **Blocks** `CLI-C` `UX-C`
+- **Depends on** `MOCK-001` (#108) `SPEC-002` (#95)
+- **Blocks** `CLI-C` (#137) `UX-C` (#142)
 
 ### 공통 DoD — 웨이브 `P1c-mock` 전체
 

@@ -75,8 +75,8 @@
 - [ ] 취소 시한 안내가 행동 전에 나오는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `UX-A`
-- **Blocks** `CLI-D` `PRV-B`
+- **Depends on** `UX-A` (#140)
+- **Blocks** `CLI-D` (#138) `PRV-B` (#134)
 - **미정 — 확정 필요** **개인정보 보존 기간** (`PRV-A` §8.6.5) — 없으면 동의 카피를 쓸 수 없다 · 취소 시한 경계 (`RSV-D`)
 
 ### 공통 DoD — 웨이브 `P2f-ux` 전체

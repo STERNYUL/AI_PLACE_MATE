@@ -4,6 +4,10 @@
 **원장:** `TASKS-ai-place-v1.0.md` (TASKS-AIPLACE-MVP-001 v1.1 · 50건)
 **웨이브 문서:** `docs/issues-aiplace/P1a` ~ `P4a` (14건) · 의존 분석 `P4b-dependency.md`
 
+> **GitHub Project 연동** — [프로젝트 #2 `AI PLACE MATE GITHURB PROJ`](https://github.com/users/STERNYUL/projects/2)에 84건 전량 편입됨.
+> 필드 12종(`Task ID`·`Phase`·`Track`·`Complexity`·`Start date`·`Target date`·`Estimate`·`Wave`·`Critical Path`·`Blockers`·`Successors`·`Origin IDs`)에 압축 일정 값이 채워져 있다.
+> 마일스톤 4개(Phase 0/1/1말/2)가 게이트 조건과 함께 연결돼 있다.
+
 > 이 디렉터리의 `.md` 1개 = GitHub 이슈 1건. 파일 본문이 이슈 본문의 원본이다.
 > 본문을 고치면 해당 이슈도 갱신해야 대조가 유지된다.
 

@@ -52,7 +52,7 @@
 - [ ] `TEST-005`·`TEST-007`과 **중복 실행이 아닌 다른 축**임이 문서로 구분되는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IDX-C` `SRC-A` `SRC-C` `EVD-A` `EVD-B` `TRK-B`
+- **Depends on** `IDX-C` (#105) `SRC-A` (#116) `SRC-C` (#118) `EVD-A` (#120) `EVD-B` (#121) `TRK-B` (#125)
 - **Blocks** Phase 1 게이트 신뢰성 (품질 축)
 - **미정 — 확정 필요** 임계값 경계 규약 (`P3a` 7번) · 캐시 6h ↔ 신선도 90일 충돌
 

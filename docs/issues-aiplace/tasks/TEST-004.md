@@ -48,7 +48,7 @@
 - [ ] 유사도 기준이 확정되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SRC-C`
+- **Depends on** `SRC-C` (#118)
 - **미정 — 확정 필요** 유사도 판정 기준
 
 ### 공통 DoD — 웨이브 `P3a-tests-search` 전체

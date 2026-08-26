@@ -67,7 +67,7 @@
 - [ ] 4종 데이터의 보존 기간이 확정되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `TRK-B` `IN-B` `IN-F` `IDX-A`
+- **Depends on** `TRK-B` (#125) `IN-B` (#169) `IN-F` (#173) `IDX-A` (#103)
 - **Blocks** 없음
 - **미정 — 확정 필요** §8.6.5 보존 기간 상세 · 파기 실패 시 경보 임계
 

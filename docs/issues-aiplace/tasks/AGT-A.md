@@ -67,8 +67,8 @@
 - [ ] 0곳 시 방이 생성되지 않는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-005` `MCH-A`
-- **Blocks** `AGT-B` `AGT-C` `CLI-F`
+- **Depends on** `SPEC-005` (#98) `MCH-A` (#148)
+- **Blocks** `AGT-B` (#150) `AGT-C` (#151) `CLI-F` (#152)
 - **미정 — 확정 필요** **소환 대상 선정 규칙** (PM · `SRC-D` 동점 규칙과 동일 성격) · 3곳 미만 시 개시 여부 · 매장 알림 발송 경로
 
 ### 공통 DoD — 웨이브 `P2g-phase2` 전체

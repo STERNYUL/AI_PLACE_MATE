@@ -55,7 +55,7 @@
 - [ ] 필수 필드 결락 처리가 확정되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IDX-A` `IDX-B`
+- **Depends on** `IDX-A` (#103) `IDX-B` (#104)
 - **Blocks** Phase 0 게이트 판정
 - **미정 — 확정 필요** 필수 필드 결락 시 적재 정책
 

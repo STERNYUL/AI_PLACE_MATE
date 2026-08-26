@@ -65,7 +65,7 @@
 - [ ] 철회 후 기존 데이터 처리가 확정되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `CLI-A` `UX-E`
+- **Depends on** `CLI-A` (#135) `UX-E` (#144)
 - **Blocks** 없음
 - **미정 — 확정 필요** **동의 이력 저장 위치** (단말 vs 서버 · 신규 발견) · 철회 후 기전송 데이터 처리
 

@@ -73,8 +73,8 @@
 - [ ] 여섯 필드가 §8.1.1 원문과 일치하는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-002` `SPEC-008` `SRC-B` `SRC-C` `EVD-A`
-- **Blocks** `CLI-C` `AGT-C`(0건 회귀) `TRK-C`
+- **Depends on** `SPEC-002` (#95) `SPEC-008` (#101) `SRC-B` (#117) `SRC-C` (#118) `EVD-A` (#120)
+- **Blocks** `CLI-C` (#137) `AGT-C` (#151)(0건 회귀) `TRK-C` (#126)
 - **미정 — 확정 필요**
   - **3개 고정 ↔ 근거 없는 후보 제외 충돌** (PM + 개발팀 리드 · `SPEC-008`과 함께)
   - **정렬 동점 규칙** — 신규 발견

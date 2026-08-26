@@ -68,8 +68,8 @@
 - [ ] 대체 사실이 응답에서 누락될 수 없는 구조인가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IDX-B` `IDX-E`
-- **Blocks** `SRC-D`
+- **Depends on** `IDX-B` (#104) `IDX-E` (#107)
+- **Blocks** `SRC-D` (#119)
 - **미정 — 확정 필요** **'유사 메뉴' 정의** (PM · 평가서 §4) · 정확도 평가셋 (`IDX-B`와 공유)
 
 ### 공통 DoD — 웨이브 `P2a-search` 전체

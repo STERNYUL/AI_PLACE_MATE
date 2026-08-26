@@ -70,8 +70,8 @@
 - [ ] 카운트다운이 서버 시각 기준임이 반영되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `UX-A`
-- **Blocks** `CLI-F`
+- **Depends on** `UX-A` (#140)
+- **Blocks** `CLI-F` (#152)
 - **미정 — 확정 필요** 마감 직전 도착 처리 (`AGT-B` 연동) · 무응답 매장 표시 여부
 
 ### 공통 DoD — 웨이브 `P2g-phase2` 전체

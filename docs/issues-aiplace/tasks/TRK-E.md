@@ -77,7 +77,7 @@
 - [ ] 결제액 편차가 실제로 `PriceProfile`에 반영되는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `TRK-B` `TRK-C` `IDX-A`
+- **Depends on** `TRK-B` (#125) `TRK-C` (#126) `IDX-A` (#103)
 - **Blocks** 사업 판단 리포트
 - **미정 — 확정 필요**
   - **`FR-082` Phase 모순** — PM (원장 부록 C 1번)

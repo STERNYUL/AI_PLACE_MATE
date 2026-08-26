@@ -53,7 +53,7 @@
 - [ ] 근거 없는 제안이 거부되는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `AGT-C` `CLI-F` `EVD-A`
+- **Depends on** `AGT-C` (#151) `CLI-F` (#152) `EVD-A` (#120)
 - **미정 — 확정 필요** **적합도 산출식** · **가중치 하향 폭·회복 규칙** (전부 `P2g` · **착수 조건**) · 동점 처리
 
 ### 공통 DoD — 웨이브 `P3c-tests-phase2-nf` 전체

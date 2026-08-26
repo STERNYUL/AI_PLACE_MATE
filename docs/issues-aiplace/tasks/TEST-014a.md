@@ -45,7 +45,7 @@
 - [ ] 부하 시나리오가 `IN-G` 산출물과 같은 것인가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IN-C` `IN-D` `IN-E` `IN-G` `SRC-D` `CLI-E`
+- **Depends on** `IN-C` (#170) `IN-D` (#171) `IN-E` (#172) `IN-G` (#174) `SRC-D` (#119) `CLI-E` (#139)
 - **Blocks** Phase 1 게이트 신뢰성 (성능 축)
 - **미정 — 확정 필요** 4G 실측 방법 · 3,000 RPS 적용 시점 · 임계값 경계 규약
 

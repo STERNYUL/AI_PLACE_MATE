@@ -56,7 +56,7 @@
 - [ ] 근거 카드가 `CLI-C`와 같은 컴포넌트인가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `AGT-B` `AGT-C` `UX-G` `SPEC-005` `SPEC-006`
+- **Depends on** `AGT-B` (#150) `AGT-C` (#151) `UX-G` (#146) `SPEC-005` (#98) `SPEC-006` (#99)
 - **Blocks** 없음
 - **미정 — 확정 필요** 채널 방식 (`AGT-B` 확정 대기)
 

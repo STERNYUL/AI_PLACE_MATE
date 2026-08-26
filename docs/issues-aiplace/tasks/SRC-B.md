@@ -67,8 +67,8 @@
 - [ ] 후보 0곳 시 동작이 확정되고 `UX-F`와 정합한가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IDX-A`
-- **Blocks** `SRC-D`
+- **Depends on** `IDX-A` (#103)
+- **Blocks** `SRC-D` (#119)
 - **미정 — 확정 필요** **예산 판정 기준값** (PM + 개발팀 리드) · 후보 0곳 시 필터 완화 여부
 
 ### 공통 DoD — 웨이브 `P2a-search` 전체

@@ -72,8 +72,8 @@
 - [ ] 중복 승인 방지 장치가 있는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `SPEC-007` `RSV-A` `IN-B`
-- **Blocks** `RSV-B` `RSV-D` `CLI-D` — **후행 8건**
+- **Depends on** `SPEC-007` (#100) `RSV-A` (#129) `IN-B` (#169)
+- **Blocks** `RSV-B` (#130) `RSV-D` (#132) `CLI-D` (#138) — **후행 8건**
 - **미정 — 확정 필요**
   - **PG사 선정** — 사업 계약. 이 태스크의 절반
   - PG 장애 시 예약 상태 · **중복 승인 방지(멱등키)** — 신규 발견

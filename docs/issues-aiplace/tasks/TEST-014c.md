@@ -53,7 +53,7 @@
 - [ ] 감사 증적이 재현 가능한 형태로 남는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IN-B` `PRV-A` `PRV-B` `RSV-C`
+- **Depends on** `IN-B` (#169) `PRV-A` (#133) `PRV-B` (#134) `RSV-C` (#131)
 - **Blocks** 출시 가부 판정
 - **미정 — 확정 필요** 백업 ↔ 파기 충돌 · 동의 이력 위치 · §8.6.5 보존 기간 — **3건 모두 법무**
 

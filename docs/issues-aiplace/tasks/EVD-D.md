@@ -72,8 +72,8 @@
 - [ ] 이력이 보존되고 조회 가능한가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `IDX-D`
-- **Blocks** `TRK-C` `CLI-C`(FR-071)
+- **Depends on** `IDX-D` (#106)
+- **Blocks** `TRK-C` (#126) `CLI-C` (#137)(FR-071)
 - **미정 — 확정 필요**
   - **재확인 처리 주체와 SLA** — PM + 서비스 운영자 · **신규 발견**
   - 신고 사유 분류 체계

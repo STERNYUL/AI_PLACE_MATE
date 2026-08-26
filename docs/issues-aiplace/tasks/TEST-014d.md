@@ -53,7 +53,7 @@
 - [ ] `REQ-NF-023`의 **해당 없음**이 미검증과 구분되어 기록되는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `TRK-C` `TRK-D` `TRK-E` `IN-F`
+- **Depends on** `TRK-C` (#126) `TRK-D` (#127) `TRK-E` (#128) `IN-F` (#173)
 - **Blocks** 단위 경제 판정 · Phase 1 게이트의 비용 축
 - **미정 — 확정 필요** 기준선 15건 (`TRK-C`) · `FR-082` Phase 모순 · 임계값 경계 규약
 

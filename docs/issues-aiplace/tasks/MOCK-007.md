@@ -44,8 +44,8 @@ Mock은 **우리 쪽 요구사항**(카드 정보 비보관 · 환불 ≤ 24h ·
 - [ ] PG 선정 후 갱신 절차가 문서화되었는가?
 
 ### 🚧 Dependencies & Blockers
-- **Depends on** `MOCK-001` `SPEC-007`
-- **Blocks** `CLI-D` `UX-E`
+- **Depends on** `MOCK-001` (#108) `SPEC-007` (#100)
+- **Blocks** `CLI-D` (#138) `UX-E` (#144)
 - **미정** `SPEC-007` PG 장애 시 예약 상태 처리
 
 ### 공통 DoD — 웨이브 `P1c-mock` 전체

@@ -80,7 +80,7 @@
 
 ### 🚧 Dependencies & Blockers
 - **Depends on** 없음 (Phase 0 최선행)
-- **Blocks** `UX-B` `UX-C` `UX-E` `CLI-A` `CLI-E`
+- **Blocks** `UX-B` (#141) `UX-C` (#142) `UX-E` (#144) `CLI-A` (#135) `CLI-E` (#139)
 - **미정 — 확정 필요** **`UX-001` 인정 여부** (PM · 원장 부록 C 3번) · 접근성 기준
 
 ### 공통 DoD — 웨이브 `P2f-ux` 전체
