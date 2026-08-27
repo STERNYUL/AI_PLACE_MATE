@@ -92,3 +92,6 @@ UX-015 라이팅 가이드
 - [ ] **모든 상태에 빈 화면이 없는가?** (§8.3 규칙 5 · `UX-F`)
 - [ ] 지도 앱 내 탭의 화면 크기·안전 영역을 반영했는가? (ADR-006 · R6)
 
+### 완료 기록
+
+- 산출물 `docs/design/ux/UX-C-candidate-evidence.md`와 공유 정본 `docs/design/ux/WRITING-GUIDE.md`를 작성했다. 후보 3개 미만 우선순위와 판정형 기준 범위는 **(미정 — 확정 필요)**로 PM·`SRC-D`·`EVD-B`에 인계했다.
