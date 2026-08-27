@@ -98,6 +98,13 @@ export function LiveQuery() {
     setMessage('선택한 후보를 예약 요청 단계에서 다시 확인할 수 있습니다.')
   }
 
+  function saveCandidate(id: string) {
+    window.localStorage.setItem('ai-place-mate:saved-candidate', id)
+    setSelectedId(id)
+    setSaved(true)
+    setMessage('후보를 이 브라우저에 저장했습니다.')
+  }
+
   return (
     <main className="mx-auto flex min-h-dvh max-w-[720px] flex-col gap-6 px-4 py-6 sm:px-6">
       <header className="border-b border-line pb-5">
@@ -132,7 +139,7 @@ export function LiveQuery() {
         <section className="flex flex-col gap-4" aria-labelledby="compare-title">
           <div className="flex flex-wrap items-end justify-between gap-3"><div><p className="text-sm font-medium text-fact">후보 비교</p><h2 id="compare-title" className="mt-1 text-2xl font-bold tracking-tight">조건에 맞는 후보 {candidates.length}곳</h2></div><button type="button" onClick={share} className="rounded-chip border border-line bg-surface px-3 py-2 text-sm font-semibold">{saved ? '저장됨' : '공유하기'}</button></div>
           <p className="text-sm leading-relaxed text-ink-muted">입력 조건: {query} · 근거 누락 제외 {result.excludedByEvidence}곳 · 재확인 대기 제외 {result.excludedByRecheck}곳</p>
-          {candidates.length > 0 ? candidates.map((candidate, index) => <article key={candidate.id} className={selectedId === candidate.id ? 'rounded-card p-1 ring-2 ring-fact' : ''}><p className="mb-2 text-xs font-semibold text-ink-faint">후보 {index + 1}</p><CandidateCard candidate={candidate} /><div className="mt-3 grid grid-cols-2 gap-2"><button type="button" onClick={() => selectCandidate(candidate.id)} className="rounded-card border border-ink px-3 py-2 text-sm font-semibold">{selectedId === candidate.id ? '선택됨' : '선택하기'}</button><button type="button" onClick={() => { setSelectedId(candidate.id); setSaved(true); setMessage('후보를 이 브라우저에 저장했습니다.') }} className="rounded-card border border-line px-3 py-2 text-sm font-semibold">저장</button></div></article>) : <div className="rounded-card border border-line bg-surface p-4"><p className="font-semibold">통과 후보가 없습니다.</p><p className="mt-1 text-sm text-ink-muted">조건을 수정해 다시 조회할 수 있습니다.</p></div>}
+          {candidates.length > 0 ? candidates.map((candidate, index) => <article key={candidate.id} className={selectedId === candidate.id ? 'rounded-card p-1 ring-2 ring-fact' : ''}><p className="mb-2 text-xs font-semibold text-ink-faint">후보 {index + 1}</p><CandidateCard candidate={candidate} /><div className="mt-3 grid grid-cols-2 gap-2"><button type="button" onClick={() => selectCandidate(candidate.id)} className="rounded-card border border-ink px-3 py-2 text-sm font-semibold">{selectedId === candidate.id ? '선택됨' : '선택하기'}</button><button type="button" onClick={() => saveCandidate(candidate.id)} className="rounded-card border border-line px-3 py-2 text-sm font-semibold">저장</button></div></article>) : <div className="rounded-card border border-line bg-surface p-4"><p className="font-semibold">통과 후보가 없습니다.</p><p className="mt-1 text-sm text-ink-muted">조건을 수정해 다시 조회할 수 있습니다.</p></div>}
           <div className="grid gap-2 sm:grid-cols-2"><button type="button" onClick={openRoom} disabled={pending || candidates.length < 3} className="rounded-card bg-ink px-4 py-3 text-sm font-semibold text-surface disabled:opacity-60">{pending ? '대화방 여는 중' : '제안 대화방 열기'}</button><button type="button" onClick={() => selected ? setStage('booking') : setMessage('예약 요청 전에 후보 하나를 선택해 주세요.')} className="rounded-card border border-ink bg-surface px-4 py-3 text-sm font-semibold">선택한 후보로 예약 요청</button></div>
         </section>
       ) : null}
