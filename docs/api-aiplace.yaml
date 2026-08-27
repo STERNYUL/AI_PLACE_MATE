@@ -1,0 +1,86 @@
+openapi: 3.1.0
+info:
+  title: AI Place Mate API
+  version: 0.1.0
+  description: |
+    공통 API 계약이다. 각 엔드포인트 계약은 이 문서의 보안, 추적, 오류 및 단위 규약을 따른다.
+    자연어 조건 파싱 실패는 오류가 아니라 정상 분기이며, 200 응답의 fallbackApplied로 알린다.
+servers:
+  - url: /v1
+security:
+  - bearerAuth: []
+paths: {}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Supabase 익명 세션 또는 로그인 세션에서 발급한 JWT. 모든 API 요청에 필요하다.
+  headers:
+    XRequestId:
+      description: 요청 전체 구간에서 같은 값을 사용하는 추적 식별자. 요청에 없으면 Gateway가 생성한다.
+      schema:
+        type: string
+        minLength: 1
+  schemas:
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required: [code, message, requestId]
+      properties:
+        code:
+          type: string
+          description: 안정적인 기계 판독 오류 코드.
+        message:
+          type: string
+          description: 사람이 읽는 오류 설명. 근거 누락이면 누락한 항목명을 포함한다.
+        requestId:
+          type: string
+          description: X-Request-Id 헤더와 같은 값.
+    VerificationActor:
+      type: string
+      enum: [MERCHANT, INTERNAL_SURVEY, USER_REPORT, OPERATOR]
+    ApiErrorRate:
+      type: object
+      additionalProperties: false
+      required: [denominator, numerator, threshold]
+      properties:
+        denominator:
+          type: string
+          const: 모든 결제 API 응답 건수(2xx, 4xx, 5xx 포함)
+        numerator:
+          type: string
+          const: 결제 API의 5xx 응답 건수만
+        threshold:
+          type: number
+          description: 오류율은 0.1% 이하일 때 통과한다.
+          maximum: 0.001
+x-api-conventions:
+  json:
+    propertyNames: camelCase
+    timestamps: ISO-8601
+    nullFields: omit unless null has an explicit contract meaning
+  units:
+    money: KRW
+    distance: m
+    latency: ms
+    people: persons
+    expiry: s
+  statusCodes:
+    '200': 정상 응답. 폴백을 포함한 정상 분기도 여기에 해당한다.
+    '400': 계약 위반 또는 유효하지 않은 리소스 식별자.
+    '401': Authorization Bearer JWT가 없거나 유효하지 않음.
+    '5XX': 서버 오류. 결제 API 오류율의 분자에만 포함한다.
+  pagination:
+    supported: false
+    top3: 0에서 3개까지 반환하는 상한이며, 근거 기준을 낮춰 3개를 채우지 않는다.
+  thresholds:
+    inclusive: true
+    notation: ['≤', '≥']
+  errorRate:
+    paymentOnly: true
+    denominator: all responses including 2xx, 4xx, and 5xx
+    numerator: 5xx responses only
+    threshold: 0.001
+  forbiddenStatusCodes: [404, 422]
