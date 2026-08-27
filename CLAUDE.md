@@ -107,6 +107,7 @@ app ──→ search ──→ evidence ──→ index ──→ db
 | **`lib/evidence` 공유** | `search`·`room` 양쪽이 쓴다. **중복 구현 금지** |
 | **선정 이유는 파생** | `Evidence` 엔터티를 만들지 않는다. `EVD-B`가 매 응답 생성한다 — 저장하면 판정형 사전 갱신이 과거 문장에 미치지 못한다 (Grill T5) |
 | **신선도 판정은 함수 1개** | `lib/evidence/freshness.ts`. 서버·클라이언트가 **그것만 호출**한다. 각자 날짜를 계산하면 90일 경계가 한쪽에서 갈린다 (Grill T6) |
+| **스키마는 `IDX-A1`에서 언다** | 5개 엔터티 · 관계 · PK/FK · 인덱스 키 · `verification` 전 필드. **사후 변경 = 전면 재색인**(ADR-001). `PriceProfile`·`Attribute` 필드 상세는 `IDX-A2` (Grill S3-T1) |
 | **`app/` 순수성** | 라우팅·검증·직렬화만. **도메인 판정 로직을 두지 않는다** |
 
 ---
@@ -152,6 +153,9 @@ app ──→ search ──→ evidence ──→ index ──→ db
 
 > **Phase 2 태스크에 Phase 1 태스크를 의존시키지 않는다.** 이월 단위가 깨진다.
 > Phase 2 노출은 `FEATURE_AGENT_ROOM` 플래그로 가린다.
+
+**Phase 1이 Phase 2 엔터티를 참조해야 할 때** — 컬럼은 `nullable`로 미리 만들고 **FK 제약과 상대 테이블은 Phase 2에서 결선**한다 (Grill S3-T4).
+Phase 2 테이블을 Phase 1에 미리 만들지 않는다 — 게이트 미통과 시 **무엇을 버릴지가 불분명**해진다. 컬럼을 나중에 추가하는 것도 안 된다 — ADR-001상 **전면 재색인**이다.
 
 ### 임계값 경계 규약 — 예외 없다
 

@@ -67,11 +67,14 @@ OpenAPI `description`과 테스트 경계값(89/90/91일 같은 3종)이 이 규
 | `selectionReason` | **없음 — 파생** (`EVD-B` 생성) | 진술 |
 | `evidenceAttribute` | `Attribute.name` · `value` | 저장된 사실 |
 | `verifiedAt` | `Verification.verified_at` | 저장된 사실 |
-| `verifiedBy` | `Verification.verified_by` | 저장된 사실 |
+| `verifiedBy` | `Verification.verified_by` — **열거형 4종** | 저장된 사실 |
 
 소비처가 `EVD-A`·`EVD-C`·`AGT-C`·`CLI-C` 네 곳이므로 **한 곳이 다른 이름·출처를 쓰면 통합에서 터진다.**
 
 **`selectionReason`은 저장하지 않는다** (Grill T5). `Evidence` 엔터티를 만들지 않는다 — 저장하면 판정형 사전이 갱신돼도 과거 문장이 남아 §8.3 규칙 3이 깨진다.
+
+**`verifiedBy`는 열거형이다** (Grill S3-T2) — `MERCHANT` · `INTERNAL_SURVEY` · `USER_REPORT` · `OPERATOR`. 표시 문구는 `lib/evidence` 매핑 함수 한 곳이 만든다.
+자유 텍스트로 두면 **매장 확인이 아닌데 "사장 확인"으로 쓰는 사칭을 스키마가 막지 못하고**, 판정형 어휘 검사가 DB 값까지 쫓아가야 한다.
 
 ### 항목의 속성인가, 결과 전체의 속성인가
 
@@ -84,6 +87,8 @@ OpenAPI `description`과 테스트 경계값(89/90/91일 같은 3종)이 이 규
 
 항목에 넣으면 **같은 값이 항목 수만큼 중복**되고, **배열이 비면 실을 곳이 사라진다.**
 배열 길이로 알 수 있는 값(통과 건수 등)은 **싣지 않는다** — 중복이다.
+
+**같은 원칙이 스키마에도 적용된다** (Grill S3-T3). 다른 컬럼에서 그대로 나오는 사실은 별도 컬럼으로 저장하지 않는다 — `PriceProfile`의 단일값 여부는 `min`·`max`로 알 수 있으므로 플래그를 두지 않고, 축약 표시는 `lib/<domain>`이 한다.
 
 ### `Verification` 3상태 — 소비처 4곳이 같은 표를 따른다
 

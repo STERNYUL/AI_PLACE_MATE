@@ -3,9 +3,10 @@
 | 세션 | 범위 | 상태 |
 | --- | --- | --- |
 | **1** | 경량 시각 스파이크 착수 전 결정 | **CLOSED** — 8/8 · `ALL_RESOLVED` |
-| **2** | **계약 5건 착수 전 결정** (`SPEC-001`·`002`·`003`·`004`·`008`) | **ACTIVE** — §세션 2 |
+| **2** | 계약 5건 착수 전 결정 (`SPEC-001`·`002`·`003`·`004`·`008`) | **CLOSED** — 12/12 · `ALL_RESOLVED` |
+| **3** | 데이터·색인 계층 착수 전 결정 (`IDX-A`~`E`) | **CLOSED** — 10/10 · `ALL_RESOLVED` |
 
-**활성 카운터는 §세션 2에 있다.** 세션 1의 카운터는 `SESSION-1` 접두로 구분한다.
+**활성 세션 없음.** 세 세션 합계 **30건 해소.** 지난 세션의 카운터는 `SESSION-1`·`SESSION-2` 접두로 구분한다.
 
 ---
 
@@ -186,8 +187,8 @@ SESSION-1 STOP REASON: ALL_RESOLVED
 ### 토픽 원장
 
 ```markdown
-RESOLVED: 12 / TOTAL: 12   (CORE 9/9 · MINOR 3/3)
-STOP REASON: ALL_RESOLVED
+SESSION-2 RESOLVED: 12 / TOTAL: 12   (CORE 9/9 · MINOR 3/3)
+SESSION-2 STOP REASON: ALL_RESOLVED
 - [x] T1  | CORE  | 임계값 경계 규약 — 이하/이상 포함 여부 (1건이 7건 대체)  | depends:-     | status:RESOLVED
 - [x] T2  | CORE  | Verification 3상태와 근거 유효성 (STALE·RECHECK)        | depends:T1    | status:RESOLVED
 - [x] T3  | CORE  | 3개 고정 ↔ 근거 미비 제외 충돌 시 동작                  | depends:T2    | status:RESOLVED
@@ -399,3 +400,205 @@ T8 상태 코드 넷 ─→ T10 404 신설 안 함
 #94  SPEC-001   #95 SPEC-002   #96 SPEC-003   #97 SPEC-004   #101 SPEC-008
 gh issue edit <번호> --body-file docs/issues-aiplace/tasks/<ID>.md
 ```
+
+---
+
+## 세션 3 — 데이터·색인 계층 착수 전 결정 (ACTIVE)
+
+**세션 개시:** 2026-08-27
+**참조 범위:** `docs/issues-aiplace/tasks/IDX-A.md` `IDX-B.md` `IDX-C.md` `IDX-D.md` `IDX-E.md` · `EXEC-ai-place-v1.0.md` §6.1 · `EXEC-ai-place-compressed-v1.0.md` §2.1 · `CLAUDE.md` §3·§4
+**관심 방향:** 데이터·색인 계층에 남은 미정 전건
+**완료 조건:** 아래 토픽 전부 RESOLVED
+**OUTPUT 대상:** `IDX-*` 태스크 본문 5건 · `CLAUDE.md` · `.claude/skills/` · 이 원장
+
+---
+
+### 질문 없이 기록 — 세션 2가 이미 해소한 5건
+
+`IDX-*` 본문에 `(미정)`으로 남아 있으나 **세션 2에서 확정됐다.** 토픽으로 세지 않고 본문만 갱신한다.
+
+| # | `IDX-*` 본문의 미정 | 세션 2 결정 |
+| --- | --- | --- |
+| F1 | `IDX-D` — `STALE` 후보 유효성 | **T2** — `STALE` 정렬 참여·노출 + 경고 병기 · `RECHECK_REQUIRED` 제외 |
+| F2 | `IDX-D`·`IDX-E` — 캐시 6h ↔ 신선도 90일 충돌 | **T6** — TTL 6h 유지 · 응답 `verifiedAt`으로 수신 시점 판정 |
+| F3 | `IDX-D` — 90일 판정 시점 (배치 vs 조회) | **T6** — **조회·렌더 시점.** 배치가 아니다. `lib/evidence/freshness.ts` 단일 함수 |
+| F4 | `IDX-E` — p95 400ms 초과 시 동작 | **T11** — `200`과 응답 유지 + 지연 계측 · 오류율 분자 제외 |
+| F5 | `IDX-A` — 근거 문장 저장 여부 | **T5** — `Evidence` 엔터티를 만들지 않는다. `selectionReason`은 파생 |
+
+---
+
+### 토픽 원장
+
+```markdown
+RESOLVED: 10 / TOTAL: 10   (CORE 7/7 · MINOR 3/3)
+STOP REASON: ALL_RESOLVED
+- [x] T1  | CORE  | IDX-A1 얼릴 범위 — 어디까지가 A1 스키마인가          | depends:-     | status:RESOLVED
+- [x] T2  | CORE  | Verification 확인 주체 필드 — 열거형인가 자유 텍스트인가 | depends:T1    | status:RESOLVED
+- [x] T3  | CORE  | PriceProfile 단일값 표기 — 하한=평균=상한일 때        | depends:T1    | status:RESOLVED
+- [x] T4  | CORE  | Proposal 참조 계약 — 무엇을 지금 고정하나             | depends:T1    | status:RESOLVED
+- [x] T5  | MINOR | 성분·접근성 필드 형상 — 적재 없이 확보만               | depends:T1    | status:RESOLVED
+- [x] T6  | CORE  | 정확도 92% 평가셋 — 무엇으로 측정하나                 | depends:-     | status:RESOLVED
+- [x] T7  | CORE  | 사전 미등재·동음이의 처리 정책                        | depends:T6    | status:RESOLVED
+- [x] T8  | CORE  | 필수 필드 결락 시 적재 정책 — 거부인가 부분 적재인가     | depends:T1 T6 | status:RESOLVED
+- [x] T9  | MINOR | 조건 카테고리 어휘의 상권별 관리 주체                  | depends:T1    | status:RESOLVED
+- [x] T10 | MINOR | 캐시 무효화 태그 체계 — 색인 갱신 시                  | depends:T1    | status:RESOLVED
+```
+
+---
+
+### 토픽 배경
+
+| ID | 출처 | 왜 지금 정해야 하나 |
+| --- | --- | --- |
+| **T1** | 압축 §2.1 · ADR-001 | **압축 §5 조건 3** — *"`IDX-A1` 스키마 1주 확정"* 이 압축 성립 전제다. **사후 변경 = 전면 재색인**이라 되돌릴 수 없다 |
+| **T2** | `IDX-D` · 세션 2 T5 | T5가 `verifiedBy` = `Verification.verified_by`로 확정했으나 **그 값이 무엇인지**는 미정. 세션 1 T7은 fixture에 "내부 조사", `UX-H`는 "매장이 스스로 확인 주체" |
+| **T3** | `IDX-A` Scenario 3 | 하한=평균=상한일 때 `REQ-FUNC-002`의 인당가 **범위** 표기가 성립해야 한다 |
+| **T4** | `IDX-A` · `EXEC` §6.4 | 예약(Phase 1말)이 `Proposal`(Phase 2)을 참조한다. **여기서 고정하지 않으면 Phase 2에서 예약 도메인을 다시 손댄다** |
+| **T5** | `REQ-NF-024` | 성분·접근성은 **v0.1에서 필드만 확보, 적재 안 함**. 어떤 형상으로 비워두나 |
+| **T6** | **`EXEC` §6.1 #1 — Phase 0 게이트 차단** | 정답 레이블 평가셋 없이는 **92%를 주장할 수도 반박할 수도 없다.** `IDX-C`·`TEST-001` 판정 불가 |
+| **T7** | `IDX-B` Scenario 2·3 | 사전 미등재는 원문 보존인가 추정 매핑인가. **추정 매핑은 오분류 위험**이고 `SRC-C` 메뉴 질의가 이 키에 의존한다 |
+| **T8** | `IDX-C` Scenario 2 | 거부하면 **300건을 못 채울 수 있다** — Phase 0 게이트 미달 |
+| **T9** | `IDX-A` Blockers | 상권별 운영 조건 어휘를 누가 관리하나 |
+| **T10** | `IDX-E` · `CLAUDE.md` §3 | Next.js Data Cache는 **별도 캐시 서버가 없다**(`C-DRV-006`). 태그 체계가 곧 무효화 설계다 |
+
+---
+
+### 해소 기록 — 세션 3
+
+#### S3-T1 · CORE · `IDX-A1` 얼릴 범위 — RESOLVED (2026-08-27)
+
+- **decision:** **`IDX-A1`** = 5개 엔터티(`place`·`dish`·`attribute`·`price_profile`·`verification`) · 관계 · PK/FK · 인덱스 키 · **`verification` 전 필드**(3상태 · `verified_at` · `verified_by`). **`IDX-A2`** = `PriceProfile` 구조 · `Attribute.scope` · 성분·접근성 필드 · 마이그레이션·롤백. **압축 §2.1 분할선은 그대로 둔다.**
+- **근거:** 후행이 무엇을 언제 필요로 하는지가 경계를 정했다. **`IDX-C`(파이프라인)가 압축 부록 A에서 원래 `IDX-A2` 뒤(4주차)이므로 필드 상세를 `A1`에 넣어도 앞당겨지는 것이 없다.** 반면 `IDX-D`는 2주차에 `verification` 필드가 필요하다. 전 필드를 `A1`에 넣는 안은 1주 안에 `PriceProfile`·`Attribute`·성분·접근성까지 전부 얼려야 해 압축 이득이 줄고, 분할 포기는 압축 §5 조건 3이 지목한 최대 이득을 버린다(임계 경로 12→13주).
+- **applied:**
+  - `docs/issues-aiplace/tasks/IDX-A.md` — **§"`IDX-A1`/`IDX-A2` 분할 경계" 신설**(분할 표 + 후행 주차 근거) · Task Breakdown 전 항목에 **`[A1]`/`[A2]` 표기** · **`Evidence` 엔터티 금지 항목 추가**(세션 2 T5)
+  - `CLAUDE.md` §4 모듈 규칙 표 — **"스키마는 `IDX-A1`에서 언다" 행 추가**
+  - `docs/grill/GRILL_LEDGER.md` 세션 3 카운터 `RESOLVED: 1 / TOTAL: 10`
+
+#### S3-T2 · CORE · `Verification` 확인 주체 필드 — RESOLVED (2026-08-27)
+
+- **decision:** `verified_by`는 **열거형 4종** — `MERCHANT`(콘솔 저장) · `INTERNAL_SURVEY`(내부 조사 적재) · `USER_REPORT`(신고 경유 재확인) · `OPERATOR`(운영 수정). **표시 문구는 스키마에 넣지 않고** `lib/evidence` 매핑 함수 한 곳이 만든다. `IDX-A1`에서 언다(S3-T1).
+- **근거:** 확인 주체는 **근거 4항목 중 하나라 화면에 그대로 노출된다.** 자유 텍스트면 ① 매장 확인이 아닌데 `"사장 확인"` 으로 쓰는 **사칭을 스키마가 막지 못하고**(세션 1 T7 가드가 fixture에만 걸린다) ② §8.3 규칙 3 판정형 검사가 **DB 값까지 쫓아가야 한다.** 열거형이면 사칭이 구조적으로 불가능하다.
+- **네 경로가 서로 다른 주체를 만든다:** 콘솔 저장(`UX-H`) · 초기 적재(`IDX-C` 300건) · 재확인(`EVD-D` 큐) · 운영 수정. 자유 텍스트면 같은 것을 세 가지 표기로 쓰게 된다.
+- **`detail` 병용 안을 기각한 이유:** 자유 텍스트 필드가 하나라도 남으면 판정형 grep 대상이 늘고, `"점장 김·· 확인"` 같은 값이 **개인정보 유입 경로**가 된다(`305` 스킬).
+- **applied:**
+  - `docs/issues-aiplace/tasks/IDX-D.md` — Task Breakdown 2건 체크 · **§"`verified_by` — 열거형 4종" 신설**(값 표 + 자유 텍스트를 안 쓰는 이유 2가지)
+  - `.claude/skills/300-api-contract-rules/SKILL.md` — 근거 4항목 출처 표에 **열거형 4종** 표기 + 사칭·grep 사유
+  - `docs/grill/GRILL_LEDGER.md` 세션 3 카운터 `RESOLVED: 2 / TOTAL: 10`
+
+#### S3-T3 · CORE · `PriceProfile` 단일값 표기 — RESOLVED (2026-08-27)
+
+- **decision:** `min` · `avg` · `max` **전부 `NOT NULL`.** 단일 가격이면 셋이 같은 값으로 저장된다. **축약은 표시 계층**이 한다 — `lib/search`가 `min === max`면 `"18,000원"`, 아니면 `"15,000~22,000원"`으로 렌더.
+- **근거:** **세션 2 T4와 같은 판단이다** — *"다른 값으로 알 수 있는 것은 싣지 않는다."* 단일값 여부는 `min`·`max`에서 그대로 나오므로 `isSingleValue` 플래그는 중복이고, **`min ≠ max`인데 플래그가 `true`인 상태**를 막을 정합성 제약이 새로 필요해진다. ADR-001상 플래그를 나중에 빼려면 재색인이다.
+- **`nullable` 안을 기각한 이유:** `SRC-B` 예산 필터·정렬·비교가 전부 `null` 분기를 타고 `REQ-FUNC-003`의 '예산 초과 N곳' 집계가 `COALESCE` 범벅이 된다. 세 값이 항상 있으면 분기가 없다.
+- **applied:**
+  - `docs/issues-aiplace/tasks/IDX-A.md` — Scenario 3 **(미정) → 확정** · **§"`PriceProfile` 단일값 — 스키마는 3필드, 축약은 표시 계층" 신설** · DoD 체크
+  - `.claude/skills/300-api-contract-rules/SKILL.md` — "항목의 속성인가" 절에 **같은 원칙이 스키마에도 적용된다** 추가
+  - `docs/grill/GRILL_LEDGER.md` 세션 3 카운터 `RESOLVED: 3 / TOTAL: 10`
+
+#### S3-T4 · CORE · `Proposal` 참조 계약 — RESOLVED (2026-08-27) · **`EXEC` §6.4 구조 결함 1건 해소**
+
+- **decision:** **`reservation.proposal_id` 컬럼만 `IDX-A1`에 얼린다** — `NULL` 허용 · **FK 제약 없음** · `proposal` 테이블 만들지 않음. Phase 1 말에는 값이 **항상 `NULL`**(예약이 제안 없이 독립 동작 · ADR-005). **Phase 2 `AGT-C`에서 `proposal` 테이블 + FK 제약을 추가해 결선.**
+- **근거:** 셋을 동시에 지키는 유일한 형태다 — ① `CLAUDE.md` §7(Phase 2에 Phase 1을 의존시키지 않는다): Phase 2 스키마가 Phase 1에 들어오지 않고 **게이트 미통과 시 컬럼을 `NULL`인 채 두면 끝**이다 ② **ADR-001**(사후 변경 = 전면 재색인): 컬럼을 나중에 추가하지 않는다. **FK 제약 추가는 재색인이 아니다** ③ §8.6.3(`Reservation.proposalId` 참조): 컬럼이 처음부터 있어 `RSV-A`가 참조 계약을 알고 설계한다.
+- **기각한 안:** `proposal` 테이블을 `A1`에 함께 만들면 **Phase 2 스키마가 Phase 1에 산다** — *"게이트 미통과 시 15건을 통째로 버린다"* 는 전제가 깨진다. 컬럼을 아예 안 만드는 안은 ADR-001상 재색인이고 `RSV-A`가 참조 계약 없이 설계된다.
+- **applied:**
+  - `docs/issues-aiplace/tasks/IDX-A.md` — **§"고정 내용" 신설**(시점별 표 + 세 규칙 대조표 + 기각 사유) · DoD 체크
+  - `CLAUDE.md` §7 — **"Phase 1이 Phase 2 엔터티를 참조해야 할 때" 규칙 신설**
+  - `docs/grill/GRILL_LEDGER.md` 세션 3 카운터 `RESOLVED: 4 / TOTAL: 10`
+
+#### S3-T5 · MINOR · 성분·접근성 필드 형상 — RESOLVED (2026-08-27)
+
+- **decision:** **`Attribute.scope` 열거값에 `INGREDIENT`·`ACCESSIBILITY`를 추가**하는 것으로 사전 확보한다. **새 테이블 0 · 새 컬럼 0.** v0.1에서는 해당 `scope`의 `attribute` 행을 만들지 않는다.
+- **근거:** `REQ-NF-024`가 미리 확보하라는 이유는 **ADR-001** — 나중에 컬럼을 추가하면 전면 재색인이다. **열거값 추가는 컬럼 추가가 아니라 값 추가**라 재색인이 아니고, `attribute` 엔터티가 `IDX-A1`에서 얼면 v0.2는 **해당 `scope`로 행을 쌓기만 하면 되어 스키마가 안 바뀐다.** *"필드 사전 확보"* 는 **저장할 자리가 있다**는 뜻으로 충족된다.
+- **기각한 안:** 전용 컬럼 2개는 v0.1 내내 **빈 컬럼 둘**을 들고 가면서, 적재 경험도 없는 상태에서 지금 구조를 맞춰야 해 틀릴 확률이 높다. 아무것도 안 하는 안은 `REQ-NF-024` 미충족이고 v0.2에서 enum 변경이 필요해지면 ADR-001 판단을 다시 해야 한다.
+- **applied:**
+  - `docs/issues-aiplace/tasks/IDX-A.md` — `FR-006` 항목에 방식 명시 · DoD 체크 · **§"성분·접근성 — `Attribute.scope` 열거값으로 흡수" 신설**
+  - `docs/grill/GRILL_LEDGER.md` 세션 3 카운터 `RESOLVED: 5 / TOTAL: 10`
+
+#### S3-T6 · CORE · 정확도 92% 평가셋 — RESOLVED (2026-08-27) · **`EXEC` §6.1 #1 블로커 해소**
+
+- **decision:** **원천 데이터에서 200~300건을 별도 레이블링**해 평가셋으로 쓴다. **`IDX-C` 초기 적재 300건과 겹치지 않게 유지**하고, **`IDX-B`와 같은 주(압축 2주차)에 착수**한다. `IDX-B` 튜닝과 `TEST-001` 인수 판정이 이것을 공유한다.
+- **근거:** `IDX-C` 300건을 그대로 쓰는 안에 문제가 둘이다 — ① **튜닝 대상과 평가 대상이 같으면 92%가 자기 채점**이 된다 ② **순환**: `IDX-C`(4주차)는 `IDX-B`(2주차) 뒤라 그 산출물로 `IDX-B`를 튜닝할 수 없다. `EXEC` §5.3이 이미 *"정규화 평가셋 — Phase 0과 동시. 레이블링 작업 자체에 시간이 든다"* 를 조기 착수 대상으로 올려뒀다.
+- **남는 것:** 방법은 확정됐고 **레이블링 실행이 남는다.** `IDX-B` DoD의 *"평가셋이 구축되고 92% 측정이 재현 가능한가"* 는 실행 후에 체크된다.
+- **applied:**
+  - `docs/issues-aiplace/tasks/IDX-B.md` — ⚠️ 경고 절을 **§"평가셋 — 원천에서 별도 레이블링" 확정 절로 재작성**(모집단·분리·착수·소비 표 + 기각 사유 2건) · Task Breakdown 체크 · DoD에 잔여 명시
+  - `docs/grill/GRILL_LEDGER.md` 세션 3 카운터 `RESOLVED: 6 / TOTAL: 10`
+
+#### S3-T7 · CORE · 사전 미등재·동음이의 처리 정책 — RESOLVED (2026-08-27)
+
+- **decision:** **둘 다 보수적.** 사전 미등재는 `canonical_key`에 **원문을 그대로 두고 사전 갱신 큐에 적재**한다(추정 매핑 금지). 동음이의는 **통합하지 않고 별도 키를 유지**한다. **미등재는 오답이 아니라 사전 커버리지로 분리 집계**한다.
+- **근거:** §1.1이 *"판정하지 않고 근거를 준다"* 이고 **추정 매핑은 시스템이 확인하지 않은 사실을 만들어내는 것**이다. 그 결과가 `SRC-C` 메뉴 질의로 나가면 §8.3 규칙 1(근거 없는 정보 노출 금지)에 걸린다.
+- **분리 집계가 핵심이다:** 정규화 정확도(사전에 있는 표기를 올바른 키로 묶었는가 — **92% 목표**)와 사전 커버리지(전체 중 사전이 덮은 비율)를 나눈다. **합치면 사전을 넓힐수록 정확도가 떨어지는 것처럼 보여 잘못된 인센티브가 생긴다.** 원문 보존이 92%를 떨어뜨리지 않는다.
+- **유사도 임계값 자동 판정을 기각한 이유:** 임계값이 **새 미정**이 되고(T1 경계 규약 적용 대상), 그 값을 정하려면 평가셋이 필요해 **S3-T6과 순환**한다. 게다가 **동음이의는 유사도가 100%라 임계값으로는 애초에 걸러지지 않는다.**
+- **applied:**
+  - `docs/issues-aiplace/tasks/IDX-B.md` — Scenario 2·3 **(미정) → 확정** · **§"정규화 정책 — 확신이 없으면 통합하지 않는다" · §"미등재는 오답이 아니다 — 분리 집계한다" 2절 신설** · DoD 체크 + 분리 집계 항목 추가 · Blockers를 확정 완료/남은 실행으로 재편
+  - `docs/grill/GRILL_LEDGER.md` 세션 3 카운터 `RESOLVED: 7 / TOTAL: 10` (CORE 6/7)
+
+#### S3-T8 · CORE · 필수 필드 결락 시 적재 정책 — RESOLVED (2026-08-27)
+
+- **decision:** **적재를 거부하고 결락 항목을 로그에 남긴다.** 300건이 부족하면 **원천을 확대해 채운다**(상권 범위·수집처). 부분 적재하지 않는다.
+- **근거:** ① §3.1.6이 **"필수"** 라고 규정한 5개다 — 부분 적재를 허용하면 그 규정이 사실상 무효가 된다 ② 색인에 근거 없는 레코드가 쌓이면 **`EvidenceGate`가 유일한 방어선**이 된다. `C-DRV-004`가 RLS에 대해 경고한 것과 같은 구조이고, **게이트 버그 1건이 곧 근거 없는 후보 노출**이다.
+- **게이트 해석이 결정적이었다:** Phase 0 게이트가 재는 것은 *"300건이 적재됐다"* 가 아니라 **"필수 필드를 갖춘 300건이 있다"** 이다. 부분 적재로 300을 채우면 **통과한 것처럼 보이지만 실제로는 미달**이다.
+- **세션 2 T3과 같은 모양:** *채우려고 기준을 낮추지 않는다.* 항목별 차등 안은 "필수"가 필수가 아니게 되고 항목별 기준이 새 미정이 되며, `SPEC-008`의 **4항목 동등 취급**과도 충돌한다.
+- **applied:**
+  - `docs/issues-aiplace/tasks/IDX-C.md` — Scenario 2 **(미정) → 거부 확정** · **§"필수 필드 결락 — 거부한다. 기준을 낮춰 채우지 않는다" 신설**(처리 표 + 이유 2건 + 게이트 해석 + 기각 사유) · DoD 체크 · Blockers 확정 완료로 전환
+  - `docs/grill/GRILL_LEDGER.md` 세션 3 카운터 `RESOLVED: 8 / TOTAL: 10` — **CORE 7건 전건 해소**
+
+#### S3-T9 · MINOR · 조건 카테고리 어휘 관리 주체 — RESOLVED (2026-08-27)
+
+- **decision:** **운영자 단독 관리 · 전국 단일 사전.** 매장 콘솔은 **드롭다운 선택만**(자유 입력 없음). 신규 어휘는 매장 요청 → 운영자 검토 → 사전 반영.
+- **근거:** **S3-T2에서 `verified_by`를 열거형으로 만든 것과 같은 판단이다.** 조건 카테고리는 `SRC-B` 필터의 어휘이자 `Attribute`의 값이라 **화면에 그대로 나간다.** 자유 입력이면 `UX-H`의 *"근거 없는 문구 입력 차단"* 이 **콘솔 UI에만 의존**하게 되고 `"분위기 좋은 룸"` 같은 값이 정리 전까지 필터 어휘로 살아 있다(§8.3 규칙 7 저촉). 드롭다운이면 애초에 입력할 수 없다.
+- **상권별 분산을 기각한 이유:** 상권마다 어휘가 갈리면 `SRC-B` 필터가 상권별로 달라져 **Top-3가 상권을 가로지를 때 비교가 성립하지 않는다.** v0.1은 상권 1곳이라 분산할 이유도 없다.
+- **applied:**
+  - `docs/issues-aiplace/tasks/IDX-A.md` — `FR-010` 항목에 관리 주체 명시 · **§"조건 카테고리 어휘 — 운영자 단독 관리" 신설** · **Blockers를 확정 완료 5건으로 재편**
+  - `docs/grill/GRILL_LEDGER.md` 세션 3 카운터 `RESOLVED: 9 / TOTAL: 10`
+
+#### S3-T10 · MINOR · 캐시 무효화 태그 체계 — RESOLVED (2026-08-27)
+
+- **decision:** **`place:{id}` 단일 태그.** 무효화 시점은 매장 메뉴·가격 갱신 · 콘솔 저장(`MCH-A`) · 재색인. **신선도 경과는 무효화 대상이 아니다** — 세션 2 T6이 `verifiedAt` 수신 시점 판정으로 처리한다.
+- **근거:** `GET /v1/places/{id}/dishes`가 **매장 단위 조회**라 캐시 항목도 매장 단위다. `dish:{canonicalKey}`까지 쪼개도 **무효화 대상은 결국 그 매장의 항목 하나**라 이득이 없고, **S3-T7에서 `canonical_key`가 사전 갱신으로 바뀔 수 있다고 정했으므로 옛 메뉴 태그가 고아로 남는다.** 전역 태그는 매장 1곳 갱신이 전체 캐시를 날려 `REQ-NF-020` 히트율 70%를 지킬 수 없다.
+- **세션 2 T6이 문제의 절반을 미리 없앴다:** 신선도를 캐시 무효화로 처리했다면 `verified_at` 변화마다 태그를 털어야 해 설계가 훨씬 복잡했다.
+- **applied:**
+  - `docs/issues-aiplace/tasks/IDX-E.md` — Task Breakdown 2건 갱신·체크 · **§"캐시 무효화 — `place:{id}` 단일 태그" 신설** · Scenario 2 확정(세션 2 T11) · DoD 3건에 확정/잔여 구분 · **Blockers를 확정 완료 3건으로 재편**
+  - `docs/grill/GRILL_LEDGER.md` 세션 3 카운터 `RESOLVED: 10 / TOTAL: 10` · `STOP REASON: ALL_RESOLVED`
+
+---
+
+## Closeout — 세션 3 · 2026-08-27
+
+**STOP REASON: ALL_RESOLVED** · RESOLVED 10 / TOTAL 10 (CORE 7/7 · MINOR 3/3)
+
+질문 10건 · 세션 2가 이미 해소해 질문하지 않은 것 5건(F1~F5).
+
+### 이 세션의 실질 성과
+
+**`IDX-A1` 스키마를 얼릴 준비가 끝났다.** 압축 §5 조건 3(*"`IDX-A1` 스키마 1주 확정"*)이 압축 성립 전제였고, 그것을 막던 결정이 전부 해소됐다.
+
+| 해소된 상위 블로커 | 출처 |
+| --- | --- |
+| **정규화 92% 평가셋 부재** — Phase 0 게이트 차단 | `EXEC` §6.1 **#1** |
+| **`RSV-A`의 `Proposal` 참조** — 미해소 구조 결함 | `EXEC` §6.4 |
+
+`EXEC` §6.4의 남은 1건은 **`TRK-E`의 `FR-082` Phase 모순**이다 — 계측 범위라 이 세션 밖.
+
+### 결정이 서로를 바꾼 연쇄
+
+```
+S3-T1 A1 경계 ─→ T2 T3 T4 T5 T9 가 전부 A1/A2 중 어디인지로 갈렸다
+S3-T2 열거형 ─→ T9 어휘 관리도 같은 판단 (자유 입력이면 스키마가 못 막는다)
+S3-T6 평가셋 분리 ─→ T7 미등재를 오답이 아니라 커버리지로 집계
+S3-T7 canonical_key 가변 ─→ T10 메뉴 태그가 고아가 된다 → 단일 태그
+세션2 T6 ─→ S3-T10 문제의 절반이 이미 사라져 있었다
+```
+
+### 반복해서 나온 판단 하나
+
+**"채우려고 기준을 낮추지 않는다"** 가 세 번 나왔다 — 세션 2 T3(Top-3는 상한) · S3-T7(추정 매핑 금지) · S3-T8(결락 적재 거부).
+셋 다 §1.1 *"판정하지 않고 근거를 준다"* 에서 같은 결론에 도달했다.
+
+### 남은 실행 (결정이 아니라 작업)
+
+| 항목 | 어디 |
+| --- | --- |
+| 평가셋 레이블링 200~300건 | `IDX-B` DoD |
+| `RSV-A` 담당자의 `Proposal` 참조 계약 동의 | `IDX-A` DoD |
+| 정확도·사전 커버리지 분리 집계 구현 | `IDX-B` DoD |
