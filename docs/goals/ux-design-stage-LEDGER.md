@@ -1,7 +1,7 @@
 # UX 설계 단계 진행 원장
 
-WAVE: W1
-LANES_DONE: 6
+WAVE: W3
+LANES_DONE: 8
 LANES_TOTAL: 8
 DECISIONS: 0
 STOP REASON:
@@ -12,7 +12,7 @@ STOP REASON:
 | --- | --- | --- | --- |
 | W0 | UX-A | DONE | PASS — PM 승인 2026-08-27 |
 | W1 | UX-C · UX-B · UX-E · UX-G · UX-H | DONE | PASS |
-| W3 | UX-D · UX-F | PENDING | — |
+| W3 | UX-D · UX-F | DONE | PASS |
 
 ## 계획 대비 실제 Gantt
 
@@ -30,8 +30,8 @@ gantt
     UX-G 대화방·제안 비교 [P2] :done, uxg, after uxa, 2w
     UX-H 매장 콘솔 [P2] :done, uxh, after uxa, 2w
     section W3 · 파생
-    UX-D 공유 카드·신고 :uxd, after uxc, 1w
-    UX-F 빈 화면 금지 6상태 :crit, uxf, after uxc, 1w
+    UX-D 공유 카드·신고 :done, uxd, after uxc, 1w
+    UX-F 빈 화면 금지 6상태 :crit, done, uxf, after uxc, 1w
 ```
 
 ## 결정 로그
@@ -39,3 +39,4 @@ gantt
 - 결정 없음. UX-001 인정 여부, 접근성 기준, 판정형 어휘 기준, 개인정보 보존 기간은 각 산출물에 `(미정 — 확정 필요)`로 남긴다.
 - W0 합류 게이트: UX-A 산출물 형식·금지 어휘 검증을 통과했다. PM이 UX-001을 2026-08-27에 승인했으며, 지도 앱 내 탭 실측은 `CLI-E` 구현 인계로 유지한다.
 - W1 합류 게이트: UX-C·UX-B·UX-E·UX-G·UX-H의 6절 구조와 금지 어휘 검사를 통과했다. 실행 슬롯 상한으로 UX-C·UX-B·UX-E를 먼저 실행한 뒤 UX-G·UX-H를 실행했으며, 파일 소유권은 겹치지 않았다.
+- W3 합류 게이트: UX-D·UX-F의 6절 구조를 통과했다. UX-F의 열화 상태 6행은 모두 사실과 다음 행동을 포함한다.
