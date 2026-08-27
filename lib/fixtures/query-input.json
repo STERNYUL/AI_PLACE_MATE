@@ -1,0 +1,26 @@
+{
+  "_notes": {
+    "source": "가상 데이터. 조건 입력 3상태의 표본이다 (Grill S1-T4 — 입력 3상태)",
+    "partial": "부분 파싱 — 파싱된 슬롯만 채워지고 나머지는 null 로 남는다. 이월 여부가 §5 #5 판정 대상이다"
+  },
+  "placeholder": "성수에서 혼자 저녁, 15,000원 정도",
+  "examples": ["성수 · 혼밥 · 15,000원", "저녁 2명 · 파스타 · 2만원 이하"],
+  "parsed": {
+    "rawText": "성수에서 혼자 저녁, 15,000원 정도",
+    "condition": {
+      "budgetPerPerson": 15000,
+      "partySize": 1,
+      "dish": null,
+      "contexts": ["성수", "저녁"]
+    }
+  },
+  "partial": {
+    "rawText": "성수 근처에서 혼자 저녁 먹을 데",
+    "condition": {
+      "budgetPerPerson": null,
+      "partySize": 1,
+      "dish": null,
+      "contexts": ["성수"]
+    }
+  }
+}
