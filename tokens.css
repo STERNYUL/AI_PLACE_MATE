@@ -1,0 +1,19 @@
+/* Hallmark — genre: modern-minimal — macrostructure: Workbench — theme: Coral — enrichment: none — nav: N13 — footer: Ft5
+ * audience: general restaurant explorer — use case: compare candidates then record a booking request — tone: utilitarian
+ * pre-emit critique: P5 H5 E4 S5 R5 V4
+ */
+:root {
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}

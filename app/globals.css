@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import '../tokens.css';
 
 /*
   UX-A 토큰 — 지도 내 탭 모바일 웹이 전제다 (ADR-006 · R6).
@@ -44,11 +45,53 @@
 @layer base {
   html {
     color-scheme: light;
+    overflow-x: clip;
   }
 
   body {
     background-color: var(--color-canvas);
     color: var(--color-ink);
     -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+
+  button,
+  input,
+  textarea {
+    transition: transform var(--dur-micro) var(--ease-out), opacity var(--dur-micro) var(--ease-out), background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+  }
+
+  button {
+    white-space: nowrap;
+  }
+
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--color-fact);
+    outline-offset: 2px;
+  }
+
+  button:disabled,
+  input:disabled,
+  textarea:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
+  button:not(:disabled):hover {
+    transform: translateY(-1px);
+  }
+
+  button:not(:disabled):active {
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 150ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 150ms !important;
+    }
   }
 }

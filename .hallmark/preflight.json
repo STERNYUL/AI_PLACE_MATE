@@ -1,0 +1,8 @@
+{
+  "date": "2026-08-27",
+  "framework": "Next.js App Router",
+  "fontStack": "Pretendard system stack from app/globals.css",
+  "palette": "existing Tailwind v4 @theme tokens",
+  "motion": "motion-cut; no animation library installed",
+  "spacing": "existing Tailwind scale with Hallmark semantic timing tokens"
+}
