@@ -299,15 +299,16 @@ grep -cE 'CandidateCard|GateResult|StatePanel|QueryInput' app/preview/page.tsx  
 
 # 세션 2·3 결정이 fixture 형상에 들어갔는가
 grep -c 'excludedByEvidence\|excludedByRecheck\|fallbackApplied' lib/fixtures/top3.json  # at least 3
-grep -cE 'MERCHANT|INTERNAL_SURVEY|USER_REPORT|OPERATOR' lib/evidence/verified-by.ts     # equals 4
+grep -oE 'MERCHANT|INTERNAL_SURVEY|USER_REPORT|OPERATOR' lib/evidence/verified-by.ts \
+  | sort -u | wc -l                                               # equals 4
 grep -c 'DRAFT: SPEC-008' types/draft.ts                          # at least 1
 
 # 신선도 판정이 함수 1개인가 (S2-T6) — 컴포넌트가 직접 날짜 계산하지 않는다
 grep -rlE 'Date\.now|new Date' components/ | wc -l                # equals 0
 
 # 근거 4항목이 카드의 필수 props (불변 규칙 1)
-grep -cE 'selectionReason|evidenceAttribute|verifiedAt|verifiedBy' \
-  components/candidate-card.tsx                                   # equals 4
+grep -oE 'selectionReason|evidenceAttribute|verifiedAt|verifiedBy' \
+  components/candidate-card.tsx | sort -u | wc -l                 # equals 4
 
 # 판정형 어휘 0건 (불변 규칙 3)
 grep -rniE '조용|아늑|분위기 (좋|나쁨)|추천|최고|훌륭|괜찮|무난|가성비|인기|핫한|강추|별로' \
@@ -326,7 +327,7 @@ grep -c 'missing' lib/fixtures/evidence-missing.json              # at least 4
 grep -c 'PREVIEW_ENABLED' env.ts                                  # at least 1
 
 # 티켓은 하나도 닫히지 않았는가 (UX-D #143 은 T4 에서 범위 밖)
-gh issue list --state open --json number \
+gh issue list --state open --limit 300 --json number \
   -q '[.[].number] | map(select(IN(137,140,141,142,145))) | length'   # equals 5
 ```
 

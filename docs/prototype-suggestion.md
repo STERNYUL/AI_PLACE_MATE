@@ -321,9 +321,9 @@ grep -rniE '가격순|거리순|sortByPrice|sortByDistance' app/ components/ | w
 grep -rl 'USE_MOCK' lib/ app/ | wc -l                             # equals 1
 
 # 프로토타입 대상 이슈 상태 — SPEC·MOCK·UX 12건 CLOSED, CLI 3건 OPEN
-gh issue list --state closed --json number \
+gh issue list --state closed --limit 300 --json number \
   -q '[.[].number] | map(select(IN(94,95,96,97,101,108,109,110,111,112,140,141,142,143,145))) | length'
-gh issue list --state open --json number \
+gh issue list --state open --limit 300 --json number \
   -q '[.[].number] | map(select(IN(135,136,137))) | length'        # equals 3
 ```
 
