@@ -18,7 +18,7 @@
 
   > **`main`(`e0c74b5`)에서 파면 안 된다.** 이 목표문과 판정 명령 `--limit` 수정이 `main` 에 아직 없어서, 워킹트리에서 **목표문이 사라지고** §6 이 "정본"이라 부른 스파이크 문서 §9 명령이 **버그판으로 되돌아간다.**
   > 착수 전 `git log --oneline -1` 로 `7ee8a87` 이 조상인지 확인하고, `ls docs/goals/visual-spike-build.md` 가 파일을 찾는지 본다. 못 찾으면 브랜치 기점이 틀린 것이다.
-  > 이미 `main` 기점으로 만들어진 `feat/137-visual-spike` 가 있으면 **`git switch feat/137-visual-spike && git rebase docs/137-spike-goal`** 로 기점을 옮긴다.
+  > 이미 `main` 기점으로 만들어진 `feat/137-visual-spike` 가 있으면 **`git switch feat/137-visual-spike && git rebase --autostash docs/137-spike-goal`** 로 기점을 옮긴다. **`--autostash` 가 필수다** — unstaged 변경이 하나라도 있으면 rebase 가 거부되고, 이 저장소는 `rebase.autoStash` 가 설정돼 있지 않다.
 - **작업 대상 — 이 경로만 생성·수정한다:**
 
   | 경로 | 내용 | 지위 |
@@ -56,6 +56,8 @@
 | # | 작업 | 산출 |
 | --- | --- | --- |
 | 1 | 프로젝트 초기화 + 토큰 + shadcn/ui | `app/preview/page.tsx` 골격 |
+
+> **워킹트리에 untracked 스캐폴드가 이미 있으면 이어받는다. 재초기화하지 않는다.** `create-next-app` 을 다시 돌리면 충돌하거나 이미 통과 중인 판정 항목을 되돌린다 — 2026-08-27 기준 `app/` `components/ui/` `lib/` `types/` `env.ts` `package.json` 이 존재하고 13개 중 8개가 이미 통과한다. 부족한 것만 채운다.
 | 2 | 후보 카드 + 근거 게이트 + fixture 3종 | **카드 4상태** |
 | 3 | 열화 6상태 | **6상태** |
 | 4 | 조건 입력 3상태 | **3상태** |
@@ -149,7 +151,8 @@ command -v node npm || ls "$PROGRAMFILES/nodejs/node.exe" 2>/dev/null
 ## 3) 종료 조건 및 종료 방법
 
 - **종료 조건 (아래 중 하나라도 충족되는 순간 루프를 즉시 멈춘다):**
-  - `aztks-agent` EVALUATE 가 **GO** 를 반환하고, **§3.1 판정 명령 13개**(경로 A 는 **§3.2 의 14·15 포함 15개**)가 전부 기대값과 일치 → **STOP REASON: SPIKE_ACCEPTED**
+  - **경로 A** — `aztks-agent` EVALUATE 가 **GO** 를 반환하고 **§3.1 13개 + §3.2 의 14·15 = 15개 전부** 기대값과 일치 → **STOP REASON: SPIKE_ACCEPTED**
+  - **경로 B** — `aztks-agent` 가 **GO** 를 반환하고 **§3.1 13개**가 전부 일치 → **STOP REASON: SOURCE_COMPLETE_NO_RENDER**. **`SPIKE_ACCEPTED` 가 아니다** — 렌더를 한 번도 확인하지 않았으므로 *"시각적 프로토타입"* 요구가 충족됐다고 적을 수 없다 (§2.7)
   - `aztks-agent` EVALUATE 가 **NO-GO 를 누적 3회** 반환 → **STOP REASON: EVAL_BUDGET**
   - 판정 명령이 **같은 항목에서 3회 연속 불일치** → **STOP REASON: VERIFY_STUCK**
   - 평가-진행 라운드(turn = `/goal` 평가자가 진행 상태를 한 번 점검하는 메인 에이전트 응답 사이클)가 **누적 30회**(경로 A 는 **40회** — 설치·shadcn·빌드 디버깅이 더해진다) 도달 → **STOP REASON: TURN_CAP** (= or stop after 30 turns; 40 on path A)
@@ -159,6 +162,7 @@ command -v node npm || ls "$PROGRAMFILES/nodejs/node.exe" 2>/dev/null
   2. **§3.1 판정 명령 13개**(경로 A 는 **§3.2 포함 15개**)**를 실행해 출력 전부를 대화에 남긴다.** 어느 경로였는지 한 줄로 밝힌다.
   3. `aztks-agent` 의 **최종 스코어카드(5축 · GO/NO-GO)를 대화에 그대로 남긴다.** **Task 호출 원문(프롬프트 첫 줄)과 서브에이전트 응답 블록을 그대로 붙인다 — 요약·재작성하면 무효다.** 디스패치 흔적이 없는 GO 는 자기 채점이므로 인정되지 않는다.
   4. `git status --short` · `git log --oneline main..HEAD` · `gh pr list` 를 실행해 출력을 대화에 남긴다.
+  5. **`git status --short | grep -c '^??'` 를 실행해 `0` 을 보인다.** 산출물이 전부 untracked 인 채로 종료하면 판정 명령은 통과해도 **커밋된 것이 없다** — PR 에 아무것도 올라가지 않는다.
 
 ### 3.1 판정 명령 13개 — 전부 텍스트·`gh` 도구다 (node 불필요)
 
@@ -222,9 +226,14 @@ gh issue list --state open --limit 300 --json number \
 npm run build                                                            # exits 0
 
 # 15. 렌더가 실제로 나온다 — dev 서버 응답에 카드 상태가 보인다
-#     스크린샷이 아니라 HTML 을 센다. 브라우저 자동화가 없으므로 에이전트가 직접 실행 가능해야 한다
-npm run dev &
-curl -s localhost:3000/preview | grep -cE 'STALE|제외'                   # at least 2
+#     ① PREVIEW_ENABLED=true 필수 — env.ts 기본값이 'false' 라 그냥 띄우면 /preview 가 404 다
+#     ② 기동 대기 필수 — 즉시 curl 하면 connection refused
+#     ③ -oE | sort -u 필수 — React SSR HTML 은 개행이 없어 grep -c 가 최대 1 을 반환한다 (4·7번과 같은 계열)
+#     ④ kill 필수 — 안 죽이면 orphan 프로세스가 남아 다음 실행에서 포트가 충돌한다
+PREVIEW_ENABLED=true npm run dev > /tmp/dev.log 2>&1 & DEV=$!
+for i in $(seq 30); do curl -sf localhost:3000/preview >/dev/null && break; sleep 2; done
+curl -s localhost:3000/preview | grep -oE 'STALE|제외' | sort -u | wc -l   # equals 2
+kill $DEV
 ```
 
 **스크린샷은 에이전트의 종료 조건이 아니다.** 화면을 눈으로 보는 것은 사용자의 몫이고, 에이전트는 **렌더가 나온다는 사실**까지만 증명한다. 사용자가 스크린샷을 남기면 `docs/design/spike/spike-preview*.png` 에 둔다.
@@ -303,6 +312,7 @@ curl -s localhost:3000/preview | grep -cE 'STALE|제외'                   # at 
 | 판정 명령이 같은 항목에서 3회 연속 불일치 | **STOP REASON: VERIFY_STUCK.** 명령을 고쳐 통과시키지 않는다 — 판정 명령은 스파이크 문서 §9 의 것이 정본이다 |
 | grill 결정과 구현이 충돌 | **grill 결정이 이긴다.** 결정을 바꾸려면 멈추고 사용자에게 보고한다 |
 | 미정 5건 중 화면으로도 결론이 안 나는 것 | `SPIKE-FINDINGS.md` 에 **"판정 불가 + 무엇이 더 필요한가"** 로 기록한다. 통과로 처리하지 않는다 |
+| 경로 A 인데 15번이 안 통과 | 서버 로그(`/tmp/dev.log`)를 종료 보고에 남긴다. **`SOURCE_COMPLETE_NO_RENDER` 로 내려가지 않는다** — 경로 A 에서의 렌더 실패는 고쳐야 할 결함이지 대체 종료 코드가 아니다 |
 
 ---
 
