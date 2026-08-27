@@ -26,7 +26,7 @@
 | 백엔드·플랫폼 | Route Handler + Vercel Preview | **없음** — 네트워크 호출 자체가 없다 |
 | 배포 | Vercel Preview URL | **로컬 dev 서버만** |
 | 착수 전 확정 | 4건 | **2건** |
-| 해소되는 미정 | 9건 | **6건** — §5 |
+| 해소되는 미정 | 9건 | **5건** — §5 |
 
 **한 문장** — **화면 13상태를 한 페이지에 나열해, 이 제품이 어떻게 보이는지 4일 안에 결론 낸다.**
 
@@ -38,18 +38,33 @@
 
 | # | 화면 | 상태 | 무엇을 눈으로 판정하나 |
 | --- | --- | --- | --- |
-| **1** | **Top-3 후보 카드** | 4 — 근거 완비 · `STALE` · `RECHECK_REQUIRED` · **근거 누락(렌더 차단)** | 근거 4항목이 카드에 다 들어가는가. **경고가 묻히지 않는가** |
+| **1** | **Top-3 후보 카드** | 4 — 근거 완비 · `STALE` · **제외: 근거 누락** · **제외: 재확인 대기** | 근거 4항목이 카드에 다 들어가는가. **경고가 묻히지 않는가.** 게이트가 실제로 거르는가 |
 | **2** | **열화 상태** | 6 — `폴백표시` `근거대기` `근거생략` `유사메뉴대체` `제안없음` `재시도안내` | 어느 상태에도 빈 화면이 없는가. **각 상태에 다음 행동이 있는가** |
 | **3** | **조건 입력** | 3 — 입력 전 · 파싱 결과 확인 · **폴백 전환 고지** | 전환 고지가 **오류로 읽히지 않는가** |
 | | | **13** | |
 
+### 카드 4상태 중 둘은 '제외'다 — 게이트 결과 패널 (확정 · Grill S4-T1)
+
+**세션 2 T2가 `RECHECK_REQUIRED`를 정렬 이전 제외로 확정**했으므로 카드로 렌더될 일이 없다. 세션 2 T3은 제외 사유가 **둘**임을 응답 최상위에 실었다.
+
+| 상태 | 렌더 | 대응 필드 |
+| --- | --- | --- |
+| 근거 완비 | 정상 카드 | — |
+| `STALE` | 정상 카드 + **경고 병기** | `verifiedAt` (수신 시점 판정) |
+| **제외: 근거 누락** | **패널** — *제외됨 + 사유* | `excludedByEvidence` |
+| **제외: 재확인 대기** | **패널** — *제외됨 + 사유* | `excludedByRecheck` |
+
+**스파이크의 목적이 게이트가 실제로 거르는지 눈으로 보는 것**이다. 두 사유를 구분해 보여줘야 **§5 #4(후보 3개 미만 화면)** 를 판정할 수 있다 — 3개가 안 되는 이유가 무엇인지에 따라 화면 카피가 달라진다.
+
+**카드로 그대로 렌더하는 안을 기각한 이유** — 세션 2 T2가 제외로 확정했으므로 **실제로 존재하지 않는 화면**을 그리게 되고, 나중에 그 컴포넌트를 지워야 한다.
+
 ### 공유 카드를 뺀 이유 (T4)
 
-**공유 카드 2상태는 §5 미정 6건 중 어느 것에도 기여하지 않는다.** 미정 해소는 위 3종에서 전부 나온다.
+**공유 카드 2상태는 §5 미정 항목 어느 것에도 기여하지 않는다.** 미정 해소는 위 3종에서 전부 나온다.
 
 | 미정 | 필요한 화면 |
 | --- | --- |
-| #3 신선도 위계 · #4 후보 3개 미만 · #7 `STALE` · #1 판정형(부분) | 카드 4상태 |
+| #3 신선도 위계 · #4 후보 3개 미만 화면 · #1 판정형(부분) | 카드 4상태 |
 | #6 후보 0건 조건 완화 | 열화 6상태 |
 | #5 부분 파싱 필드 이월 | 입력 3상태 |
 
@@ -82,26 +97,55 @@
 | --- | --- | --- |
 | `SPEC-002`·`008` 응답 계약 | **`types/draft.ts` 한 파일** — `// DRAFT: SPEC-008 확정 시 교체` 주석 필수. 근거 4항목 props는 **camelCase 4개 필수** (T3) | 계약 확정 시 **이 파일만 교체된다.** wire 표기가 바뀌면 `lib/search/client.ts`의 변환 함수 1개만 고친다 |
 | `MOCK-001` OpenAPI 자동 검증 | **없음** | `MOCK-001` 착수 시 fixture를 Mock 응답 정의로 이관 |
-| `MOCK-002` Top-3 6시나리오 | `lib/fixtures/top3.json` — **실제 매장 3곳 공개 정보** (T4·T7) | 시나리오 이름이 그대로 `MOCK-002`의 스위치 키가 된다 |
+| `MOCK-002` Top-3 6시나리오 | `lib/fixtures/top3.json` — **실제 매장 3곳 공개 정보** (T4·T7) · **응답 형상은 세션 2 T4** | 시나리오 이름이 그대로 `MOCK-002`의 스위치 키가 된다 |
 | `MOCK-003` 근거 누락 4종 | `lib/fixtures/evidence-missing.json` — 가상 | 동일 |
 | `MOCK-004` 신선도 3상태 + 경계 3종 | `lib/fixtures/freshness.json` — 가상 | 동일 |
+| `IN-A` API Gateway | **없음** — 네트워크 호출이 없다 | — |
+| Vercel Preview 배포 | 로컬 dev 서버 | 인앱 브라우저 실측 시점에 필요해진다 |
 
-### ⚠️ 실제 매장명을 쓰면 확인 주체를 사칭하지 않아야 한다 (T7)
+### fixture 형상 — 세션 2·3 결정이 그대로 들어간다
+
+계약 세션(2)과 데이터 세션(3)이 이 형상을 이미 확정했다. **스파이크가 다른 형상을 쓰면 `MOCK-00x` 이관 때 다시 만진다.**
+
+```
+top3.json
+  candidates: [                      ← SRS 여섯 항목 · JSON 키 7개
+    { id, priceRange: { min, avg, max },   ← 셋 다 필수 (S3-T3)
+      signatureDish, contextAttributes,
+      selectionReason,                     ← 파생값 (S2-T5) · 주석 필수
+      verifiedAt,                          ← 판정은 freshness.ts (S2-T6)
+      verifiedBy: "INTERNAL_SURVEY" }      ← 열거형 4종 (S3-T2)
+  ],
+  fallbackApplied, overBudgetCount,        ← 응답 최상위 (S2-T4)
+  substitutedDish,
+  excludedByEvidence, excludedByRecheck    ← 제외 사유별 건수 (S2-T3)
+}
+```
+
+| 결정 | 스파이크에 미치는 영향 |
+| --- | --- |
+| **S3-T2** `verifiedBy` 열거형 | fixture는 `"INTERNAL_SURVEY"` · **표시명 매핑 함수가 `lib/evidence`에 필요** |
+| **S2-T6** 신선도 수신 시점 판정 | **`lib/evidence/freshness.ts`가 스파이크 산출물에 포함**된다 |
+| **S3-T3** `PriceProfile` 3필드 | 셋 다 채우고 **축약은 `lib/search` 표시 함수** |
+| **S2-T5** `selectionReason` 파생 | fixture에 값을 넣되 **`// 파생값 — EVD-B 생성. 저장 대상 아님`** 주석 필수 |
+| **S2-T8** `422` 불채택 | 폴백은 오류가 아니라 `fallbackApplied: true` |
+
+### ⚠️ 실제 매장명을 쓰면 확인 주체를 사칭하지 않아야 한다 (T7 · S3-T2로 형상 갱신)
 
 판정형 어휘 grep이 `lib/fixtures/`까지 검사하므로 **자리표시자를 쓸 수 없다.** 그래서 실제 공개 정보를 넣는데, 여기에 함정이 있다.
 
 | 하는 것 | 하지 않는 것 |
 | --- | --- |
 | 실제 매장명 · 공개된 좌석수·가격 | 확인하지 않은 사실을 단정 |
-| `verifiedBy` = **내부 조사** | `verifiedBy` = "사장 확인" — **사칭이다** |
+| `verifiedBy` = **`INTERNAL_SURVEY`** (열거형 · S3-T2) | `verifiedBy` = `MERCHANT` — **사칭이다** |
 | `verifiedAt` = 조사한 날 | 조사하지 않은 날짜 |
 
 **실제 매장명 + 미확인 사실 = 근거 없는 정보 노출**이고, 이것이 §8.3 규칙 1이 금지하는 바로 그것이다.
 **T2의 `PREVIEW_ENABLED` 차단이 여기서 필수 조건이 된다** — 차단이 없으면 미확인 사실이 사용자에게 나간다.
 
-**얻는 것** — `SPEC-008`의 미해소 쟁점(*"4항목 각각의 데이터 출처를 엔터티·필드 수준에서 확정"*)에 직접 기여한다. 실제 3곳을 채워 보면 **어느 항목이 현실에서 비는지, `verifiedBy`가 매장인지 운영자인지**가 즉시 드러난다. 누락 4종과 신선도 경계는 인위적으로 만드는 것이 목적이므로 가상으로 둔다.
-| `IN-A` API Gateway | **없음** — 네트워크 호출이 없다 | — |
-| Vercel Preview 배포 | 로컬 dev 서버 | 인앱 브라우저 실측 시점에 필요해진다 |
+**얻는 것** — 실제 3곳을 채워 보면 **어느 항목이 현실에서 비는지**가 즉시 드러난다. 누락 4종과 신선도 경계는 인위적으로 만드는 것이 목적이므로 가상으로 둔다.
+
+> `SPEC-008`의 *"4항목 데이터 출처 확정"* 은 **세션 3 T5가 이미 해소**했다 — `selectionReason`만 파생, 나머지 셋은 `Attribute`·`Verification`. 스파이크는 그 형상이 화면에서 실제로 채워지는지를 본다.
 
 ### ⚠️ 이것이 상위 문서 §10의 '안 B'다 — 다만 대가를 통제한 형태
 
@@ -121,12 +165,16 @@
 ### 4.1 확정 — Next.js + `/preview` 갤러리 1페이지 *(T1 · 2026-08-26)*
 
 ```
-app/preview/page.tsx          13상태를 세로로 나열. 라우팅·상태관리 없음
-components/candidate-card.tsx 근거 4항목 필수 props
-components/states/*.tsx       열화 6상태
-lib/evidence/gate.ts          클라이언트 근거 게이트
-lib/fixtures/*.json           top3 · evidence-missing · freshness
-types/draft.ts                잠정 타입 — 계약 확정 시 교체
+app/preview/page.tsx           13상태를 세로로 나열. 라우팅·상태관리 없음
+components/candidate-card.tsx  근거 4항목 필수 props
+components/gate-result.tsx     제외 2종 패널 (S4-T1)
+components/states/*.tsx        열화 6상태
+lib/evidence/gate.ts           클라이언트 근거 게이트
+lib/evidence/freshness.ts      신선도 판정 단일 원천 (S2-T6)
+lib/evidence/verified-by.ts    verified_by 열거값 → 표시명 (S3-T2)
+lib/search/format.ts           priceRange 축약 (S3-T3)
+lib/fixtures/*.json            top3 · evidence-missing · freshness
+types/draft.ts                 잠정 타입 — 계약 확정 시 교체
 ```
 
 **`?scenario=` 쿼리 하나로 전환한다.** 스위처 UI를 만들지 않는다 — 갤러리에 전부 동시 렌더하는 것이 더 빠르고, 비교 판정이 쉽다.
@@ -146,17 +194,17 @@ types/draft.ts                잠정 타입 — 계약 확정 시 교체
 
 ---
 
-## 5. 이 스파이크가 사는 것 — 미정 6건
+## 5. 이 스파이크가 사는 것 — 미정 5건 (세션 2가 1건을 먼저 해소)
 
-상위 문서 §6의 9건 중 **6건이 로컬 화면만으로 판정된다.**
+상위 문서 §6의 9건 중 **5건이 로컬 화면만으로 판정된다.** #7(`STALE` 유효성)은 세션 2 T2가 이미 확정했다.
 
 | # | 미정 항목 | 경량으로 판정 가능? | 무엇을 보고 판정하나 |
 | --- | --- | --- | --- |
 | **3** | 신선도 경고의 시각 위계 | **가능** | 3상태 + 경계 3종을 나란히 놓고 경고가 묻히는지 본다. `REQ-NF-011` 누락률 0%의 실질 근거 |
-| **4** | 후보 3개 미만 화면 | **가능** | 3곳 / 2곳 / 0곳 세 카드 묶음을 비교 |
+| **4** | 후보 3개 미만 **화면** | **가능** | **동작은 세션 2 T3이 확정**(3은 상한 · 통과분만 반환). 남은 건 **화면 표현** — 3곳/2곳/0곳 + **제외 사유 둘을 구분해** 비교 |
 | **5** | 부분 파싱 시 필드 이월 | **가능** | 이월 / 미이월 두 입력 화면을 나란히 |
 | **6** | 후보 0건 시 조건 완화 제안 여부 | **가능** | `제안없음` 상태 화면 2안 비교 |
-| **7** | `STALE` 후보의 근거 유효성 | **가능** | `STALE` 카드를 그려 제외인지 경고 병기인지 판정 |
+| ~~**7**~~ | ~~`STALE` 후보의 근거 유효성~~ | **해소됨** | **세션 2 T2가 확정** — 노출 + 경고 병기 · `RECHECK_REQUIRED`는 제외. 스파이크는 **표기 위계만** 본다(#3) |
 | **1** | 판정형 어휘 기준 | **부분** | 카피 후보를 카드에 올려 본다. **정본 문서(`WRITING-GUIDE.md`)는 `UX-C` 본작업** |
 | **2** | 인앱 브라우저 제약 실측 | **불가** | 실기기 + 배포 URL 필요 |
 | **8** | LCP 숫자 예산 | **불가** | 4G 프로파일 실측 필요 |
@@ -198,6 +246,8 @@ types/draft.ts                잠정 타입 — 계약 확정 시 교체
   components/candidate-card.tsx   → CLI-C1 산출물
   components/states/*.tsx         → CLI-C1 산출물
   lib/evidence/gate.ts            → 서버 게이트(EVD-A) 도착 시 이중 방어
+  lib/evidence/freshness.ts       → 신선도 판정 단일 원천 (S2-T6). 서버도 이걸 쓴다
+  lib/evidence/verified-by.ts     → verified_by 열거값 → 표시명 매핑 (S3-T2)
   types/draft.ts                  → 계약 확정 시 교체
   app/preview/page.tsx            → 원천만 MOCK-00x 로 교체
 
@@ -218,10 +268,10 @@ types/draft.ts                잠정 타입 — 계약 확정 시 교체
 | 2 | 후보 카드 컴포넌트 + 근거 게이트 + fixture 3종 | 1일 | 카드 4상태 |
 | 3 | 열화 6상태 | 1일 | 6상태 |
 | 4 | 조건 입력 3상태 | 0.5일 | 3상태 |
-| 5 | 갤러리 정리 + 판정 세션 | 0.5일 | **미정 6건 판정 기록** |
+| 5 | 갤러리 정리 + 판정 세션 | 0.5일 | **미정 5건 판정 기록** |
 | | **합계** | **4일** | 13상태 |
 
-**5번이 이 스파이크의 실제 산출물이다.** 화면을 만드는 것이 목적이 아니라, **§5의 미정 6건을 화면 앞에서 결론 내는 것**이 목적이다.
+**5번이 이 스파이크의 실제 산출물이다.** 화면을 만드는 것이 목적이 아니라, **§5의 미정 5건을 화면 앞에서 결론 내는 것**이 목적이다.
 판정 결과는 `UX-B`·`UX-C`·`UX-F` 정식 착수의 입력이 된다.
 
 ### 8.1 브랜치 — 문서와 코드를 분리한다 *(T8 · 2026-08-26)*
@@ -245,7 +295,15 @@ types/draft.ts                잠정 타입 — 계약 확정 시 교체
 ls components/states/*.tsx | wc -l                                # equals 6
 
 # 갤러리에 13상태가 다 걸려 있는가
-grep -cE 'CandidateCard|StatePanel|QueryInput' app/preview/page.tsx   # at least 13
+grep -cE 'CandidateCard|GateResult|StatePanel|QueryInput' app/preview/page.tsx   # at least 13
+
+# 세션 2·3 결정이 fixture 형상에 들어갔는가
+grep -c 'excludedByEvidence\|excludedByRecheck\|fallbackApplied' lib/fixtures/top3.json  # at least 3
+grep -cE 'MERCHANT|INTERNAL_SURVEY|USER_REPORT|OPERATOR' lib/evidence/verified-by.ts     # equals 4
+grep -c 'DRAFT: SPEC-008' types/draft.ts                          # at least 1
+
+# 신선도 판정이 함수 1개인가 (S2-T6) — 컴포넌트가 직접 날짜 계산하지 않는다
+grep -rlE 'Date\.now|new Date' components/ | wc -l                # equals 0
 
 # 근거 4항목이 카드의 필수 props (불변 규칙 1)
 grep -cE 'selectionReason|evidenceAttribute|verifiedAt|verifiedBy' \
@@ -278,7 +336,7 @@ gh issue list --state open --json number \
 
 | 순서 | 다음 단계 |
 | --- | --- |
-| 1 | **§5의 미정 6건 판정을 기록한다** — `docs/design/ux/` 정식 문서의 입력 |
+| 1 | **§5의 미정 5건 판정을 기록한다** — `docs/design/ux/` 정식 문서의 입력 |
 | 2 | `docs/goals/ux-design-stage.md`로 **UX 문서 5건 정식 착수** — 스파이크 화면이 근거가 된다 |
 | 2.5 | **공유 카드** — `SPEC-004` → `MOCK-005` → `UX-D`(#143) 순서. T4에서 미룬 2상태를 여기서 그린다 |
 | 3 | `/task-start 94` → `SPEC-001` **계약 5건 착수** — 잠정 타입을 계약으로 교체 |
