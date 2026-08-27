@@ -326,7 +326,7 @@ grep -c 'missing' lib/fixtures/evidence-missing.json              # at least 4
 grep -c 'PREVIEW_ENABLED' env.ts                                  # at least 1
 
 # 티켓은 하나도 닫히지 않았는가 (UX-D #143 은 T4 에서 범위 밖)
-gh issue list --state open --json number \
+gh issue list --state open --limit 300 --json number \
   -q '[.[].number] | map(select(IN(137,140,141,142,145))) | length'   # equals 5
 ```
 
