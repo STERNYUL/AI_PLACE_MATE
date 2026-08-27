@@ -14,7 +14,11 @@
 ## 1) 작업 핵심 목표 및 범위
 
 - **목표:** `app/preview/page.tsx` 갤러리 1페이지에 **화면 3종·상태 13개**를 렌더하는 Next.js 소스를 완성하고, `aztks-agent` EVALUATE 가 **GO** 를 반환한다.
-- **시작 지점:** `main` (커밋 `e0c74b5`) 에서 **`feat/137-visual-spike`** 브랜치를 새로 만든다 (Grill S1-T8 확정).
+- **시작 지점:** **`docs/137-spike-goal` (커밋 `7ee8a87`)** 에서 **`feat/137-visual-spike`** 브랜치를 만든다 (Grill S1-T8 확정).
+
+  > **`main`(`e0c74b5`)에서 파면 안 된다.** 이 목표문과 판정 명령 `--limit` 수정이 `main` 에 아직 없어서, 워킹트리에서 **목표문이 사라지고** §6 이 "정본"이라 부른 스파이크 문서 §9 명령이 **버그판으로 되돌아간다.**
+  > 착수 전 `git log --oneline -1` 로 `7ee8a87` 이 조상인지 확인하고, `ls docs/goals/visual-spike-build.md` 가 파일을 찾는지 본다. 못 찾으면 브랜치 기점이 틀린 것이다.
+  > 이미 `main` 기점으로 만들어진 `feat/137-visual-spike` 가 있으면 **`git switch feat/137-visual-spike && git rebase docs/137-spike-goal`** 로 기점을 옮긴다.
 - **작업 대상 — 이 경로만 생성·수정한다:**
 
   | 경로 | 내용 | 지위 |
@@ -29,10 +33,17 @@
   | `lib/evidence/freshness.ts` | **신선도 판정 함수 1개** — 90일 경계 | 존속 |
   | `lib/evidence/verified-by.ts` | 확인 주체 열거형 4종 | 존속 |
   | `lib/search/client.ts` | wire ↔ props 변환 단일 함수 | 존속 |
+  | `lib/search/format.ts` | `priceRange` 3필드 축약 표기 (Grill D4 · S3-T3) | 존속 |
+  | `app/layout.tsx` · `app/globals.css` | App Router 필수 진입 + Tailwind 지시자 | 존속 |
   | `types/draft.ts` | 잠정 타입 — `// DRAFT: SPEC-008` | 계약 확정 시 교체 |
   | `lib/fixtures/*.json` | `top3` · `evidence-missing` · `freshness` | **폐기 대상** |
   | `env.ts` · `package.json` · `tsconfig.json` · `next.config.*` · `tailwind.config.*` · `postcss.config.*` · `components.json` · `.gitignore` | 초기화 설정 | 존속 |
-  | `docs/design/ux/SPIKE-FINDINGS.md` | **미정 5건 판정 기록** | 존속 — 이 목표의 실질 산출물 |
+  | `docs/design/spike/SPIKE-FINDINGS.md` | **미정 5건 판정 기록** | 존속 — 이 목표의 실질 산출물 |
+  | `docs/design/spike/spike-preview*.png` | 경로 A 렌더 증거 *(있으면)* | 존속 |
+
+  > **`env.ts` 는 스파이크 단계에서 `PREVIEW_ENABLED` 만 검증한다.** `DATABASE_URL` 등을 zod 로 강제하면 `.env.local` 이 없어 **경로 A 의 `npm run build` 가 구조적으로 실패**한다. DB 접속이 없는 갤러리이므로 검증 대상이 아니다.
+  >
+  > **판정 기록을 `docs/design/ux/` 가 아니라 `docs/design/spike/` 에 둔다.** [`docs/goals/ux-design-stage.md`](ux-design-stage.md) 의 종료 명령 4번이 `docs/design/ux/` 전체에서 판정형 어휘 0건을 요구하고 `WRITING-GUIDE` 만 제외하는데, 판정 기록은 **판정형 어휘 기준 자체를 논하므로** 그 목표를 영구 미완으로 만든다.
 
 - **작업 자율성:** 위 경로 안에서는 **사용자 확인 없이 끝까지 진행한다.** 아래 넷만 사용자 확인을 받는다 — `main` 머지 · **node 설치** · GitHub 이슈 상태 변경 · 외부 배포(Vercel).
 
@@ -63,6 +74,8 @@
 **열화 6상태 명칭에 새 이름을 만들지 않는다** — `.claude/skills/102-ux-stage-deliverables` 와 `docs/goals/ux-design-stage.md` 의 판정 grep 이 이 6개 문자열을 그대로 센다.
 
 **제외 2상태는 카드가 아니라 패널로 그린다** (Grill S4-T1). 근거 누락·재확인 대기는 정렬 이전에 제외되므로 카드로 렌더될 일이 없고, 사유를 구분해야 **후보 3개 미만 화면**을 판정할 수 있다.
+
+**열화 6상태 컴포넌트의 export 명에는 `StatePanel` 이 들어간다** — 판정 명령 2번이 `CandidateCard|GateResult|StatePanel|QueryInput` 으로 13개를 세므로, 다른 이름을 쓰면 갤러리가 완성돼도 `at least 13` 이 성립하지 않는다.
 
 ### 2.3 grill 결정 준수 — 임의로 다시 정하지 않는다
 
@@ -102,7 +115,13 @@
 
 ### 2.7 node 유무에 따라 범위가 갈린다 — **가장 먼저 판정한다**
 
-**착수 즉시 `command -v node npm` 을 실행해 결과를 대화에 남긴다.** 이 한 줄이 아래 두 경로 중 하나를 고정한다. 작업 도중에 경로를 바꾸지 않는다.
+**착수 즉시 아래를 실행해 결과를 대화에 남긴다.** 이 결과가 두 경로 중 하나를 고정한다.
+
+```bash
+command -v node npm || ls "$PROGRAMFILES/nodejs/node.exe" 2>/dev/null
+```
+
+> **`command -v` 만으로 판정하지 않는다.** node 가 설치돼도 **셸이 설치 전에 시작됐으면 PATH 에 안 잡힌다** — 실제로 2026-08-27 에 이 상황이 발생했다(설치 완료 · `C:\Program Files\nodejs\node.exe` 존재 · 세션 PATH 미반영). 파일이 있으면 **node 는 있는 것**이며, PATH 문제는 새 셸을 열어 해결한다.
 
 | | **경로 A — node 있음** | **경로 B — node 없음** |
 | --- | --- | --- |
@@ -110,12 +129,15 @@
 | 판정 명령 | 13개 + **§3.2 의 14·15번** | 13개 |
 | `npm install` | **실행한다** | 시도하지 않는다 |
 | shadcn/ui | `npx shadcn@latest add` 로 필요한 것만 | CLI 를 못 쓰므로 **`components/ui/` 에 직접 작성** |
-| 렌더 확인 | `npm run dev` 후 **`/preview` 스크린샷 1장**을 `docs/design/ux/` 에 남긴다 | `/setup-env` 이후 별도 단계 |
-| `aztks-agent` 입력 | 소스 + **스크린샷** | 소스만 |
+| 렌더 확인 | `npm run dev` + `curl localhost:3000/preview` 로 **렌더 사실을 증명** | `/setup-env` 이후 별도 단계 |
+| `aztks-agent` 입력 | 소스 + **렌더 출력** | 소스만 |
+| 종료 코드 | `SPIKE_ACCEPTED` | **`SOURCE_COMPLETE_NO_RENDER`** |
 
 **경로 A 가 사용자의 원래 요구에 부합한다** — 요구는 *"시각적인 프로토타입"* 이고, 화면을 실제로 본 뒤라야 `aztks-agent` 가 *"경고가 묻히는가"* · *"전환 고지가 오류로 읽히는가"* 를 판정할 수 있다. **경로 B 는 node 가 없을 때의 대체안이지 동등한 선택지가 아니다.**
 
-경로 B 로 끝났다면 종료 보고에 **"렌더 미확인 — 경로 B"** 를 명시한다. 렌더를 본 것처럼 적지 않는다.
+**따라서 경로 B 는 `SPIKE_ACCEPTED` 를 받지 못한다.** 렌더 0회로 *"시각적 프로토타입"* 요구가 충족됐다고 적을 수 없다. 경로 B 완주는 **`SOURCE_COMPLETE_NO_RENDER`** 로 종료하고, 종료 보고 첫 줄에 **"렌더 미확인 — 경로 B"** 를 적는다.
+
+**5단계 종료 시 node 를 1회 재확인한다.** 도중에 node 가 도착했으면 **경로 A 로 승격**해 14·15 를 실행한다 — 경로 고정은 작업 중 오락가락을 막으려는 것이지, 더 나은 결과를 거부하려는 것이 아니다.
 
 **두 경로 공통**
 - `package.json`·`tsconfig.json`·`next.config` 등 설정 파일은 **작성한다.**
@@ -130,12 +152,12 @@
   - `aztks-agent` EVALUATE 가 **GO** 를 반환하고, **§3.1 판정 명령 13개**(경로 A 는 **§3.2 의 14·15 포함 15개**)가 전부 기대값과 일치 → **STOP REASON: SPIKE_ACCEPTED**
   - `aztks-agent` EVALUATE 가 **NO-GO 를 누적 3회** 반환 → **STOP REASON: EVAL_BUDGET**
   - 판정 명령이 **같은 항목에서 3회 연속 불일치** → **STOP REASON: VERIFY_STUCK**
-  - 평가-진행 라운드(turn = `/goal` 평가자가 진행 상태를 한 번 점검하는 메인 에이전트 응답 사이클)가 **누적 30회** 도달 → **STOP REASON: TURN_CAP** (= or stop after 30 turns)
+  - 평가-진행 라운드(turn = `/goal` 평가자가 진행 상태를 한 번 점검하는 메인 에이전트 응답 사이클)가 **누적 30회**(경로 A 는 **40회** — 설치·shadcn·빌드 디버깅이 더해진다) 도달 → **STOP REASON: TURN_CAP** (= or stop after 30 turns; 40 on path A)
 
 - **종료 방법:**
-  1. `docs/design/ux/SPIKE-FINDINGS.md` 마지막 줄에 `STOP REASON: <원인 코드>` 한 줄을 덧붙인다.
+  1. `docs/design/spike/SPIKE-FINDINGS.md` 마지막 줄에 `STOP REASON: <원인 코드>` 한 줄을 덧붙인다.
   2. **§3.1 판정 명령 13개**(경로 A 는 **§3.2 포함 15개**)**를 실행해 출력 전부를 대화에 남긴다.** 어느 경로였는지 한 줄로 밝힌다.
-  3. `aztks-agent` 의 **최종 스코어카드(5축 · GO/NO-GO)를 대화에 그대로 남긴다.**
+  3. `aztks-agent` 의 **최종 스코어카드(5축 · GO/NO-GO)를 대화에 그대로 남긴다.** **Task 호출 원문(프롬프트 첫 줄)과 서브에이전트 응답 블록을 그대로 붙인다 — 요약·재작성하면 무효다.** 디스패치 흔적이 없는 GO 는 자기 채점이므로 인정되지 않는다.
   4. `git status --short` · `git log --oneline main..HEAD` · `gh pr list` 를 실행해 출력을 대화에 남긴다.
 
 ### 3.1 판정 명령 13개 — 전부 텍스트·`gh` 도구다 (node 불필요)
@@ -151,7 +173,10 @@ grep -cE 'CandidateCard|GateResult|StatePanel|QueryInput' app/preview/page.tsx  
 grep -c 'excludedByEvidence\|excludedByRecheck\|fallbackApplied' lib/fixtures/top3.json   # at least 3
 
 # 4. 확인 주체 열거형 4종
-grep -cE 'MERCHANT|INTERNAL_SURVEY|USER_REPORT|OPERATOR' lib/evidence/verified-by.ts     # equals 4
+#    -o + sort -u 필수 — grep -c 는 매치 수가 아니라 '매치된 줄 수'다.
+#    union 1줄 + 표시명 매핑 4줄이면 5를 반환해, 규격을 지킨 코드가 오히려 실패한다
+grep -oE 'MERCHANT|INTERNAL_SURVEY|USER_REPORT|OPERATOR' lib/evidence/verified-by.ts \
+  | sort -u | wc -l                                                      # equals 4
 
 # 5. 잠정 타입 주석
 grep -c 'DRAFT: SPEC-008' types/draft.ts                                 # at least 1
@@ -160,8 +185,9 @@ grep -c 'DRAFT: SPEC-008' types/draft.ts                                 # at le
 grep -rlE 'Date\.now|new Date' components/ | wc -l                       # equals 0
 
 # 7. 근거 4항목이 카드의 필수 props (불변 규칙 1)
-grep -cE 'selectionReason|evidenceAttribute|verifiedAt|verifiedBy' \
-  components/candidate-card.tsx                                          # equals 4
+#    4번과 같은 이유 — 타입 선언 4줄 + JSX 참조 4줄이면 grep -c 는 8을 반환한다
+grep -oE 'selectionReason|evidenceAttribute|verifiedAt|verifiedBy' \
+  components/candidate-card.tsx | sort -u | wc -l                        # equals 4
 
 # 8. 판정형 어휘 0건 (불변 규칙 3)
 grep -rniE '조용|아늑|분위기 (좋|나쁨)|추천|최고|훌륭|괜찮|무난|가성비|인기|핫한|강추|별로' \
@@ -195,11 +221,15 @@ gh issue list --state open --limit 300 --json number \
 # 14. 빌드가 통과한다
 npm run build                                                            # exits 0
 
-# 15. 렌더 확인 증거가 남았다 — /preview 스크린샷
-ls docs/design/ux/spike-preview*.png | wc -l                             # at least 1
+# 15. 렌더가 실제로 나온다 — dev 서버 응답에 카드 상태가 보인다
+#     스크린샷이 아니라 HTML 을 센다. 브라우저 자동화가 없으므로 에이전트가 직접 실행 가능해야 한다
+npm run dev &
+curl -s localhost:3000/preview | grep -cE 'STALE|제외'                   # at least 2
 ```
 
-**경로 B 에서는 이 둘을 실행하지 않고, 종료 보고에 `경로 B — 렌더 미확인` 을 적는다.** 실행하지 않은 명령을 통과로 처리하지 않는다.
+**스크린샷은 에이전트의 종료 조건이 아니다.** 화면을 눈으로 보는 것은 사용자의 몫이고, 에이전트는 **렌더가 나온다는 사실**까지만 증명한다. 사용자가 스크린샷을 남기면 `docs/design/spike/spike-preview*.png` 에 둔다.
+
+**경로 B 에서는 14·15 를 실행하지 않고, 종료 보고에 `경로 B — 렌더 미확인` 을 적는다.** 실행하지 않은 명령을 통과로 처리하지 않는다.
 
 ---
 
@@ -220,7 +250,7 @@ ls docs/design/ux/spike-preview*.png | wc -l                             # at le
   - `.claude/**` — 하네스 규칙은 이미 grill 이 반영했다.
   - `CLAUDE.md` — §4 디렉터리에 `app/preview` 가 이미 등재돼 있다.
 
-- **활성 범위 외 변경 금지** — §1 표의 경로만 만든다. 예외는 `docs/design/ux/SPIKE-FINDINGS.md` 하나다.
+- **활성 범위 외 변경 금지** — §1 표의 경로만 만든다. `docs/design/spike/` 아래 두 산출물(`SPIKE-FINDINGS.md` · 렌더 증거 이미지)이 유일한 문서 예외다.
 
 - **`docs/design/ux/` 의 정식 UX 문서를 만들지 않는다.** `UX-{A,B,C,F}-*.md` 는 `docs/goals/ux-design-stage.md` 목표의 산출물이다. 두 목표가 같은 파일을 쓰면 충돌한다 — 스파이크는 **판정 기록 1건만** 남기고 정식 문서화는 넘긴다.
 
@@ -232,7 +262,7 @@ ls docs/design/ux/spike-preview*.png | wc -l                             # at le
 
 ### 5.1 디스패치
 
-- **호출 시점:** 5단계가 전부 끝난 뒤 1회. NO-GO 시 지적 항목을 고치고 재호출 (최대 3회).
+- **호출 시점:** 5단계가 전부 끝난 뒤 1회. NO-GO 시 지적 항목을 고치고 재호출 — **호출 총합 3회**(최초 1 + 재호출 2). §3 `EVAL_BUDGET` 과 같은 수다.
 - **모드:** `MODE: EVALUATE` — 읽기 전용. 결정적 GO/NO-GO 스코어카드를 받는다.
 - **평가 입력으로 넘길 것:** `app/preview/page.tsx` · `components/**` · `lib/fixtures/**` · `lib/evidence/**` · `docs/prototype-visual-spike.md` §1·§5 · `CLAUDE.md` §2(4대 불변 규칙).
 

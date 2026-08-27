@@ -42,7 +42,7 @@
   4) `grep -rniE '조용|아늑|분위기 (좋|나쁨)|추천|최고|훌륭|괜찮|무난|가성비|인기|핫한|강추|별로' docs/design/ux/ --include='*.md' | grep -v WRITING-GUIDE | wc -l` 을 실행해 `0` 이 보이는 출력을 대화에 남긴다.
   5) `grep -cE '^\| (폴백표시|근거대기|근거생략|유사메뉴대체|제안없음|재시도안내)' docs/design/ux/UX-F-empty-states.md` 를 실행해 `6` 이 보이는 출력을 대화에 남긴다.
   6) `for f in docs/design/ux/UX-*.md docs/design/ux/phase2/UX-*.md; do echo "$f $(grep -cE '^## [1-6]\. ' "$f")"; done` 을 실행해 각 파일이 `6` 인 출력을 대화에 남긴다.
-  7) `gh issue list --state open --json number -q '[.[].number] | map(select(. >= 140 and . <= 147)) | length'` 을 실행해 `0` 이 보이는 출력을 대화에 남긴다.
+  7) `gh issue list --state open --limit 300 --json number -q '[.[].number] | map(select(. >= 140 and . <= 147)) | length'` 을 실행해 `0` 이 보이는 출력을 대화에 남긴다. **`--limit 300` 필수** — `gh` 기본 페이지 크기가 30인데 열린 이슈가 84건이라, 빠뜨리면 티켓 8건이 전부 열려 있어도 `0` 을 반환해 **거짓 통과**한다 (2026-08-27 실측).
   8) `grep -E '^(WAVE|LANES_DONE|LANES_TOTAL|DECISIONS|STOP REASON):' docs/goals/ux-design-stage-LEDGER.md` 를 실행해 카운터 5줄이 보이는 출력을 대화에 남긴다.
   9) `gh pr list --state open` 을 실행해 이번 루프가 연 웨이브 PR 목록을 대화에 남긴다.
 
