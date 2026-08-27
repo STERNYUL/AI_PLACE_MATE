@@ -1,0 +1,54 @@
+@import 'tailwindcss';
+
+/*
+  UX-A 토큰 — 지도 내 탭 모바일 웹이 전제다 (ADR-006 · R6).
+  색은 역할로만 부른다. 값이 아니라 역할이 바뀌어야 화면 의미가 바뀐다.
+*/
+@theme {
+  --font-sans:
+    'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic',
+    system-ui, sans-serif;
+
+  --color-canvas: #f7f6f4;
+  --color-surface: #ffffff;
+  --color-line: #e5e2dd;
+  --color-line-strong: #cfcac2;
+
+  --color-ink: #1b1917;
+  --color-ink-muted: #57534e;
+  --color-ink-faint: #8f887f;
+
+  /* 사실 값 강조 — 판정이 아니라 수치·출처에만 쓴다 */
+  --color-fact: #115e59;
+  --color-fact-soft: #e7f3f1;
+
+  /* 신선도 경고 — §5 #3 시각 위계 판정 대상 */
+  --color-warn: #9a5b06;
+  --color-warn-soft: #fdf2dd;
+  --color-warn-line: #e8c88a;
+
+  /* 게이트 제외 — 후보가 아님을 말하는 색 */
+  --color-halt: #9b2242;
+  --color-halt-soft: #fbe9ee;
+  --color-halt-line: #eec2ce;
+
+  /* 열화 고지 — 오류가 아니라 상태 전환임을 말하는 색 */
+  --color-notice: #1d4ed8;
+  --color-notice-soft: #e8eefc;
+  --color-notice-line: #c2d3f6;
+
+  --radius-card: 0.875rem;
+  --radius-chip: 999px;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    -webkit-text-size-adjust: 100%;
+  }
+}

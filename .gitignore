@@ -19,3 +19,13 @@ Desktop.ini
 # 라이선스 제한 표준 문서 — 저작권상 배포 불가 (PUBLIC 저장소)
 29148-2018-ISOIECIEEE.pdf
 *.pdf
+
+# Node · Next.js
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+
+# 환경 변수 — 로컬 값은 커밋하지 않는다 (REQ-IMPL-033)
+.env
+.env*.local
