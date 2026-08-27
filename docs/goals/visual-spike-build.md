@@ -14,10 +14,10 @@
 ## 1) 작업 핵심 목표 및 범위
 
 - **목표:** `app/preview/page.tsx` 갤러리 1페이지에 **화면 3종·상태 13개**를 렌더하는 Next.js 소스를 완성하고, `aztks-agent` EVALUATE 가 **GO** 를 반환한다.
-- **시작 지점:** **`docs/137-spike-goal` (커밋 `7ee8a87`)** 에서 **`feat/137-visual-spike`** 브랜치를 만든다 (Grill S1-T8 확정).
+- **시작 지점:** **`docs/137-spike-goal` 의 최신 커밋**에서 **`feat/137-visual-spike`** 브랜치를 만든다 (Grill S1-T8 확정).
 
   > **`main`(`e0c74b5`)에서 파면 안 된다.** 이 목표문과 판정 명령 `--limit` 수정이 `main` 에 아직 없어서, 워킹트리에서 **목표문이 사라지고** §6 이 "정본"이라 부른 스파이크 문서 §9 명령이 **버그판으로 되돌아간다.**
-  > 착수 전 `git log --oneline -1` 로 `7ee8a87` 이 조상인지 확인하고, `ls docs/goals/visual-spike-build.md` 가 파일을 찾는지 본다. 못 찾으면 브랜치 기점이 틀린 것이다.
+  > 착수 전 `git merge-base --is-ancestor docs/137-spike-goal HEAD` 가 **exit 0** 인지 확인한다. **커밋 해시를 핀으로 쓰지 않는다** — 이 목표문은 평가 회차마다 갱신되므로 특정 해시를 고정하면 옛 버전(판정 명령 버그판)을 체크아웃하게 되고, `ls docs/goals/visual-spike-build.md` 는 두 버전을 구분하지 못한다.
   > 이미 `main` 기점으로 만들어진 `feat/137-visual-spike` 가 있으면 **`git switch feat/137-visual-spike && git rebase --autostash docs/137-spike-goal`** 로 기점을 옮긴다. **`--autostash` 가 필수다** — unstaged 변경이 하나라도 있으면 rebase 가 거부되고, 이 저장소는 `rebase.autoStash` 가 설정돼 있지 않다.
 - **작업 대상 — 이 경로만 생성·수정한다:**
 
@@ -37,7 +37,7 @@
   | `app/layout.tsx` · `app/globals.css` | App Router 필수 진입 + Tailwind 지시자 | 존속 |
   | `types/draft.ts` | 잠정 타입 — `// DRAFT: SPEC-008` | 계약 확정 시 교체 |
   | `lib/fixtures/*.json` | `top3` · `evidence-missing` · `freshness` | **폐기 대상** |
-  | `env.ts` · `package.json` · `tsconfig.json` · `next.config.*` · `tailwind.config.*` · `postcss.config.*` · `components.json` · `.gitignore` | 초기화 설정 | 존속 |
+  | `env.ts` · `package.json` · `package-lock.json` · `tsconfig.json` · `next.config.*` · `tailwind.config.*` · `postcss.config.*` · `components.json` · `.env.example` · `.gitignore` | 초기화 설정 | 존속 |
   | `docs/design/spike/SPIKE-FINDINGS.md` | **미정 5건 판정 기록** | 존속 — 이 목표의 실질 산출물 |
   | `docs/design/spike/spike-preview*.png` | 경로 A 렌더 증거 *(있으면)* | 존속 |
 
@@ -123,7 +123,9 @@
 command -v node npm || ls "$PROGRAMFILES/nodejs/node.exe" 2>/dev/null
 ```
 
-> **`command -v` 만으로 판정하지 않는다.** node 가 설치돼도 **셸이 설치 전에 시작됐으면 PATH 에 안 잡힌다** — 실제로 2026-08-27 에 이 상황이 발생했다(설치 완료 · `C:\Program Files\nodejs\node.exe` 존재 · 세션 PATH 미반영). 파일이 있으면 **node 는 있는 것**이며, PATH 문제는 새 셸을 열어 해결한다.
+> **`command -v` 만으로 판정하지 않는다.** node 가 설치돼도 **셸이 설치 전에 시작됐으면 PATH 에 안 잡힌다** — 실제로 2026-08-27 에 이 상황이 발생했다(설치 완료 · `C:\Program Files\nodejs\node.exe` 존재 · 세션 PATH 미반영). 파일이 있으면 **node 는 있는 것**이며 경로 A 로 간다.
+>
+> **새 셸을 열어도 해결되지 않는다.** 이 하네스의 Bash 는 호출마다 같은 부모 환경을 상속하므로 새 호출도 `command not found` 다(실측). **`§3.2` 0번의 `export PATH` 를 쓴다** — 그것이 유일한 해결책이다.
 
 | | **경로 A — node 있음** | **경로 B — node 없음** |
 | --- | --- | --- |
@@ -162,7 +164,7 @@ command -v node npm || ls "$PROGRAMFILES/nodejs/node.exe" 2>/dev/null
   2. **§3.1 판정 명령 13개**(경로 A 는 **§3.2 포함 15개**)**를 실행해 출력 전부를 대화에 남긴다.** 어느 경로였는지 한 줄로 밝힌다.
   3. `aztks-agent` 의 **최종 스코어카드(5축 · GO/NO-GO)를 대화에 그대로 남긴다.** **Task 호출 원문(프롬프트 첫 줄)과 서브에이전트 응답 블록을 그대로 붙인다 — 요약·재작성하면 무효다.** 디스패치 흔적이 없는 GO 는 자기 채점이므로 인정되지 않는다.
   4. `git status --short` · `git log --oneline main..HEAD` · `gh pr list` 를 실행해 출력을 대화에 남긴다.
-  5. **`git status --short | grep -c '^??'` 를 실행해 `0` 을 보인다.** 산출물이 전부 untracked 인 채로 종료하면 판정 명령은 통과해도 **커밋된 것이 없다** — PR 에 아무것도 올라가지 않는다.
+  5. **`git status --short | grep '^??'` 를 실행한다.** **§1 표 대상 경로가 하나라도 `??` 로 남아 있으면 종료가 아니다** — 판정 명령이 전부 통과해도 커밋된 것이 없으면 PR 에 아무것도 올라가지 않는다. 표 밖 파일(작업 프롬프트 사본 · 잔여 산출물 등)은 **손대지 않고 목록만 종료 보고에 남긴다** — §4 가 표 밖 변경을 금지하므로 지우는 것도 범위 밖이다.
 
 ### 3.1 판정 명령 13개 — 전부 텍스트·`gh` 도구다 (node 불필요)
 
@@ -222,6 +224,10 @@ gh issue list --state open --limit 300 --json number \
 ### 3.2 경로 A 추가 판정 2개 — node 가 있을 때만
 
 ```bash
+# 0. PATH — 이 하네스의 Bash 는 매 호출이 같은 부모 env 를 상속하므로 "새 셸을 열면 된다"가 성립하지 않는다.
+#    node 가 설치돼 있어도 매번 command not found 다. 14·15 앞에 반드시 이 줄을 먼저 실행한다
+export PATH="/c/Program Files/nodejs:$PATH"
+
 # 14. 빌드가 통과한다
 npm run build                                                            # exits 0
 
@@ -229,11 +235,12 @@ npm run build                                                            # exits
 #     ① PREVIEW_ENABLED=true 필수 — env.ts 기본값이 'false' 라 그냥 띄우면 /preview 가 404 다
 #     ② 기동 대기 필수 — 즉시 curl 하면 connection refused
 #     ③ -oE | sort -u 필수 — React SSR HTML 은 개행이 없어 grep -c 가 최대 1 을 반환한다 (4·7번과 같은 계열)
-#     ④ kill 필수 — 안 죽이면 orphan 프로세스가 남아 다음 실행에서 포트가 충돌한다
+#     ④ taskkill //F //T 필수 — kill 은 npm 만 죽이고 자식 node 가 살아남는다 (실측 확인).
+#        Next.js dev 서버는 소스를 실시간 컴파일하므로 판정 자체는 뒤집히지 않지만 프로세스가 누적된다
 PREVIEW_ENABLED=true npm run dev > /tmp/dev.log 2>&1 & DEV=$!
 for i in $(seq 30); do curl -sf localhost:3000/preview >/dev/null && break; sleep 2; done
 curl -s localhost:3000/preview | grep -oE 'STALE|제외' | sort -u | wc -l   # equals 2
-kill $DEV
+taskkill //F //T //PID $DEV 2>/dev/null || kill $DEV
 ```
 
 **스크린샷은 에이전트의 종료 조건이 아니다.** 화면을 눈으로 보는 것은 사용자의 몫이고, 에이전트는 **렌더가 나온다는 사실**까지만 증명한다. 사용자가 스크린샷을 남기면 `docs/design/spike/spike-preview*.png` 에 둔다.
