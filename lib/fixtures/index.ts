@@ -43,7 +43,7 @@ const incomingCandidateSchema = z.object({
   recheckRequired: z.boolean().optional(),
 })
 
-const queryResponseSchema = z.object({
+export const queryResponseSchema = z.object({
   candidates: z.array(wireCandidateSchema),
   fallbackApplied: z.boolean(),
   overBudgetCount: z.number(),
