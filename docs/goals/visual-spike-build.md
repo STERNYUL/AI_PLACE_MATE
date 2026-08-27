@@ -235,12 +235,14 @@ npm run build                                                            # exits
 #     ① PREVIEW_ENABLED=true 필수 — env.ts 기본값이 'false' 라 그냥 띄우면 /preview 가 404 다
 #     ② 기동 대기 필수 — 즉시 curl 하면 connection refused
 #     ③ -oE | sort -u 필수 — React SSR HTML 은 개행이 없어 grep -c 가 최대 1 을 반환한다 (4·7번과 같은 계열)
-#     ④ taskkill //F //T 필수 — kill 은 npm 만 죽이고 자식 node 가 살아남는다 (실측 확인).
+#     ④ 정리는 전용 포트 + 워크스페이스 command line 확인으로 한다. kill 도 taskkill //F //T 도 자식 node 를 놓쳤다 (실측).
 #        Next.js dev 서버는 소스를 실시간 컴파일하므로 판정 자체는 뒤집히지 않지만 프로세스가 누적된다
-PREVIEW_ENABLED=true npm run dev > /tmp/dev.log 2>&1 & DEV=$!
-for i in $(seq 30); do curl -sf localhost:3000/preview >/dev/null && break; sleep 2; done
-curl -s localhost:3000/preview | grep -oE 'STALE|제외' | sort -u | wc -l   # equals 2
-taskkill //F //T //PID $DEV 2>/dev/null || kill $DEV
+PORT=30137
+PREVIEW_ENABLED=true npm run dev -- --port "$PORT" > /tmp/dev.log 2>&1 & DEV=$!
+for i in $(seq 30); do curl -sf "localhost:$PORT/preview" >/dev/null && break; sleep 2; done
+curl -s "localhost:$PORT/preview" | grep -oE 'STALE|제외' | sort -u | wc -l   # equals 2
+# 정리 — 다른 작업의 포트를 죽이지 않는다. 소유 프로세스가 이 워크스페이스의 Next 인지 확인한 뒤에만 종료한다
+powershell.exe -NoProfile -Command '$pid=(Get-NetTCPConnection -LocalPort 30137 -State Listen).OwningProcess; $p=Get-CimInstance Win32_Process -Filter "ProcessId = $pid"; if ($p.CommandLine -notlike "*AI_PLACE_MATE*node_modules*next*") { throw "refusing to terminate an unknown process" }; Stop-Process -Id $pid -Force'
 ```
 
 **스크린샷은 에이전트의 종료 조건이 아니다.** 화면을 눈으로 보는 것은 사용자의 몫이고, 에이전트는 **렌더가 나온다는 사실**까지만 증명한다. 사용자가 스크린샷을 남기면 `docs/design/spike/spike-preview*.png` 에 둔다.

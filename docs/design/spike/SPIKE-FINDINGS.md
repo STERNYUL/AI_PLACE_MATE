@@ -262,5 +262,17 @@ SPIKE-VERDICT: 5 / 5
 
 ---
 
+## 9. 수락 상태 — 판정 기록과 종료 증거를 분리한다
+
+`SPIKE-VERDICT: 5 / 5`는 §5 미정 5건의 **화면 판정이 모두 기록됐다는 뜻**이다.
+이는 작업 전체의 `SPIKE_ACCEPTED` 선언과는 다르다. 목표문이 요구한 독립
+`aztks-agent` GO의 호출 원문·스코어카드가 현재 저장소에 없으므로, 이 문서는
+그 GO를 주장하지 않는다. 현재 소스의 15개 기계 검증과 HTTP 렌더 증거는
+[`SPIKE-PROGRESS.md`](SPIKE-PROGRESS.md)에 갱신한다.
+
+**현재 상태: 독립 평가 재개 대기 — `STOP REASON` 미기록.**
+
+---
+
 *작성: 시각 스파이크 실행 세션 · 2026-08-27*
 *근거: PROTO-AIPLACE-LITE-001 §1·§5·§7·§9 · GOAL-AIPLACE-SPIKE-001 §3·§5 · GRILL_LEDGER 4세션 31건 · SRS-AIPLACE-MVP-001 v1.9 §3.1.2·§8.3 · CLAUDE.md §2·§4*
